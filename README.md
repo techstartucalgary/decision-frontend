@@ -51,8 +51,9 @@ To view the project open `http://localhost:3000`.
 4. Push to the branch: `git push origin my-new-feature`.
 
 ## Contributers
-Vivian Huynh
-Mikail Munir
+Vivian Huynh  
+Nemanja Grujic\
+Mikail Munir<br />
 Nolan Chan
 Lubaba Sheikh
 Chase Mowat
