@@ -52,6 +52,7 @@ To view the project open `http://localhost:3000`.
 
 ## Contributers
 Vivian Huynh
+Mikail Munir
 Nolan Chan
 Lubaba Sheikh
 
