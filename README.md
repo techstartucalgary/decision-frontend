@@ -55,6 +55,7 @@ Vivian Huynh
 Mikail Munir
 Nolan Chan
 Lubaba Sheikh
+Chase Mowat
 
 ## 📝 License
 
