@@ -55,6 +55,8 @@ Vivian Huynh
 Mikail Munir
 
 **After your pull request is merged**, you can safely delete your branch.
+Nolan Chan
+Lubaba Sheikh
 
 ## 📝 License
 
