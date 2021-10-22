@@ -52,9 +52,8 @@ To view the project open `http://localhost:3000`.
 
 ## Contributers
 Vivian Huynh
+Nolan Chan
 Lubaba Sheikh
-
-**After your pull request is merged**, you can safely delete your branch.
 
 ## 📝 License
 
