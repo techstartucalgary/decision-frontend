@@ -54,6 +54,7 @@ To view the project open `http://localhost:3000`.
 Vivian Huynh
 Nolan Chan
 Lubaba Sheikh
+Chase Mowat
 
 ## 📝 License
 
