@@ -54,9 +54,10 @@ To view the project open `http://localhost:3000`.
 Vivian Huynh  
 Nemanja Grujic\
 Mikail Munir<br />
-Nolan Chan
-Lubaba Sheikh
-Chase Mowat
+Nolan Chan  
+Lubaba Sheikh  
+Chase Mowat  
+Naveed Aria  
 
 ## 📝 License
 
