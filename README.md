@@ -52,8 +52,8 @@ To view the project open `http://localhost:3000`.
 
 ## Contributers
 Vivian Huynh  
-Nemanja Grujic\
-Mikail Munir<br />
+Nemanja Grujic  
+Mikail Munir  
 Nolan Chan  
 Lubaba Sheikh  
 Chase Mowat  
