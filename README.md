@@ -58,6 +58,7 @@ Nolan Chan
 Lubaba Sheikh  
 Chase Mowat  
 Naveed Aria  
+Minhazur Rahman  
 
 ## 📝 License
 
