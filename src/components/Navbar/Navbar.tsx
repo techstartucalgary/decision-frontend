@@ -1,61 +1,20 @@
 import React, { ReactNode } from 'react';
 import {
   IconButton,
-  Avatar,
   Box,
   CloseButton,
   Flex,
-  HStack,
-  VStack,
-  Icon,
-  useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
   BoxProps,
   FlexProps,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  Tag,
-  TagLabel,
-  TagRightIcon,
-  Button,
-  Editable,
-  EditableInput,
-  EditablePreview,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Modal,
-  ModalBody,
 } from '@chakra-ui/react';
-
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-  FiDollarSign,
-} from 'react-icons/fi';
-import { BsCurrencyDollar } from 'react-icons/bs';
-import { IconType } from 'react-icons';
-import { ReactText } from 'react';
-import {
-  ArrowForwardIcon,
-  ArrowRightIcon,
-  ChevronRightIcon,
-} from '@chakra-ui/icons';
+import { FiMenu } from 'react-icons/fi';
 import Selections from './Selections';
-import LandingPage from '../LandingPage/LandingPage';
+import Link from 'next/link'
+
 
 export default function SidebarWithHeader({
   children,
@@ -64,10 +23,11 @@ export default function SidebarWithHeader({
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg="#332244">
+    <>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
+        
       />
       <Drawer
         autoFocus={false}
@@ -76,19 +36,20 @@ export default function SidebarWithHeader({
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
+        
       >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      
+
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p='0'>
         {children}
       </Box>
-      <LandingPage />
-    </Box>
+      
+    </>
   );
 }
 
@@ -116,9 +77,11 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         justifyContent="space-between"
         color="#FFDD99"
       >
-        <Text fontSize="24" fontFamily="monospace" fontWeight="bold">
+        <Link href='/'>
+        <Text fontSize="24" fontFamily="monospace" fontWeight="bold" cursor={'pointer'}>
           Decision
         </Text>
+        </Link>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       <Nav />
@@ -191,9 +154,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg="#332244"
+      bg="#442D5A"
       borderBottomWidth="1px"
-      borderBottomColor="#644386"
+      borderBottomColor="#332244"
       justifyContent={{ base: 'space-between', md: 'flex-end' }}
       {...rest}
     >
@@ -202,6 +165,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         onClick={onOpen}
         bg="transparent"
         variant="solid"
+        position='absolute'
         aria-label="open menu"
         color="#FFDD99"
         _hover={{
@@ -210,16 +174,19 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         }}
         icon={<FiMenu />}
       />
-
+      <Link href='/'>
       <Text
         display={{ base: 'flex', md: 'none' }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
+        fontSize='1.125rem'
+        fontFamily="Roboto"
+        fontWeight="900"
         color="#FFDD99"
+        mr='auto'
+        ml='auto'
       >
         Decision
       </Text>
+      </Link>
     </Flex>
   );
 };

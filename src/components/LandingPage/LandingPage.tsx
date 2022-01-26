@@ -7,6 +7,7 @@ import {
   EditableInput,
   Heading,
   Button,
+  Box
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { BsArrow90DegRight, BsArrowRight } from 'react-icons/bs';
@@ -16,6 +17,7 @@ import LocationQuery from './LocationQuery';
 const LandingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   return (
+    <Box bg="#332244" minH='100vh'>
     <Center flexDirection={'column'} minH="80vh">
         {currentStep == 0 ?
         <>
@@ -63,12 +65,13 @@ const LandingPage = () => {
         </Button>
       </Flex>
       </> : currentStep == 1 ? 
-      <LocationQuery /> : 
+      <LocationQuery setCurrentStep={setCurrentStep}/> : 
       <FinalQuery />}
       
       
       
     </Center>
+    </Box>
   );
 };
 
