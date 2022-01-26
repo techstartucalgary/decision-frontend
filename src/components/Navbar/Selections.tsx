@@ -78,7 +78,7 @@ const Selections = () => {
           <EditableInput />
         </Editable>
       </Flex>
-      <Flex
+      {/* <Flex
         align="center"
         p="3"
         mx="2"
@@ -112,7 +112,6 @@ const Selections = () => {
             <ModalBody>
               <Lorem count={2} />
             </ModalBody>
-
             <ModalFooter>
               <Button colorScheme="blue" mr={3}>
                 Close
@@ -121,7 +120,7 @@ const Selections = () => {
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </Flex>
+      </Flex> */}
       <Flex
         align="center"
         p="3"
@@ -182,7 +181,7 @@ const Selections = () => {
           </Button>
         </HStack>
       </Flex>
-      <Flex
+      {/* <Flex
         align="center"
         p="3"
         mx="2"
@@ -203,7 +202,7 @@ const Selections = () => {
         >
           12:00 PM
         </Tag>
-      </Flex>
+      </Flex> */}
       <Flex
         align="center"
         p="3"
