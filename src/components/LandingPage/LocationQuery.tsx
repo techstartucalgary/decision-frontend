@@ -2,7 +2,7 @@ import { Center, Heading, Button } from '@chakra-ui/react'
 import React from 'react'
 import { BsArrow90DegRight, BsArrowRight } from 'react-icons/bs';
 
-const LocationQuery = () => {
+const LocationQuery = ({setCurrentStep}) => {
     return (
         <Center>
             <Heading as={'h1'} color="#FFDD99">
@@ -18,7 +18,7 @@ const LocationQuery = () => {
             bg: '#FFDD99',
             color: 'white',
           }}
-          onClick={() => setCurrentStep(1)}
+          onClick={() => setCurrentStep(2)}
         >
             <BsArrowRight />
         
