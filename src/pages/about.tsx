@@ -1,11 +1,13 @@
-import Header from 'src/components/AboutPage/Header'
-import Body from 'src/components/AboutPage/Body'
+import Navbar from '../components/Navbar/Navbar';
+import Header from 'src/components/AboutPage/Header';
+import Body from 'src/components/AboutPage/Body';
 
 export default function About() {
   return (
-    <div>
-      <Header />
-      <Body />
-    </div>
+  <>
+  <Navbar />
+  <Header/>
+  <Body/>
+  </>
   );
 }
