@@ -79,22 +79,7 @@ const FinalQuery = () => {
           </Button>
         </HStack>
       </Flex>
-      <Heading as={'h2'} color="#FFDD99" mt="3rem">
-        What time?
-      </Heading>
-      <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
-        <Tag
-          fontSize={'1.2rem'}
-          p="0.5rem"
-          variant="solid"
-          color="#FFDD99"
-          bg="#644386"
-          borderRadius="full"
-          mt="1rem"
-        >
-          12:00 PM
-        </Tag>
-      </Flex>
+      
       <Heading as={'h2'} color="#FFDD99">
         What interests you?
       </Heading>

@@ -65,8 +65,8 @@ const LandingPage = () => {
         </Button>
       </Flex>
       </> : currentStep == 1 ? 
-      <LocationQuery setCurrentStep={setCurrentStep}/> : 
-      <FinalQuery />}
+       
+      <FinalQuery /> : <></>}
       
       
       
