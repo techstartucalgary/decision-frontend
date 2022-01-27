@@ -1,5 +1,11 @@
+import Navbar from '../components/Navbar/Navbar';
 import LinkGenerationPage from '../components/LinkGenerationPage/LinkGenerationPage';
 
 export default function LinkGeneration() {
-  return <LinkGenerationPage />;
+  return (
+    <>
+      <Navbar />
+      <LinkGenerationPage />
+    </>
+  );
 }

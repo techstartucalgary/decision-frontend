@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { BsCurrencyDollar } from 'react-icons/bs';
+import Link from 'next/link';
 
 const FinalQuery = () => {
   const [selectedBudget, setSelectedBudget] = useState(1);
@@ -84,12 +85,12 @@ const FinalQuery = () => {
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
         <Tag
           fontSize={'1.2rem'}
-          p='0.5rem'
+          p="0.5rem"
           variant="solid"
           color="#FFDD99"
           bg="#644386"
           borderRadius="full"
-          mt='1rem'
+          mt="1rem"
         >
           12:00 PM
         </Tag>
@@ -97,12 +98,12 @@ const FinalQuery = () => {
       <Heading as={'h2'} color="#FFDD99">
         What interests you?
       </Heading>
-      <Grid>
-          
-      </Grid>
-      <Button bg='#FFDD99' color='#644386' borderRadius={'20px'}>
+      <Grid></Grid>
+      <Link href="/linkgeneration">
+        <Button bg="#FFDD99" color="#644386" borderRadius={'20px'}>
           Generate Link
-      </Button>
+        </Button>
+      </Link>
     </Center>
   );
 };

@@ -7,7 +7,7 @@ import { MdContentCopy } from 'react-icons/md';
 export default function LinkGenerationPage() {
   let generatedLink = 'www.decision.ca/sldhfgtyhf';
   return (
-    <Box height="100vh">
+    <Box height="100vh" bg="#332244">
       <Flex direction="column" align="center">
         <Heading
           color="#FFDD99"
