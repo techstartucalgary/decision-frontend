@@ -14,12 +14,42 @@ import {
   Flex,
   Button,
   Divider,
+  IconButton,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from '@chakra-ui/react';
-import React from 'react';
+import { useDisclosure } from '@chakra-ui/react';
+import StarRatings from 'react-star-ratings';
+import React, { useState } from 'react';
 import { BsHandThumbsUpFill, BsPlus } from 'react-icons/bs';
 
-function createData(id, name, votes, type, location, distance, description) {
-  return { id, name, votes, type, location, distance, description };
+function createData(
+  id: any,
+  name: any,
+  votes: any,
+  type: any,
+  location: any,
+  distance: any,
+  description: any,
+  rating: any,
+  reviews: any,
+) {
+  return {
+    id,
+    name,
+    votes,
+    type,
+    location,
+    distance,
+    description,
+    rating,
+    reviews,
+  };
 }
 
 const places = [
@@ -31,6 +61,8 @@ const places = [
     '91 Crowfoot Terrace NW',
     '2.6km',
     'Modern multiplex cinema chain screening the latest Hollywood films, plus new independent releases.',
+    4.1,
+    4651,
   ),
   createData(
     1,
@@ -40,6 +72,8 @@ const places = [
     '91 Crowfoot Terrace NW',
     '2.6km',
     'Modern multiplex cinema chain screening the latest Hollywood films, plus new independent releases.',
+    3,
+    125,
   ),
   createData(
     2,
@@ -49,10 +83,15 @@ const places = [
     '91 Crowfoot Terrace NW',
     '2.6km',
     'Modern multiplex cinema chain screening the latest Hollywood films, plus new independent releases.',
+    4.6,
+    1324,
   ),
 ];
 
 const PollPage = () => {
+  const [selected, setSelected] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  let totalParticipants = 10;
   return (
     <>
       <Center
@@ -80,7 +119,6 @@ const PollPage = () => {
         flexDirection="column"
         py="2rem"
         px="1rem"
-        
       >
         <Flex
           maxW="800px"
@@ -114,10 +152,17 @@ const PollPage = () => {
                       >
                         {row.votes}
                       </Text>
-                      <BsHandThumbsUpFill
-                        color="#FFDD99"
+                      <IconButton
+                        onClick={() => setSelected(true)}
+                        aria-label="select"
+                        colorScheme="#FFDD99"
                         fontSize="1.6rem"
-                        fontWeight="700"
+                        color={selected === true ? '#FFDD99' : '#644386'}
+                        _hover={{
+                          bg: '#644386',
+                          color: '#FFDD99',
+                        }}
+                        icon={<BsHandThumbsUpFill />}
                       />
                     </VStack>
 
@@ -130,9 +175,8 @@ const PollPage = () => {
                       >
                         {row.name}
                       </Heading>
-
                       <Progress
-                        value={20}
+                        value={(row.votes / totalParticipants) * 100}
                         colorScheme="purple"
                         size="md"
                         width="100%"
@@ -144,16 +188,37 @@ const PollPage = () => {
                   <AccordionIcon color="#FFDD99" fontSize="3rem" />
                 </AccordionButton>
                 <AccordionPanel>
-                  <Heading fontSize="0.75rem" color="#FFDD99">
+                  <Heading fontSize="0.75rem" color="#FFDD99" mb="0.2rem">
                     {row.type}
                   </Heading>
-                  <Heading fontSize="0.75rem" color="#FFDD99">
+                  <Heading fontSize="0.75rem" color="#FFDD99" mb="0.5rem">
                     {row.location} | {row.distance}
                   </Heading>
                   <Heading fontSize="0.75rem" color="#FFDD99">
                     {row.description}
                   </Heading>
-                  <Divider orientation='horizontal' colorScheme='purple' my='0.5rem'/>
+                  <Divider
+                    orientation="horizontal"
+                    colorScheme="purple"
+                    my="0.5rem"
+                  />
+                  <HStack justifyContent="space-around">
+                    <HStack mr="auto">
+                      <Text fontSize="1rem" color="#FFDD99" mt="2.5px">
+                        {row.rating}
+                      </Text>
+                      <StarRatings
+                        rating={row.rating}
+                        starRatedColor="#FFDD99"
+                        numberOfStars={5}
+                        starDimension="1rem"
+                        starSpacing="0.2px"
+                      />
+                    </HStack>
+                    <Heading fontSize="0.75rem" color="#FFDD99" ml="auto">
+                      {row.reviews} Reviews
+                    </Heading>
+                  </HStack>
                 </AccordionPanel>
               </AccordionItem>
             ))}
@@ -180,10 +245,10 @@ const PollPage = () => {
         boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
         p="3"
         pb="4"
-        position= 'fixed'
-  left= '0'
-  bottom= '0'
-  width= '100%'
+        position="fixed"
+        left="0"
+        bottom="0"
+        width="100%"
       >
         <Button
           bg="#644386"
@@ -197,11 +262,28 @@ const PollPage = () => {
             bg: '#644386',
             color: 'white',
           }}
+          onClick={onOpen}
         >
           Send Vote
         </Button>
+        <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Vote Sent</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       </Center>
+      
     </>
+    
   );
 };
 

@@ -46,6 +46,7 @@ const activities = [
 const Selections = () => {
   const [selection, setSelection] = useState('Dining');
   const [selectedBudget, setSelectedBudget] = useState(1);
+  let name = 'Nemanja Grujic';
   return (
     <>
       <Flex
@@ -66,17 +67,17 @@ const Selections = () => {
         <Text fontSize="1rem">Name</Text>
       </Flex>
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
-        <Editable
-          defaultValue="Nemanja Grujic"
-          variant="solid"
+        <Tag
+          
+          size='xl'
           color="#FFDD99"
           bg="#644386"
           borderRadius="full"
           px="4"
+          py='2'
         >
-          <EditablePreview />
-          <EditableInput />
-        </Editable>
+          {name}
+        </Tag>
       </Flex>
       {/* <Flex
         align="center"
