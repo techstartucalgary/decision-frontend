@@ -66,7 +66,7 @@ const LandingPage = () => {
             </Flex>
           </>
         ) : currentStep == 1 ? (
-          <PreferencesPage />
+          <FinalQuery />
         ) : (
           <></>
         )}
