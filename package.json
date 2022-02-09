@@ -30,6 +30,7 @@
     "@emotion/react": "11.6.0",
     "@emotion/styled": "11.6.0",
     "@mui/material": "5.1.1",
+    "@types/react-star-ratings": "2.3.0",
     "framer-motion": "4.1.17",
     "next": "11.1.2",
     "react": "17.0.2",
