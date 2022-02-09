@@ -16,9 +16,6 @@ import {
   HStack,
   PopoverTrigger,
   PopoverContent,
-  ModalCloseButton,
-  ModalHeader,
-  Lorem,
   IconButton,
 } from '@chakra-ui/react';
 import { BsCurrencyDollar } from 'react-icons/bs';
@@ -28,7 +25,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 
-function createData(id, activity) {
+function createData(id: any, activity: any) {
   return { id, activity };
 }
 
@@ -68,13 +65,12 @@ const Selections = () => {
       </Flex>
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
         <Tag
-          
-          size='xl'
+          size="xl"
           color="#FFDD99"
           bg="#644386"
           borderRadius="full"
           px="4"
-          py='2'
+          py="2"
         >
           {name}
         </Tag>
