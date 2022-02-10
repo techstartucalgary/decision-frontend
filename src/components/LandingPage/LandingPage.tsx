@@ -9,10 +9,8 @@ import {
   Box,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { BsArrow90DegRight, BsArrowRight } from 'react-icons/bs';
+import { BsArrowRight } from 'react-icons/bs';
 import FinalQuery from './FinalQuery';
-import PreferencesPage from '../PreferencesPage/PreferencesPage';
-import LocationQuery from './LocationQuery';
 
 const LandingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);

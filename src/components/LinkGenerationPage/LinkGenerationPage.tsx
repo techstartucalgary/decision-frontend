@@ -34,6 +34,7 @@ export default function LinkGenerationPage() {
             {generatedLink}
           </Text>
           <IconButton
+          aria-label='copy link'
             icon={<MdContentCopy />}
             aria-label="Search database"
             borderRadius="0px 16px 16px 0px"
