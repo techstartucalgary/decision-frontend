@@ -10,6 +10,7 @@ import {
   Editable,
   EditablePreview,
   EditableInput,
+  Center,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -201,7 +202,13 @@ export default function PreferencesPage() {
           </Flex>
         </Box>
         <Spacer />
-        <Box align="center" paddingBottom="4vh">
+        <Box
+          width="100vw"
+          align="center"
+          bg="#332244"
+          paddingBottom="4vh"
+          paddingTop="6vh"
+        >
           <Link href="/linkgeneration">
             <Button
               bg="#FFDD99"
@@ -217,11 +224,50 @@ export default function PreferencesPage() {
           </Link>
         </Box>
       </Flex>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        blockScrollOnMount={true}
+        closeOnOverlayClick={true}
+        motionPreset="slideInBottom"
+      >
         <ModalOverlay />
-        <ModalContent width="80vw" bg="#4B3265">
-          <ModalHeader color="#FFDD99">This is a test</ModalHeader>
-          <ModalBody color="#FFDD99">This is more test text</ModalBody>
+        <ModalContent
+          width="90vw"
+          borderRadius="30px"
+          border="1px"
+          borderColor="#332244"
+          bg="#4B3265"
+          top="12vh"
+        >
+          <ModalBody
+            color="#FFDD99"
+            fontWeight="regular"
+            fontSize="sm"
+            fontFamily={'Roboto'}
+            textAlign="left"
+            margin="3vw 0vw 0vw"
+          >
+            Select a budget rating ($ to $$$) to specify the cost of the venue's
+            recommended to you. Each venue's cost comes from Google and there is
+            no direct numerical translation from dollars to a cost rating.
+            Typically, "$" refers to an "inexpensive" venue, while "$$" refers
+            to a "moderately expensive" venue, and "$$$" refers to an
+            "expensive" venue. For example, selecting "$$" means that only
+            venues that cost "$$" will be recommended.
+          </ModalBody>
+          <ModalBody
+            color="#FFDD99"
+            fontWeight="regular"
+            fontSize="sm"
+            fontFamily={'Roboto'}
+            textAlign="left"
+            margin="0vw 0vw 3vw"
+          >
+            Alternatively, select "Ignore budget" to not filter the generated
+            recommendations based on cost (you will receive recommendations that
+            cost either "$", "$$", or "$$$").
+          </ModalBody>
         </ModalContent>
       </Modal>
     </Box>

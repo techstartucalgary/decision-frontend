@@ -9,13 +9,13 @@ export default [
     id: 1,
     name: 'Dining',
     width: '72px',
-    selected: true,
+    selected: false,
   },
   {
     id: 2,
     name: 'Drinks',
     width: '72px',
-    selected: true,
+    selected: false,
   },
   {
     id: 3,
@@ -45,6 +45,6 @@ export default [
     id: 7,
     name: 'Café',
     width: '54px',
-    selected: true,
+    selected: false,
   },
 ];
