@@ -1,8 +1,14 @@
 import { BsAlignCenter } from "react-icons/bs"
+import { Box, Text } from "@chakra-ui/react"
+import zIndex from "@mui/material/styles/zIndex"
 
 const Header = () => {
     return (
+
         <header style = {headerStyle}>
+            <Box 
+            bg='#4B3265'
+            px="2rem"></Box>
             <h1 style = {headingStyle}>What is This?</h1>
         </header>
     )
