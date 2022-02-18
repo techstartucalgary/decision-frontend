@@ -18,6 +18,7 @@
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write"
   },
+  "proxy": "http://localhost:3000",
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
       "yarn lint --fix",
