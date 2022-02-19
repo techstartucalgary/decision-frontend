@@ -94,6 +94,26 @@ export default function PreferencesPage() {
     }
   }
 
+  async function getLink() {
+    const URL = 'http://localhost:3000/';
+    // TODO: Make not hardcoded
+    const sessionData = {
+      names: 'Nolan Chan',
+      budget: '1',
+      activities: ['Dining', 'Cafe'],
+    };
+
+    fetch(URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(sessionData),
+    })
+      .then((res) => res.json())
+      .then(async (res) => {
+        console.log(res);
+      });
+  }
+
   return (
     <Box bg="#332244" minH="100vh">
       <Flex flexDirection="column" minH="80vh" alignItems="center">
@@ -239,19 +259,18 @@ export default function PreferencesPage() {
           paddingBottom="4vh"
           paddingTop="6vh"
         >
-          <Link href="/linkgeneration">
-            <Button
-              bg="#FFDD99"
-              height="36px"
-              width="144px"
-              borderRadius="16px"
-              _hover={{ bg: '#FFDD99' }}
-            >
-              <Text color="#644386" fontSize="md" fontWeight="bold">
-                Generate Link
-              </Text>
-            </Button>
-          </Link>
+          <Button
+            bg="#FFDD99"
+            height="36px"
+            width="144px"
+            borderRadius="16px"
+            _hover={{ bg: '#FFDD99' }}
+            onClick={getLink}
+          >
+            <Text color="#644386" fontSize="md" fontWeight="bold">
+              Generate Link
+            </Text>
+          </Button>
         </Box>
       </Flex>
       <Modal
