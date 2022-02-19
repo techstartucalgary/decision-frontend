@@ -33,10 +33,10 @@ export default function PreferencesPage() {
     return (
       <Button
         width={interest.width}
-        height="36px"
-        marginRight="16px"
-        marginTop="16px"
-        borderRadius="16px"
+        height="2.2rem"
+        marginRight="1rem"
+        marginTop="1rem"
+        borderRadius="1rem"
         bg={interest.selected ? '#FFDD99' : '#644386'}
         _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
         onClick={() => toggleInterest(interest.id)}
@@ -95,15 +95,16 @@ export default function PreferencesPage() {
   }
 
   return (
-    <Box height="100vh" width="100vw" bg="#332244">
-      <Flex height="100%" flexDirection="column">
+    <Box bg="#332244" minH="100vh">
+      <Flex flexDirection="column" minH="80vh" alignItems="center">
         <Box>
           <Flex
             direction="column"
-            align="left"
+            align={{ base: 'left', md: 'center' }}
             justifyContent="left"
             marginTop="5vh"
-            marginLeft="24px"
+            p="1rem"
+            marginLeft="1.5rem"
           >
             <Heading
               color="#FFDD99"
@@ -113,63 +114,92 @@ export default function PreferencesPage() {
             >
               How much to spend?
             </Heading>
-            <Flex direction="row" marginTop="2.5vh">
-              <Text
-                color={selectedBudget >= 1 ? '#FFDD99' : '#644386'}
-                fontSize="7xl"
-                fontWeight="regular"
-                lineHeight="48px"
-                marginLeft="-4px"
-                onClick={() => setSelectedBudget(1)}
-              >
-                $
-              </Text>
-              <Text
-                color={selectedBudget >= 2 ? '#FFDD99' : '#644386'}
-                fontSize="7xl"
-                fontWeight="regular"
-                lineHeight="48px"
-                marginLeft="2px"
-                onClick={() => setSelectedBudget(2)}
-              >
-                $
-              </Text>
-              <Text
-                color={selectedBudget >= 3 ? '#FFDD99' : '#644386'}
-                fontSize="7xl"
-                fontWeight="regular"
-                lineHeight="48px"
-                marginLeft="2px"
-                onClick={() => setSelectedBudget(3)}
-              >
-                $
-              </Text>
+            <Flex
+            flex-direction='row'
+              alignItems="center"
+              justifyContent="space-between"
+              marginTop="2rem"
+            >
+              <Flex direction={{ base: 'column', md: 'row' }}>
+                <Flex>
+                  <Text
+                    color={selectedBudget >= 1 ? '#FFDD99' : '#644386'}
+                    fontSize="7xl"
+                    fontWeight="regular"
+                    lineHeight="48px"
+                    marginLeft="-4px"
+                    onClick={() => setSelectedBudget(1)}
+                    cursor="pointer"
+                    _hover={{
+                      color: '#FFDD99',
+                    }}
+                  >
+                    $
+                  </Text>
+                  <Text
+                    color={selectedBudget >= 2 ? '#FFDD99' : '#644386'}
+                    fontSize="7xl"
+                    fontWeight="regular"
+                    lineHeight="48px"
+                    marginLeft="2px"
+                    onClick={() => setSelectedBudget(2)}
+                    cursor="pointer"
+                    _hover={{
+                      color: '#FFDD99',
+                    }}
+                  >
+                    $
+                  </Text>
+                  <Text
+                    color={selectedBudget >= 3 ? '#FFDD99' : '#644386'}
+                    fontSize="7xl"
+                    fontWeight="regular"
+                    lineHeight="48px"
+                    marginLeft="2px"
+                    onClick={() => setSelectedBudget(3)}
+                    cursor="pointer"
+                    _hover={{
+                      color: '#FFDD99',
+                    }}
+                  >
+                    $
+                  </Text>
+                </Flex>
+                <Text
+                  color={selectedBudget === 0 ? '#FFDD99' : '#644386'}
+                  fontSize="lg"
+                  fontWeight="medium"
+                  mt={{ base: '1.5rem', md: '0.7rem' }}
+                  mx={{ base: '0', md: '1rem' }}
+                  onClick={() => setSelectedBudget(0)}
+                  cursor="pointer"
+                  _hover={{
+                    color: '#FFDD99',
+                  }}
+                >
+                  Ignore budget
+                </Text>
+              </Flex>
               <Text
                 color="#FFDD99"
-                fontSize="7xl"
+                fontSize="5xl"
                 fontWeight="regular"
                 lineHeight="48px"
-                marginLeft="20vw"
+                ml={{base: '0', md: '3rem'}}
+                mr={{base:"4rem", md:'0'}}
                 onClick={onOpen}
+                cursor="pointer"
               >
                 ?
               </Text>
             </Flex>
-            <Text
-              color={selectedBudget === 0 ? '#FFDD99' : '#644386'}
-              fontSize="lg"
-              fontWeight="medium"
-              marginTop="3vh"
-              onClick={() => setSelectedBudget(0)}
-            >
-              Ignore budget
-            </Text>
           </Flex>
           <Flex
             direction="column"
-            align="left"
+            align={{ base: 'left', md: 'center' }}
             marginTop="8vh"
-            marginLeft="24px"
+            marginLeft="1.5rem"
+            marginRight="1.5rem"
           >
             <Heading
               color="#FFDD99"
@@ -179,7 +209,7 @@ export default function PreferencesPage() {
             >
               What interests you?
             </Heading>
-            <Flex flexWrap="wrap" width="80vw">
+            <Flex flexWrap="wrap" maxW={{ base: '80vw', md: '400px' }}>
               {interestButtons}
             </Flex>
             <Editable
