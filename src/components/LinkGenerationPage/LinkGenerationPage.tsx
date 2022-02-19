@@ -26,7 +26,7 @@ export default function LinkGenerationPage() {
             color="#FFDD99"
             width="65vw"
             height="36px"
-            maxWidth="800px"
+            maxWidth="400px"
             padding="6px 20px"
             fontSize="sm"
             borderRadius="16px 0px 0px 16px"
