@@ -115,9 +115,9 @@ export default function PreferencesPage() {
   }
 
   return (
-    <Box bg="#332244" minH="100vh">
+    <Box bg="#332244" minH="100vh" >
       <Flex flexDirection="column" minH="80vh" alignItems="center">
-        <Box>
+        <Box >
           <Flex
             direction="column"
             align={{ base: 'left', md: 'center' }}
@@ -141,13 +141,13 @@ export default function PreferencesPage() {
               marginTop="2rem"
             >
               <Flex direction={{ base: 'column', md: 'row' }}>
-                <Flex>
+                <Flex >
                   <Text
                     color={selectedBudget >= 1 ? '#FFDD99' : '#644386'}
                     fontSize="7xl"
                     fontWeight="regular"
                     lineHeight="48px"
-                    marginLeft="-4px"
+                    marginRight='0.5rem'
                     onClick={() => setSelectedBudget(1)}
                     cursor="pointer"
                     _hover={{
@@ -161,6 +161,7 @@ export default function PreferencesPage() {
                     fontSize="7xl"
                     fontWeight="regular"
                     lineHeight="48px"
+                    marginRight='0.5rem'
                     marginLeft="2px"
                     onClick={() => setSelectedBudget(2)}
                     cursor="pointer"
@@ -190,7 +191,7 @@ export default function PreferencesPage() {
                   fontSize="lg"
                   fontWeight="medium"
                   mt={{ base: '1.5rem', md: '0.7rem' }}
-                  mx={{ base: '0', md: '1rem' }}
+                  mx='1rem'
                   onClick={() => setSelectedBudget(0)}
                   cursor="pointer"
                   _hover={{
@@ -253,7 +254,7 @@ export default function PreferencesPage() {
         </Box>
         <Spacer />
         <Box
-          width="100vw"
+          width="100%"
           align="center"
           bg="#332244"
           paddingBottom="4vh"

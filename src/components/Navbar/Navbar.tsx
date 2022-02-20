@@ -67,8 +67,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
+      
       minH="100vh"
       {...rest}
+      boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
     >
       <Flex
         h="20"
@@ -93,7 +95,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 const Nav = () => {
   return (
     <>
-      <Link href="/about" style={{ textDecoration: 'none' }}>
+      <Link href="/about">
         <Flex
           align="center"
           borderTop="1px"
@@ -110,7 +112,7 @@ const Nav = () => {
           <Text fontSize="1rem">What is this?</Text>
         </Flex>
       </Link>
-      <Link href="/manual" style={{ textDecoration: 'none' }}>
+      <Link href="/manual">
         <Flex
           align="center"
           p="4"
@@ -125,7 +127,7 @@ const Nav = () => {
           <Text fontSize="1rem">User Manual</Text>
         </Flex>
       </Link>
-      <Link href="/feedback" style={{ textDecoration: 'none' }}>
+      <Link href="/feedback">
         <Flex
           align="center"
           p="4"
