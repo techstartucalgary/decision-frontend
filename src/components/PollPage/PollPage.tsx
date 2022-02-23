@@ -273,24 +273,16 @@ const PollPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-  res
-}) => {
-  try {
-    const { id } = params;
-    const result = await fetch(`http://localhost:3000/api/user/${id}`);
-    const data: Data = await result.json();
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:3000/');
+  const data = await res.json();
 
-    return {
-      props: { data }
-    };
-  } catch {
-    res.statusCode = 404;
-    return {
-      props: {}
-    };
+  return {
+    props: {
+      places: data
+    }
   }
-};
+}
+  
 
 export default PollPage;
