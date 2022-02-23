@@ -19,6 +19,8 @@ import {
   ModalBody,
 } from '@chakra-ui/react';
 
+import { useFormContext } from 'react-hook-form';
+
 import Link from 'next/link';
 
 import defaultInterests from './default-interests';
@@ -29,9 +31,12 @@ export default function PreferencesPage() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const methods = useFormContext();
+
   let interestButtons = interests.map((interest) => {
     return (
       <Button
+        key={interest.name}
         width={interest.width}
         height="36px"
         marginRight="16px"
@@ -40,6 +45,7 @@ export default function PreferencesPage() {
         bg={interest.selected ? '#FFDD99' : '#644386'}
         _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
         onClick={() => toggleInterest(interest.id)}
+        {...methods.register('interests')}
       >
         <Text
           fontSize="sm"
@@ -54,7 +60,9 @@ export default function PreferencesPage() {
 
   function toggleInterest(id: number) {
     if (id === 0) {
+      // If toggling the Everything interest
       if (interests[0].selected) {
+        // "Un-select" the Everything interest
         setInterests((prevInterests) => {
           return prevInterests.map((interest) => {
             return interest.id === 0
@@ -71,7 +79,8 @@ export default function PreferencesPage() {
         });
       }
     } else if (interests[0].selected) {
-      // "Un-select the Everything interest"
+      // If not toggling the Everything interest but Eveyrthing is selected
+      // "Un-select" the Everything interest
       setInterests((prevInterests) => {
         return prevInterests.map((interest) => {
           if (interest.id === 0) {
@@ -84,6 +93,7 @@ export default function PreferencesPage() {
         });
       });
     } else {
+      methods.setValue('interests', methods.getValues('interests') + id);
       setInterests((prevInterests) => {
         return prevInterests.map((interest) => {
           return interest.id === id
@@ -98,9 +108,9 @@ export default function PreferencesPage() {
     const URL = 'http://localhost:3000/';
     // TODO: Make not hardcoded
     const sessionData = {
-      names: 'Nolan Chan',
+      names: 'Chase',
       budget: '1',
-      activities: ['Dining', 'Cafe'],
+      activities: ['Sports', 'Cafe'],
     };
 
     fetch(URL, {
@@ -140,7 +150,15 @@ export default function PreferencesPage() {
                 fontWeight="regular"
                 lineHeight="48px"
                 marginLeft="-4px"
-                onClick={() => setSelectedBudget(1)}
+                onClick={() => {
+                  setSelectedBudget(1);
+                  methods.setValue('budget', '1');
+                }}
+                cursor="pointer"
+                _hover={{
+                  color: '#FFDD99',
+                }}
+                {...methods.register('budget')}
               >
                 $
               </Text>
@@ -150,7 +168,15 @@ export default function PreferencesPage() {
                 fontWeight="regular"
                 lineHeight="48px"
                 marginLeft="2px"
-                onClick={() => setSelectedBudget(2)}
+                onClick={() => {
+                  setSelectedBudget(2);
+                  methods.setValue('budget', '2');
+                }}
+                cursor="pointer"
+                _hover={{
+                  color: '#FFDD99',
+                }}
+                {...methods.register('budget')}
               >
                 $
               </Text>
@@ -160,10 +186,19 @@ export default function PreferencesPage() {
                 fontWeight="regular"
                 lineHeight="48px"
                 marginLeft="2px"
-                onClick={() => setSelectedBudget(3)}
+                onClick={() => {
+                  setSelectedBudget(3);
+                  methods.setValue('budget', '3');
+                }}
+                cursor="pointer"
+                _hover={{
+                  color: '#FFDD99',
+                }}
+                {...methods.register('budget')}
               >
                 $
               </Text>
+
               <Text
                 color="#FFDD99"
                 fontSize="7xl"
@@ -180,7 +215,11 @@ export default function PreferencesPage() {
               fontSize="lg"
               fontWeight="medium"
               marginTop="3vh"
-              onClick={() => setSelectedBudget(0)}
+              onClick={() => {
+                setSelectedBudget(0);
+                methods.setValue('budget', '0');
+              }}
+              {...methods.register('budget')}
             >
               Ignore budget
             </Text>
@@ -221,6 +260,10 @@ export default function PreferencesPage() {
             </Editable>
           </Flex>
         </Box>
+        <Text color="green">{JSON.stringify(methods.watch(), null, 2)}</Text>
+        {methods.formState.errors.name && (
+          <Text color="red">{methods.formState.errors.name.message}</Text>
+        )}
         <Spacer />
         <Box
           width="100vw"
