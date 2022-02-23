@@ -27,7 +27,7 @@ import {
 import { useDisclosure } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 import React, { useState } from 'react';
-import { BsHandThumbsUpFill, BsPlus } from 'react-icons/bs';
+import { GetServerSideProps } from 'next';
 
 function createData(
   id: any,
@@ -89,6 +89,18 @@ const places = [
   ),
 ];
 
+type Data = {
+  id: string;
+  name: string;
+  votes: number;
+  type: string;
+  location: string;
+  distance: string;
+  description: string;
+  rating: number;
+  reviews: number;
+}
+
 const PollPage = () => {
   const [selected, setSelected] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -104,7 +116,7 @@ const PollPage = () => {
         <Heading
           as="h1"
           fontSize={'2.25rem'}
-          color="#FFDD99"
+          color="primary.100"
           fontFamily={'Roboto'}
           fontWeight={500}
           lineHeight={'42px'}
@@ -121,7 +133,7 @@ const PollPage = () => {
         alignItems="center"
         flexDirection="column"
       >
-        <Accordion maxWidth="500px">
+        <Accordion maxWidth="500px" mb='3rem'>
           {places.map((row) => (
             <AccordionItem
               key={row.id}
@@ -135,17 +147,21 @@ const PollPage = () => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <VStack p="1rem">
-                  <Text fontSize="1.2rem" fontWeight="bold" color="#FFDD99">
+                <VStack p="1rem" my='1rem' borderRight='1px' borderColor='#332244'>
+                  <Text fontSize="1.2rem" fontWeight="bold" color="primary.100">
                     {row.votes}
                   </Text>
                   
                     <Icon
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
-                      fill="none"
+                      _hover={{
+                        
+                        fill: 'primary.100',
+                      }}
+                      fill="#332244"
                       viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      stroke="none"
                       width="8" height="8"
                     >
                       <path
@@ -157,92 +173,64 @@ const PollPage = () => {
                     </Icon>
                   
                 </VStack>
-                {/* <HStack spacing="6" width="100%" pt="3" pb="4" pr="2">
-                    <VStack>
-                      <Text
-                        color="#FFDD99"
-                        fontSize="1.125rem"
-                        fontWeight="700"
-                        fontFamily="Roboto"
-                      >
-                        {row.votes}
-                      </Text>
-                      <IconButton
-                        onClick={() => setSelected(true)}
-                        aria-label="select"
-                        colorScheme="#FFDD99"
-                        fontSize="1.6rem"
-                        color={selected === true ? '#FFDD99' : '#644386'}
-                        _hover={{
-                          bg: '#644386',
-                          color: '#FFDD99',
-                        }}
-                        icon={<BsHandThumbsUpFill />}
-                      />
-                    </VStack>
-
-                    <VStack spacing="4" width="100%">
-                      <Heading
-                        color="#FFDD99"
-                        fontWeight="500"
-                        fontSize="1.125rem"
-                        textAlign="left"
-                      >
-                        {row.name}
-                      </Heading>
-                      <Progress
+                <VStack px='1rem'>
+                  <Heading fontSize='1.125rem' color='primary.100' mb='1rem'>
+                    {row.name}
+                  </Heading>
+                  <Progress
                         value={(row.votes / totalParticipants) * 100}
-                        colorScheme="purple"
+                        colorScheme="primary"
                         size="md"
                         width="100%"
                         borderRadius="26px"
                         bg="#332244"
                       />
-                    </VStack>
-                  </HStack> */}
-                <AccordionIcon color="#FFDD99" fontSize="3rem" />
+                </VStack>
+                
+                <AccordionIcon color="primary.100" fontSize="3rem" />
               </AccordionButton>
               <AccordionPanel>
-                <Heading fontSize="0.75rem" color="#FFDD99" mb="0.2rem">
+                <Heading fontSize="0.75rem" color="primary.100" mb="0.2rem">
                   {row.type}
                 </Heading>
-                <Heading fontSize="0.75rem" color="#FFDD99" mb="0.5rem">
+                <Heading fontSize="0.75rem" color="primary.100" mb="0.5rem">
                   {row.location} | {row.distance}
                 </Heading>
-                <Heading fontSize="0.75rem" color="#FFDD99">
+                <Heading fontSize="0.75rem" color="primary.100">
                   {row.description}
                 </Heading>
-                <Divider
-                  orientation="horizontal"
-                  colorScheme="purple"
-                  my="0.5rem"
-                />
-                <HStack justifyContent="space-around">
-                  <HStack mr="auto">
-                    <Text fontSize="1rem" color="#FFDD99" mt="2.5px">
+                
+                <HStack justifyContent="space-around" borderTop='2px' borderColor='#332244' mt='0.7rem' pt='0.5rem'>
+                  <HStack mr="auto" >
+                    <Text fontSize="1rem" color="primary.100" mt="2.5px">
                       {row.rating}
                     </Text>
                     <StarRatings
                       rating={row.rating}
-                      starRatedColor="#FFDD99"
+                      starRatedColor="primary.100"
+                      starEmptyColor='#332244'
                       numberOfStars={5}
                       starDimension="1rem"
                       starSpacing="0.2px"
                     />
                   </HStack>
-                  <Heading fontSize="0.75rem" color="#FFDD99" ml="auto">
+                  <Heading fontSize="0.75rem" color="primary.100" ml="auto">
                     {row.reviews} Reviews
                   </Heading>
                 </HStack>
+                {/* <HStack>
+                  add avatars for ppl that voted
+                </HStack> */}
               </AccordionPanel>
             </AccordionItem>
           ))}
         </Accordion>
-        <Button
+        {/* <Button
           borderRadius="24px"
           bg="#4B3265"
-          color="#FFDD99"
+          color="primary.100"       MVP ???
           fontWeight="bold"
+          mb='3.5rem'
           fontFamily="Roboto"
           fontSize="1.125rem"
           _hover={{
@@ -252,7 +240,7 @@ const PollPage = () => {
           leftIcon={<BsPlus />}
         >
           Add Custom Venue
-        </Button>
+        </Button> */}
       </Box>
       <Center
         bg="#4B3265"
@@ -268,7 +256,7 @@ const PollPage = () => {
           bg="#644386"
           border="2px solid #332244"
           borderRadius="18px"
-          color="#FFDD99"
+          color="primary.100"
           fontWeight="bold"
           fontFamily="Roboto"
           fontSize="1.125rem"
@@ -284,5 +272,17 @@ const PollPage = () => {
     </>
   );
 };
+
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:3000/');
+  const data = await res.json();
+
+  return {
+    props: {
+      places: data
+    }
+  }
+}
+  
 
 export default PollPage;

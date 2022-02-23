@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Box, Flex, Heading, Text, Button, IconButton } from '@chakra-ui/react';
 
@@ -6,8 +6,9 @@ import { MdContentCopy } from 'react-icons/md';
 
 export default function LinkGenerationPage() {
   let generatedLink = 'www.decision.ca/sldhfgtyhf';
+  const [copied, setCopied] = useState(false);
   return (
-    <Box height="100vh" width="100vw" bg="#332244">
+    <Box height="100vh"  bg="#332244">
       <Flex direction="column" align="center">
         <Heading
           color="#FFDD99"
@@ -36,7 +37,6 @@ export default function LinkGenerationPage() {
           <IconButton
           aria-label='copy link'
             icon={<MdContentCopy />}
-            aria-label="Search database"
             borderRadius="0px 16px 16px 0px"
             width="36px"
             height="36px"
@@ -47,9 +47,15 @@ export default function LinkGenerationPage() {
               bg: '#FFDD99',
               color: '#4B3265',
             }}
-            onClick={() => navigator.clipboard.writeText(generatedLink)}
+            onClick={() => {navigator.clipboard.writeText(generatedLink);
+              setCopied(true)} }
           />
         </Flex>
+        {copied &&
+        <Text color='primary.500' size='lg' mt='2'>
+          Copied to clipboard!
+        </Text>
+}
         <Button
           bg="#FFDD99"
           height="36px"
