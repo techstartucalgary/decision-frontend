@@ -27,7 +27,7 @@ import {
 import { useDisclosure } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 import React, { useState } from 'react';
-import { GetServerSideProps } from 'next';
+import useSWR from 'swr';
 
 function createData(
   id: any,
@@ -101,10 +101,24 @@ type Data = {
   reviews: number;
 }
 
-const PollPage = () => {
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const PollPage = ({id} : any) => {
   const [selected, setSelected] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [pollData, setPollData] = useState([]);
   let totalParticipants = 10;
+
+  const { data, error } = useSWR(`http://localhost:3000/${id}/getPolls`, fetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+  let returnData = data;
+
+  const increaseVotes = (votes : number) => {
+    returnData.votes = votes + 1;
+  }
+  
   return (
     <>
       <Center
@@ -134,9 +148,9 @@ const PollPage = () => {
         flexDirection="column"
       >
         <Accordion maxWidth="500px" mb='3rem'>
-          {places.map((row) => (
+          {returnData.map((returnData : any, index : any) => (
             <AccordionItem
-              key={row.id}
+              key={index}
               bg="#4B3265"
               borderRadius="24px"
               border="none"
@@ -149,7 +163,7 @@ const PollPage = () => {
               >
                 <VStack p="1rem" my='1rem' borderRight='1px' borderColor='#332244'>
                   <Text fontSize="1.2rem" fontWeight="bold" color="primary.100">
-                    {row.votes}
+                    {returnData.votes}
                   </Text>
                   
                     <Icon
@@ -163,6 +177,7 @@ const PollPage = () => {
                       viewBox="0 0 24 24"
                       stroke="none"
                       width="8" height="8"
+                      onClick={ () => increaseVotes( returnData.votes)}
                     >
                       <path
                         strokeLinecap="round"
@@ -175,10 +190,10 @@ const PollPage = () => {
                 </VStack>
                 <VStack px='1rem'>
                   <Heading fontSize='1.125rem' color='primary.100' mb='1rem'>
-                    {row.name}
+                    {returnData.locationName}
                   </Heading>
                   <Progress
-                        value={(row.votes / totalParticipants) * 100}
+                        value={(returnData.votes / totalParticipants) * 100}
                         colorScheme="primary"
                         size="md"
                         width="100%"
@@ -191,31 +206,31 @@ const PollPage = () => {
               </AccordionButton>
               <AccordionPanel>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.2rem">
-                  {row.type}
+                  {/* {row.type} */}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.5rem">
-                  {row.location} | {row.distance}
+                  {/* {row.location} | {row.distance} */}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100">
-                  {row.description}
+                  {/* {row.description} */}
                 </Heading>
                 
                 <HStack justifyContent="space-around" borderTop='2px' borderColor='#332244' mt='0.7rem' pt='0.5rem'>
                   <HStack mr="auto" >
                     <Text fontSize="1rem" color="primary.100" mt="2.5px">
-                      {row.rating}
+                      {/* {row.rating} */}
                     </Text>
-                    <StarRatings
-                      rating={row.rating}
-                      starRatedColor="primary.100"
+                    {/* <StarRatings
+                      rating='2'
+                      starRatedColor="#FFDD99"
                       starEmptyColor='#332244'
                       numberOfStars={5}
                       starDimension="1rem"
                       starSpacing="0.2px"
-                    />
+                    /> */}
                   </HStack>
                   <Heading fontSize="0.75rem" color="primary.100" ml="auto">
-                    {row.reviews} Reviews
+                    {/* {row.reviews} Reviews */}
                   </Heading>
                 </HStack>
                 {/* <HStack>
@@ -264,7 +279,7 @@ const PollPage = () => {
             bg: '#644386',
             color: 'white',
           }}
-          onClick={onOpen}
+          
         >
           Send Vote
         </Button>
@@ -273,16 +288,7 @@ const PollPage = () => {
   );
 };
 
-export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/');
-  const data = await res.json();
 
-  return {
-    props: {
-      places: data
-    }
-  }
-}
   
 
 export default PollPage;
