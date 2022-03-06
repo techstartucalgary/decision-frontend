@@ -20,7 +20,7 @@ const LandingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const methods = useForm({
     mode: 'all',
-    defaultValues: { name: '', budget: '1', interests: [] },
+    defaultValues: { name: '', budget: '1' },
   });
   return (
     <FormProvider {...methods}>

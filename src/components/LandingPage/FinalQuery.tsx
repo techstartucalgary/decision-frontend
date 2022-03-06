@@ -44,11 +44,7 @@ export default function PreferencesPage() {
         borderRadius="16px"
         bg={interest.selected ? '#FFDD99' : '#644386'}
         _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
-        onClick={() => {
-          toggleInterest(interest.id);
-          methods.setValue('interests', interests);
-        }}
-        {...methods.register('interests')}
+        onClick={() => toggleInterest(interest.id)}
       >
         <Text
           fontSize="sm"
@@ -108,7 +104,7 @@ export default function PreferencesPage() {
 
   async function getLink() {
     const URL = 'http://localhost:3000/';
-    // TODO: Make not hardcoded
+
     const sessionData = {
       names: methods.getValues('name'),
       budget: methods.getValues('budget'),
