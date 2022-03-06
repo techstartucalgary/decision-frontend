@@ -8,6 +8,7 @@ import {
   Button,
   Box,
   Text,
+  Spacer,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
@@ -26,7 +27,7 @@ const LandingPage = () => {
       <Box bg="#332244" minH="100vh">
         <Center flexDirection={'column'} minH="80vh">
           {currentStep >= 0 && (
-            <Box width="100vw">
+            <Box width="100vw" display={currentStep !== 0 ? 'none' : 'block'}>
               <Heading
                 as="h1"
                 size="4xl"
@@ -79,12 +80,30 @@ const LandingPage = () => {
                   <BsArrowRight />
                 </Button>
               </Flex>
-              <Text color="green">
+
+              <Flex
+                flexDirection="row"
+                width="100%"
+                alignItems={'center'}
+                justifyContent={'center'}
+                marginTop="0.25rem"
+              >
+                {methods.formState.errors.name && (
+                  <Text
+                    color="#FFDD99"
+                    fontSize="0.625rem"
+                    width="60%"
+                    maxWidth={'400px'}
+                  >
+                    {methods.formState.errors.name.message}
+                  </Text>
+                )}
+                <Box width="2.25rem" marginLeft="1rem" bg="#FFDD99"></Box>
+              </Flex>
+
+              <Text color="green" marginTop="5rem">
                 {JSON.stringify(methods.watch(), null, 2)}
               </Text>
-              {methods.formState.errors.name && (
-                <Text color="red">{methods.formState.errors.name.message}</Text>
-              )}
             </Box>
           )}
           {currentStep >= 1 && <FinalQuery />}

@@ -44,7 +44,10 @@ export default function PreferencesPage() {
         borderRadius="16px"
         bg={interest.selected ? '#FFDD99' : '#644386'}
         _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
-        onClick={() => toggleInterest(interest.id)}
+        onClick={() => {
+          toggleInterest(interest.id);
+          methods.setValue('interests', interests);
+        }}
         {...methods.register('interests')}
       >
         <Text
@@ -93,7 +96,6 @@ export default function PreferencesPage() {
         });
       });
     } else {
-      methods.setValue('interests', methods.getValues('interests') + id);
       setInterests((prevInterests) => {
         return prevInterests.map((interest) => {
           return interest.id === id
@@ -108,10 +110,11 @@ export default function PreferencesPage() {
     const URL = 'http://localhost:3000/';
     // TODO: Make not hardcoded
     const sessionData = {
-      names: 'Chase',
-      budget: '1',
-      activities: ['Sports', 'Cafe'],
+      names: methods.getValues('name'),
+      budget: methods.getValues('budget'),
+      activities: methods.getValues('interests'),
     };
+    console.log(JSON.stringify(sessionData));
 
     fetch(URL, {
       method: 'POST',
