@@ -102,25 +102,46 @@ export default function PreferencesPage() {
     }
   }
 
-  async function getLink() {
+  async function onSubmit(data: object) {
+    // Get list of interests
+    let selected_interests: string[] = [];
+    for (let i = 0; i < interests.length; i++) {
+      if (interests[i].selected) {
+        selected_interests.push(interests[i].name);
+      }
+    }
+
+    const session_id = await getLink({
+      ...data,
+      activities: selected_interests,
+    });
+
+    // DO SOMETHING WITH session_id
+    console.log(session_id);
+  }
+
+  function onError() {
+    console.log('CANNOT SUBMIT FORM');
+  }
+
+  async function getLink(data: object) {
     const URL = 'http://localhost:3000/';
+    let session_id = '';
 
-    const sessionData = {
-      names: methods.getValues('name'),
-      budget: methods.getValues('budget'),
-      activities: methods.getValues('interests'),
-    };
-    console.log(JSON.stringify(sessionData));
-
-    fetch(URL, {
+    await fetch(URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(sessionData),
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then(async (res) => {
-        console.log(res);
+        session_id = res;
+      })
+      .catch((error) => {
+        console.error(error);
       });
+
+    return session_id;
   }
 
   return (
@@ -259,10 +280,6 @@ export default function PreferencesPage() {
             </Editable>
           </Flex>
         </Box>
-        <Text color="green">{JSON.stringify(methods.watch(), null, 2)}</Text>
-        {methods.formState.errors.name && (
-          <Text color="red">{methods.formState.errors.name.message}</Text>
-        )}
         <Spacer />
         <Box
           width="100vw"
@@ -277,7 +294,7 @@ export default function PreferencesPage() {
             width="144px"
             borderRadius="16px"
             _hover={{ bg: '#FFDD99' }}
-            onClick={getLink}
+            onClick={methods.handleSubmit(onSubmit, onError)}
           >
             <Text color="#644386" fontSize="md" fontWeight="bold">
               Generate Link

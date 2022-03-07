@@ -20,7 +20,7 @@ const LandingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const methods = useForm({
     mode: 'all',
-    defaultValues: { name: '', budget: '1' },
+    defaultValues: { names: '', budget: '1' },
   });
   return (
     <FormProvider {...methods}>
@@ -56,7 +56,7 @@ const LandingPage = () => {
                 >
                   <EditablePreview />
                   <EditableInput
-                    {...methods.register('name', {
+                    {...methods.register('names', {
                       required: {
                         value: true,
                         message: 'Please enter a name',
@@ -81,6 +81,7 @@ const LandingPage = () => {
                 </Button>
               </Flex>
 
+              {/* "Hacky" way of displaying message for user to enter in their name */}
               <Flex
                 flexDirection="row"
                 width="100%"
@@ -88,22 +89,19 @@ const LandingPage = () => {
                 justifyContent={'center'}
                 marginTop="0.25rem"
               >
-                {methods.formState.errors.name && (
+                <Box width="8"></Box>
+                {methods.formState.errors.names && (
                   <Text
                     color="#FFDD99"
                     fontSize="0.625rem"
                     width="60%"
                     maxWidth={'400px'}
                   >
-                    {methods.formState.errors.name.message}
+                    {methods.formState.errors.names.message}
                   </Text>
                 )}
-                <Box width="2.25rem" marginLeft="1rem" bg="#FFDD99"></Box>
+                <Box width="2.25rem" marginLeft="1rem"></Box>
               </Flex>
-
-              <Text color="green" marginTop="5rem">
-                {JSON.stringify(methods.watch(), null, 2)}
-              </Text>
             </Box>
           )}
           {currentStep >= 1 && <FinalQuery />}
