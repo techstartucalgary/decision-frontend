@@ -19,6 +19,8 @@ import {
   ModalBody,
 } from '@chakra-ui/react';
 
+import { useFormContext } from 'react-hook-form';
+
 import Link from 'next/link';
 
 import defaultInterests from './default-interests';
@@ -29,9 +31,12 @@ export default function PreferencesPage() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const methods = useFormContext();
+
   let interestButtons = interests.map((interest) => {
     return (
       <Button
+        key={interest.name}
         width={interest.width}
         height="2.2rem"
         marginRight="1rem"
@@ -54,7 +59,9 @@ export default function PreferencesPage() {
 
   function toggleInterest(id: number) {
     if (id === 0) {
+      // If toggling the Everything interest
       if (interests[0].selected) {
+        // "Un-select" the Everything interest
         setInterests((prevInterests) => {
           return prevInterests.map((interest) => {
             return interest.id === 0
@@ -71,7 +78,8 @@ export default function PreferencesPage() {
         });
       }
     } else if (interests[0].selected) {
-      // "Un-select the Everything interest"
+      // If not toggling the Everything interest but Eveyrthing is selected
+      // "Un-select" the Everything interest
       setInterests((prevInterests) => {
         return prevInterests.map((interest) => {
           if (interest.id === 0) {
@@ -94,30 +102,52 @@ export default function PreferencesPage() {
     }
   }
 
-  async function getLink() {
-    const URL = 'http://localhost:3000/';
-    // TODO: Make not hardcoded
-    const sessionData = {
-      names: 'Nolan Chan',
-      budget: '1',
-      activities: ['Dining', 'Cafe'],
-    };
+  async function onSubmit(data: object) {
+    // Get list of interests
+    let selected_interests: string[] = [];
+    for (let i = 0; i < interests.length; i++) {
+      if (interests[i].selected) {
+        selected_interests.push(interests[i].name);
+      }
+    }
 
-    fetch(URL, {
+    const session_id = await getLink({
+      ...data,
+      activities: selected_interests,
+    });
+
+    // DO SOMETHING WITH session_id
+    console.log(session_id);
+  }
+
+  function onError() {
+    console.log('CANNOT SUBMIT FORM');
+  }
+
+  async function getLink(data: object) {
+    const URL = 'http://localhost:3000/';
+    let session_id = '';
+
+    await fetch(URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(sessionData),
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then(async (res) => {
-        console.log(res);
+        session_id = res;
+      })
+      .catch((error) => {
+        console.error(error);
       });
+
+    return session_id;
   }
 
   return (
-    <Box bg="#332244" minH="100vh" >
+    <Box bg="#332244" minH="100vh">
       <Flex flexDirection="column" minH="80vh" alignItems="center">
-        <Box >
+        <Box>
           <Flex
             direction="column"
             align={{ base: 'left', md: 'center' }}
@@ -135,24 +165,28 @@ export default function PreferencesPage() {
               How much to spend?
             </Heading>
             <Flex
-            flex-direction='row'
+              flex-direction="row"
               alignItems="center"
               justifyContent="space-between"
               marginTop="2rem"
             >
               <Flex direction={{ base: 'column', md: 'row' }}>
-                <Flex >
+                <Flex>
                   <Text
                     color={selectedBudget >= 1 ? '#FFDD99' : '#644386'}
                     fontSize="7xl"
                     fontWeight="regular"
                     lineHeight="48px"
-                    marginRight='0.5rem'
-                    onClick={() => setSelectedBudget(1)}
+                    marginRight="0.5rem"
+                    onClick={() => {
+                      setSelectedBudget(1);
+                      methods.setValue('budget', '1');
+                    }}
                     cursor="pointer"
                     _hover={{
                       color: '#FFDD99',
                     }}
+                    {...methods.register('budget')}
                   >
                     $
                   </Text>
@@ -161,13 +195,17 @@ export default function PreferencesPage() {
                     fontSize="7xl"
                     fontWeight="regular"
                     lineHeight="48px"
-                    marginRight='0.5rem'
+                    marginRight="0.5rem"
                     marginLeft="2px"
-                    onClick={() => setSelectedBudget(2)}
+                    onClick={() => {
+                      setSelectedBudget(2);
+                      methods.setValue('budget', '2');
+                    }}
                     cursor="pointer"
                     _hover={{
                       color: '#FFDD99',
                     }}
+                    {...methods.register('budget')}
                   >
                     $
                   </Text>
@@ -177,11 +215,15 @@ export default function PreferencesPage() {
                     fontWeight="regular"
                     lineHeight="48px"
                     marginLeft="2px"
-                    onClick={() => setSelectedBudget(3)}
+                    onClick={() => {
+                      setSelectedBudget(3);
+                      methods.setValue('budget', '3');
+                    }}
                     cursor="pointer"
                     _hover={{
                       color: '#FFDD99',
                     }}
+                    {...methods.register('budget')}
                   >
                     $
                   </Text>
@@ -191,12 +233,16 @@ export default function PreferencesPage() {
                   fontSize="lg"
                   fontWeight="medium"
                   mt={{ base: '1.5rem', md: '0.7rem' }}
-                  mx='1rem'
-                  onClick={() => setSelectedBudget(0)}
+                  mx="1rem"
+                  onClick={() => {
+                    setSelectedBudget(0);
+                    methods.setValue('budget', '0');
+                  }}
                   cursor="pointer"
                   _hover={{
                     color: '#FFDD99',
                   }}
+                  {...methods.register('budget')}
                 >
                   Ignore budget
                 </Text>
@@ -206,8 +252,8 @@ export default function PreferencesPage() {
                 fontSize="5xl"
                 fontWeight="regular"
                 lineHeight="48px"
-                ml={{base: '0', md: '3rem'}}
-                mr={{base:"4rem", md:'0'}}
+                ml={{ base: '0', md: '3rem' }}
+                mr={{ base: '4rem', md: '0' }}
                 onClick={onOpen}
                 cursor="pointer"
               >

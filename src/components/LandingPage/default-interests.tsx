@@ -9,7 +9,7 @@ export default [
     id: 1,
     name: 'Dining',
     width: '72px',
-    selected: true,
+    selected: false,
   },
   {
     id: 2,
@@ -27,19 +27,19 @@ export default [
     id: 4,
     name: 'Arcade',
     width: '72px',
-    selected: true,
+    selected: false,
   },
   {
     id: 5,
     name: 'Shopping',
     width: '108px',
-    selected: true,
+    selected: false,
   },
   {
     id: 6,
     name: 'Outdoors',
     width: '108px',
-    selected: true,
+    selected: false,
   },
   {
     id: 7,
