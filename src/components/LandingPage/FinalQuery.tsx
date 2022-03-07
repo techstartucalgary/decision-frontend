@@ -38,10 +38,10 @@ export default function PreferencesPage() {
       <Button
         key={interest.name}
         width={interest.width}
-        height="36px"
-        marginRight="16px"
-        marginTop="16px"
-        borderRadius="16px"
+        height="2.2rem"
+        marginRight="1rem"
+        marginTop="1rem"
+        borderRadius="1rem"
         bg={interest.selected ? '#FFDD99' : '#644386'}
         _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
         onClick={() => toggleInterest(interest.id)}

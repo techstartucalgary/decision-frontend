@@ -38,6 +38,7 @@
     "react-hook-form": "7.27.1",
     "react-icons": "4.3.1",
     "react-star-ratings": "2.3.0",
+    "swr": "1.2.2",
     "yarn": "1.22.17"
   },
   "devDependencies": {

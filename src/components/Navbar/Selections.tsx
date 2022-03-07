@@ -2,46 +2,16 @@ import React, { useState } from 'react';
 import {
   Flex,
   Text,
-  Popover,
-  Editable,
-  EditablePreview,
-  EditableInput,
   Tag,
-  Modal,
-  ModalBody,
-  ModalOverlay,
-  ModalFooter,
-  ModalContent,
-  Button,
   HStack,
-  PopoverTrigger,
-  PopoverContent,
-  ModalCloseButton,
-  ModalHeader,
-  Lorem,
   IconButton,
 } from '@chakra-ui/react';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import {
-  ArrowForwardIcon,
-  ArrowRightIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+import defaultInterests from '../LandingPage/default-interests';
 
-function createData(id, activity) {
-  return { id, activity };
-}
-
-const activities = [
-  createData(0, 'Everything'),
-  createData(1, 'Dining'),
-  createData(2, 'Fine Dining'),
-  createData(3, 'Shopping'),
-  createData(4, 'Outdoors'),
-  createData(5, 'Drinks'),
-  createData(6, 'Coffee'),
-  createData(7, 'Entertainment'),
-];
 
 const Selections = () => {
   const [selection, setSelection] = useState('Dining');
@@ -68,7 +38,7 @@ const Selections = () => {
       </Flex>
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
         <Tag
-          
+          boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
           size='xl'
           color="#FFDD99"
           bg="#644386"
@@ -137,49 +107,30 @@ const Selections = () => {
         <HStack spacing="0.1rem">
           <IconButton
             colorScheme="#FFDD99"
-            aria-label="Search database"
+            aria-label="Budget 1"
             color={selectedBudget > 0 ? '#FFDD99' : '#644386'}
-            _hover={{
-              bg: '#644386',
-              color: '#FFDD99',
-            }}
-            onClick={() => setSelectedBudget(1)}
             icon={<BsCurrencyDollar />}
           />
           <IconButton
             colorScheme="#FFDD99"
             color={selectedBudget > 1 ? '#FFDD99' : '#644386'}
-            aria-label="Search database"
-            _hover={{
-              bg: '#644386',
-              color: '#FFDD99',
-            }}
-            onClick={() => setSelectedBudget(2)}
+            aria-label="Budget 2"
             icon={<BsCurrencyDollar />}
           />
           <IconButton
             colorScheme="#FFDD99"
             color={selectedBudget > 2 ? '#FFDD99' : '#644386'}
-            aria-label="Search database"
-            _hover={{
-              bg: '#644386',
-              color: '#FFDD99',
-            }}
-            onClick={() => setSelectedBudget(3)}
+            aria-label="Budget 3"
             icon={<BsCurrencyDollar />}
           />
-          <Button
+          <Tag
             fontSize="0.2rem"
             color={selectedBudget == 0 ? '#FFDD99' : '#644386'}
             bg="transparent"
-            _hover={{
-              bg: '#644386',
-              color: '#FFDD99',
-            }}
-            onClick={() => setSelectedBudget(0)}
+            p='2'
           >
             Ignore Budget
-          </Button>
+          </Tag>
         </HStack>
       </Flex>
       {/* <Flex
@@ -216,44 +167,27 @@ const Selections = () => {
         <Text fontSize="16">Interests</Text>
       </Flex>
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
-        <Popover placement="right">
-          <PopoverTrigger>
-            <Button
+      <Flex flexWrap="wrap" >
+              
+      {defaultInterests.map((interest) => (     
+            <Tag
+            display={interest.selected ? 'block' : 'none'}
+            key={interest.id}
               rightIcon={<ChevronRightIcon />}
-              size="md"
+              size="lg"
               variant="solid"
               color="#FFDD99"
               bg="#644386"
+              px='1.5rem'
+              py='0.5rem'
               borderRadius="full"
-              _hover={{
-                bg: '#644386',
-                color: 'white',
-              }}
+              m='0.1rem'
+              boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
             >
-              {selection}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent bg="#4B3265" maxWidth="150px" zIndex="999">
-            {activities.map((row) => (
-              <Button
-                key={row.id}
-                size="sm"
-                variant="solid"
-                color="#FFDD99"
-                bg="#644386"
-                borderRadius="full"
-                m="0.5"
-                _hover={{
-                  bg: '#644386',
-                  color: 'white',
-                }}
-                onClick={() => setSelection(row.activity)}
-              >
-                {row.activity}
-              </Button>
-            ))}
-          </PopoverContent>
-        </Popover>
+              {interest.name}
+            </Tag>
+      ))}
+            </Flex>
       </Flex>
     </>
   );

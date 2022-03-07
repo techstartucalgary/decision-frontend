@@ -1,10 +1,14 @@
 import LandingPage from '@/components/LandingPage/LandingPage';
-import Navbar from '../components/Navbar/Navbar';
+
+import SidebarWithHeader from '../components/Navbar/Navbar';
+
 
 export default function Home() {
   return (
     <>
-  <Navbar />
+    <SidebarWithHeader children />
+    
+  
   <LandingPage />
   </>
   );
