@@ -66,6 +66,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       borderRightColor="#644386"
       w={{ base: 'full', md: 60 }}
       pos="fixed"
+      zIndex='20'
       h="full"
       
       minH="100vh"
