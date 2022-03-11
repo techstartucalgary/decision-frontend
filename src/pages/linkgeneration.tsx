@@ -4,7 +4,7 @@ import LinkGenerationPage from '../components/LinkGenerationPage/LinkGenerationP
 export default function LinkGeneration() {
   return (
     <>
-      <Navbar />
+      <Navbar children/>
       <LinkGenerationPage />
     </>
   );

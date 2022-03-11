@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter, withRouter } from 'next/router'
 
 import {
   Box,
@@ -28,7 +29,7 @@ import defaultInterests from './default-interests';
 export default function PreferencesPage() {
   const [selectedBudget, setSelectedBudget] = React.useState(1);
   const [interests, setInterests] = React.useState(defaultInterests);
-
+  const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const methods = useFormContext();
@@ -118,6 +119,9 @@ export default function PreferencesPage() {
 
     // DO SOMETHING WITH session_id
     console.log(session_id);
+    router.push({
+      pathname: 'linkgeneration',
+      query: {link: session_id}});
   }
 
   function onError() {

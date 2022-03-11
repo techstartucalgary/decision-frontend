@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-
+import router, { useRouter, withRouter } from 'next/router'
 import { Box, Flex, Heading, Text, Button, IconButton } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import { MdContentCopy } from 'react-icons/md';
 
 export default function LinkGenerationPage() {
-  let generatedLink = 'www.decision.ca/sldhfgtyhf';
+  const linkid = useRouter();
+  const generatedLink = `www.decision.ca/${linkid.query.link}`;
   const [copied, setCopied] = useState(false);
   return (
     <Box height="100vh"  bg="#332244">
@@ -55,7 +57,8 @@ export default function LinkGenerationPage() {
         <Text color='primary.500' size='lg' mt='2'>
           Copied to clipboard!
         </Text>
-}
+}         
+        <Link href={`/${linkid.query.link}`}>
         <Button
           bg="#FFDD99"
           height="36px"
@@ -63,11 +66,13 @@ export default function LinkGenerationPage() {
           borderRadius="16px"
           marginTop="5vh"
           _hover={{ bg: '#FFDD99' }}
+          
         >
           <Text color="#644386" fontSize="md" fontWeight="bold">
             Redirect to link
           </Text>
         </Button>
+        </Link>
       </Flex>
     </Box>
   );
