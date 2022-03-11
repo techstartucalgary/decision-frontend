@@ -128,21 +128,7 @@ const Nav = () => {
           <Text fontSize="1rem">User Manual</Text>
         </Flex>
       </Link>
-      <Link href="/feedback">
-        <Flex
-          align="center"
-          p="4"
-          role="group"
-          cursor="pointer"
-          color="#FFDD99"
-          _hover={{
-            bg: '#644386',
-            color: 'white',
-          }}
-        >
-          <Text fontSize="1rem">Feedback</Text>
-        </Flex>
-      </Link>
+      
     </>
   );
 };

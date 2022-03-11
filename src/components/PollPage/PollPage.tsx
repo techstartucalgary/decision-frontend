@@ -34,21 +34,23 @@ const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
 const PollPage = ({ id }: any) => {
   const [selected, setSelected] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [pollData, setPollData] = useState([]);
-  const [voted, setVoted] = useState('');
+  const [votedLocations, setVotedLocations] = useState<String[]>([]);
+  const handleVote = (oid : string) => {
+    setVotedLocations(votedLocations.concat(oid))
+  }
   let totalParticipants = 10;
   const { data, error } = useSWR(
     `http://localhost:3000/${id}/getPolls`,
     fetcher,
   );
-  const { mutate } = useSWRConfig();
 
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
 
-  const updateVotes = async (oid: string) => {
+  const updateVotes = async () => {
     const sessionData = {
-      locationID: oid,
+      memberName: 'Nemanja',
+      locationIds: votedLocations,
     };
     fetch(`http://localhost:3000/${id}/addVotes`, {
       method: 'PUT',
@@ -120,13 +122,13 @@ const PollPage = ({ id }: any) => {
                     _hover={{
                       fill: 'primary.100',
                     }}
-                    fill={`${voted === data._id ? 'primary.100' : '#332244'}`}
+                    fill={`${votedLocations.includes(data.locationID) ? 'primary.100' : '#332244'}`}
                     viewBox="0 0 24 24"
                     stroke="none"
                     width="8"
                     height="8"
                     onClick={() => {
-                      setVoted(data._id);
+                      handleVote(data.locationID);
                     }}
                   >
                     <path
@@ -224,7 +226,7 @@ const PollPage = ({ id }: any) => {
       >
         <Button
           onClick={() => {
-            updateVotes(voted);
+            updateVotes();
           }}
           bg="#644386"
           border="2px solid #332244"
