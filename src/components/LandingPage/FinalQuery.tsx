@@ -312,7 +312,7 @@ export default function PreferencesPage() {
             width="144px"
             borderRadius="16px"
             _hover={{ bg: '#FFDD99' }}
-            onClick={getLink}
+            onClick={methods.handleSubmit(onSubmit, onError)}
           >
             <Text color="#644386" fontSize="md" fontWeight="bold">
               Generate Link
