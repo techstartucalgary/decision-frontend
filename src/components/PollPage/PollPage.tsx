@@ -21,119 +21,47 @@ import {
   ModalContent,
   ModalHeader,
   ModalFooter,
+  useDisclosure,
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { useDisclosure } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 import React, { useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 
-function createData(
-  id: any,
-  name: any,
-  votes: any,
-  type: any,
-  location: any,
-  distance: any,
-  description: any,
-  rating: any,
-  reviews: any,
-) {
-  return {
-    id,
-    name,
-    votes,
-    type,
-    location,
-    distance,
-    description,
-    rating,
-    reviews,
-  };
-}
+const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
 
-const places = [
-  createData(
-    0,
-    'Crowfoot Crossing Cinema',
-    8,
-    'Movie Theatre',
-    '91 Crowfoot Terrace NW',
-    '2.6km',
-    'Modern multiplex cinema chain screening the latest Hollywood films, plus new independent releases.',
-    4.1,
-    4651,
-  ),
-  createData(
-    1,
-    'Bitter Sisters Brewery',
-    5,
-    'Restaurant',
-    '91 Crowfoot Terrace NW',
-    '2.6km',
-    'Modern multiplex cinema chain screening the latest Hollywood films, plus new independent releases.',
-    3,
-    125,
-  ),
-  createData(
-    2,
-    'Imax Movie Theatre',
-    4,
-    'Movie Theatre',
-    '91 Crowfoot Terrace NW',
-    '2.6km',
-    'Modern multiplex cinema chain screening the latest Hollywood films, plus new independent releases.',
-    4.6,
-    1324,
-  ),
-];
-
-type Data = {
-  id: string;
-  name: string;
-  votes: number;
-  type: string;
-  location: string;
-  distance: string;
-  description: string;
-  rating: number;
-  reviews: number;
-}
-
-const fetcher = (...args : any) => fetch(...args).then((res) => res.json());
-
-const PollPage = ({id} : any) => {
+const PollPage = ({ id }: any) => {
   const [selected, setSelected] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [pollData, setPollData] = useState([]);
+  const [voted, setVoted] = useState('');
   let totalParticipants = 10;
-  const { data, error } = useSWR(`http://localhost:3000/${id}/getPolls`, fetcher)
+  const { data, error } = useSWR(
+    `http://localhost:3000/${id}/getPolls`,
+    fetcher,
+  );
+  const { mutate } = useSWRConfig();
 
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
-  
-  const updateVotes = async (oid : number) => {
-    
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+
+  const updateVotes = async (oid: string) => {
     const sessionData = {
-      
-      locationID: id,
-      memberName: 'Nemanja'
-      
+      locationID: oid,
     };
-
     fetch(`http://localhost:3000/${id}/addVotes`, {
-      method: 'POST',
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sessionData),
     })
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then(async (res) => {
         console.log(res);
+        onOpen();
       });
-  }
-  
-  
+  };
+
   return (
     <>
       <Center
@@ -162,8 +90,8 @@ const PollPage = ({id} : any) => {
         alignItems="center"
         flexDirection="column"
       >
-        <Accordion maxWidth="500px" mb='3rem'>
-          {data.map((data : any, index : any) => (
+        <Accordion maxWidth="500px" mb="3rem">
+          {data.map((data: any, index: any) => (
             <AccordionItem
               key={index}
               bg="#4B3265"
@@ -175,49 +103,54 @@ const PollPage = ({id} : any) => {
               <AccordionButton
                 justifyContent="space-between"
                 alignItems="center"
-                
               >
-                <VStack p="1rem" my='1rem' borderRight='1px' borderColor='#332244'>
+                <VStack
+                  p="1rem"
+                  my="1rem"
+                  borderRight="1px"
+                  borderColor="#332244"
+                >
                   <Text fontSize="1.2rem" fontWeight="bold" color="primary.100">
                     {data.votes}
                   </Text>
-                  
-                    <Icon
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      _hover={{
-                        
-                        fill: 'primary.100',
-                      }}
-                      fill="#332244"
-                      viewBox="0 0 24 24"
-                      stroke="none"
-                      width="8" height="8"
-                      
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
-                      />
-                    </Icon>
-                  
+
+                  <Icon
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-6 w-6`}
+                    _hover={{
+                      fill: 'primary.100',
+                    }}
+                    fill={`${voted === data._id ? 'primary.100' : '#332244'}`}
+                    viewBox="0 0 24 24"
+                    stroke="none"
+                    width="8"
+                    height="8"
+                    onClick={() => {
+                      setVoted(data._id);
+                    }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                    />
+                  </Icon>
                 </VStack>
-                <VStack px='1rem'>
-                  <Heading fontSize='1.125rem' color='primary.100' mb='1rem'>
+                <VStack px="1rem" width="100%">
+                  <Heading fontSize="1.125rem" color="primary.100" mb="1rem">
                     {data.locationName}
                   </Heading>
                   <Progress
-                        value={(data.votes / totalParticipants) * 100}
-                        colorScheme="primary"
-                        size="md"
-                        width="100%"
-                        borderRadius="26px"
-                        bg="#332244"
-                      />
+                    value={(data.votes / totalParticipants) * 100}
+                    colorScheme="primary"
+                    size="md"
+                    width="100%"
+                    borderRadius="26px"
+                    bg="#332244"
+                  />
                 </VStack>
-                
+
                 <AccordionIcon color="primary.100" fontSize="3rem" />
               </AccordionButton>
               <AccordionPanel>
@@ -230,16 +163,22 @@ const PollPage = ({id} : any) => {
                 <Heading fontSize="0.75rem" color="primary.100">
                   {data.description}
                 </Heading>
-                
-                <HStack justifyContent="space-around" borderTop='2px' borderColor='#332244' mt='0.7rem' pt='0.5rem'>
-                  <HStack mr="auto" >
+
+                <HStack
+                  justifyContent="space-around"
+                  borderTop="2px"
+                  borderColor="#332244"
+                  mt="0.7rem"
+                  pt="0.5rem"
+                >
+                  <HStack mr="auto">
                     <Text fontSize="1rem" color="primary.100" mt="2.5px">
                       {data.rating}
                     </Text>
                     <StarRatings
                       rating={data.rating}
                       starRatedColor="#FFDD99"
-                      starEmptyColor='#332244'
+                      starEmptyColor="#332244"
                       numberOfStars={5}
                       starDimension="1rem"
                       starSpacing="0.2px"
@@ -284,6 +223,9 @@ const PollPage = ({id} : any) => {
         width="100%"
       >
         <Button
+          onClick={() => {
+            updateVotes(voted);
+          }}
           bg="#644386"
           border="2px solid #332244"
           borderRadius="18px"
@@ -295,16 +237,52 @@ const PollPage = ({id} : any) => {
             bg: '#644386',
             color: 'white',
           }}
-          
         >
           Send Vote
         </Button>
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          blockScrollOnMount={true}
+          closeOnOverlayClick={true}
+          motionPreset="slideInBottom"
+        >
+          <ModalOverlay />
+          <ModalContent
+            width="90vw"
+            borderRadius="30px"
+            border="1px"
+            borderColor="#332244"
+            bg="#4B3265"
+            my="auto"
+          >
+            <ModalBody
+              color="#FFDD99"
+              fontWeight="regular"
+              fontSize="4xl"
+              fontFamily={'Roboto'}
+              textAlign="center"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text ml="auto">Vote Sent</Text>
+              <Button
+                background="#4B3265"
+                borderColor="#4B3265"
+                _hover={{ bg: '#644386', color: 'white' }}
+                fontSize="4xl"
+                ml="auto"
+                onClick={onClose}
+              >
+                &times;
+              </Button>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </Center>
     </>
   );
 };
-
-
-  
 
 export default PollPage;
