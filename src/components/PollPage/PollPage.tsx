@@ -27,7 +27,7 @@ import {
 } from '@chakra-ui/react';
 import StarRatings from 'react-star-ratings';
 import React, { useState } from 'react';
-import useSWR, { useSWRConfig } from 'swr';
+import useSWR, { mutate, useSWRConfig } from 'swr';
 
 const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
 
@@ -61,6 +61,8 @@ const PollPage = ({ id }: any) => {
       .then(async (res) => {
         console.log(res);
         onOpen();
+        mutate(`http://localhost:3000/${id}/getPolls`);
+        setVotedLocations([]);
       });
   };
 
