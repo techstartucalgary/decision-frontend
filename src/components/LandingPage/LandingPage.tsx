@@ -16,12 +16,19 @@ import FinalQuery from './FinalQuery';
 
 import { useForm, FormProvider } from 'react-hook-form';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { increment } from '../../slices/counterSlice';
+
 const LandingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const methods = useForm({
     mode: 'all',
     defaultValues: { names: '', budget: '1' },
   });
+
+  const dispatch = useDispatch();
+  const count = useSelector((state) => state.counter.value);
+
   return (
     <FormProvider {...methods}>
       <Box bg="#332244" minH="100vh">
@@ -102,6 +109,9 @@ const LandingPage = () => {
                 )}
                 <Box width="2.25rem" marginLeft="1rem"></Box>
               </Flex>
+
+              <Button onClick={() => dispatch(increment())}>INCREMENT</Button>
+              <Text color="#FFDD99">{count}</Text>
             </Box>
           )}
           {currentStep >= 1 && <FinalQuery />}
