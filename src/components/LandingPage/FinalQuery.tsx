@@ -24,21 +24,21 @@ import { useFormContext } from 'react-hook-form';
 
 import Link from 'next/link';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFormBudget } from '../../slices/formBudgetSlice';
 import { toggleInterest } from '../../slices/formInterestsSlice';
 
-import defaultInterests from './default-interests';
-
 export default function PreferencesPage() {
-  const [selectedBudget, setSelectedBudget] = React.useState(1);
-  const [interests, setInterests] = React.useState(defaultInterests);
+  //const [selectedBudget, setSelectedBudget] = React.useState(1);
+  //const [interests, setInterests] = React.useState(defaultInterests);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const methods = useFormContext();
 
   const dispatch = useDispatch();
+  const budget = useSelector((state) => state.formBudget.value);
+  const interests = useSelector((state) => state.formInterests.value);
 
   let interestButtons = interests.map((interest) => {
     return (
@@ -52,7 +52,6 @@ export default function PreferencesPage() {
         bg={interest.selected ? '#FFDD99' : '#644386'}
         _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
         onClick={() => {
-          toggleInterests(interest.id);
           dispatch(toggleInterest(interest.id));
         }}
       >
@@ -66,51 +65,6 @@ export default function PreferencesPage() {
       </Button>
     );
   });
-
-  function toggleInterests(id: number) {
-    if (id === 0) {
-      // If toggling the Everything interest
-      if (interests[0].selected) {
-        // "Un-select" the Everything interest
-        setInterests((prevInterests) => {
-          return prevInterests.map((interest) => {
-            return interest.id === 0
-              ? { ...interest, selected: !interest.selected }
-              : interest;
-          });
-        });
-      } else {
-        // "Select" all interests
-        setInterests((prevInterests) => {
-          return prevInterests.map((interest) => {
-            return { ...interest, selected: true };
-          });
-        });
-      }
-    } else if (interests[0].selected) {
-      // If not toggling the Everything interest but Eveyrthing is selected
-      // "Un-select" the Everything interest
-      setInterests((prevInterests) => {
-        return prevInterests.map((interest) => {
-          if (interest.id === 0) {
-            return { ...interest, selected: false };
-          } else {
-            return interest.id === id
-              ? { ...interest, selected: !interest.selected }
-              : interest;
-          }
-        });
-      });
-    } else {
-      setInterests((prevInterests) => {
-        return prevInterests.map((interest) => {
-          return interest.id === id
-            ? { ...interest, selected: !interest.selected }
-            : interest;
-        });
-      });
-    }
-  }
 
   async function onSubmit(data: object) {
     // Get list of interests
@@ -187,13 +141,12 @@ export default function PreferencesPage() {
               <Flex direction={{ base: 'column', md: 'row' }}>
                 <Flex>
                   <Text
-                    color={selectedBudget >= 1 ? '#FFDD99' : '#644386'}
+                    color={budget >= 1 ? '#FFDD99' : '#644386'}
                     fontSize="7xl"
                     fontWeight="regular"
                     lineHeight="48px"
                     marginRight="0.5rem"
                     onClick={() => {
-                      setSelectedBudget(1);
                       methods.setValue('budget', '1');
                       dispatch(setFormBudget(1));
                     }}
@@ -206,14 +159,13 @@ export default function PreferencesPage() {
                     $
                   </Text>
                   <Text
-                    color={selectedBudget >= 2 ? '#FFDD99' : '#644386'}
+                    color={budget >= 2 ? '#FFDD99' : '#644386'}
                     fontSize="7xl"
                     fontWeight="regular"
                     lineHeight="48px"
                     marginRight="0.5rem"
                     marginLeft="2px"
                     onClick={() => {
-                      setSelectedBudget(2);
                       methods.setValue('budget', '2');
                       dispatch(setFormBudget(2));
                     }}
@@ -226,13 +178,12 @@ export default function PreferencesPage() {
                     $
                   </Text>
                   <Text
-                    color={selectedBudget >= 3 ? '#FFDD99' : '#644386'}
+                    color={budget >= 3 ? '#FFDD99' : '#644386'}
                     fontSize="7xl"
                     fontWeight="regular"
                     lineHeight="48px"
                     marginLeft="2px"
                     onClick={() => {
-                      setSelectedBudget(3);
                       methods.setValue('budget', '3');
                       dispatch(setFormBudget(3));
                     }}
@@ -246,13 +197,12 @@ export default function PreferencesPage() {
                   </Text>
                 </Flex>
                 <Text
-                  color={selectedBudget === 0 ? '#FFDD99' : '#644386'}
+                  color={budget === 0 ? '#FFDD99' : '#644386'}
                   fontSize="lg"
                   fontWeight="medium"
                   mt={{ base: '1.5rem', md: '0.7rem' }}
                   mx="1rem"
                   onClick={() => {
-                    setSelectedBudget(0);
                     methods.setValue('budget', '0');
                     dispatch(setFormBudget(0));
                   }}
