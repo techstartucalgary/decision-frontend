@@ -1,6 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
+import formNameReducer from './slices/formNameSlice';
+import formBudgetReducer from './slices/formBudgetSlice';
+import formInterestsReducer from './slices/formInterestsSlice';
 
 export const store = configureStore({
-  reducer: { counter: counterReducer },
+  reducer: {
+    formName: formNameReducer,
+    formBudget: formBudgetReducer,
+    formInterests: formInterestsReducer,
+  },
 });

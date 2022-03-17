@@ -16,8 +16,8 @@ import FinalQuery from './FinalQuery';
 
 import { useForm, FormProvider } from 'react-hook-form';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { increment } from '../../slices/counterSlice';
+import { useDispatch } from 'react-redux';
+import { setFormName } from '../../slices/formNameSlice';
 
 const LandingPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -27,7 +27,6 @@ const LandingPage = () => {
   });
 
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.counter.value);
 
   return (
     <FormProvider {...methods}>
@@ -81,7 +80,10 @@ const LandingPage = () => {
                     bg: '#FFDD99',
                     color: 'white',
                   }}
-                  onClick={() => setCurrentStep(1)}
+                  onClick={() => {
+                    setCurrentStep(1);
+                    dispatch(setFormName(methods.getValues('names')));
+                  }}
                   disabled={!methods.formState.isValid}
                 >
                   <BsArrowRight />
@@ -109,9 +111,6 @@ const LandingPage = () => {
                 )}
                 <Box width="2.25rem" marginLeft="1rem"></Box>
               </Flex>
-
-              <Button onClick={() => dispatch(increment())}>INCREMENT</Button>
-              <Text color="#FFDD99">{count}</Text>
             </Box>
           )}
           {currentStep >= 1 && <FinalQuery />}

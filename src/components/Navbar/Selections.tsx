@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
-import {
-  Flex,
-  Text,
-  Tag,
-  HStack,
-  IconButton,
-} from '@chakra-ui/react';
+import { Flex, Text, Tag, HStack, IconButton } from '@chakra-ui/react';
 import { BsCurrencyDollar } from 'react-icons/bs';
-import {
-  ChevronRightIcon,
-} from '@chakra-ui/icons';
-import defaultInterests from '../LandingPage/default-interests';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 
+import { useSelector } from 'react-redux';
 
 const Selections = () => {
-  const [selection, setSelection] = useState('Dining');
-  const [selectedBudget, setSelectedBudget] = useState(1);
-  let name = 'Nemanja Grujic';
+  const name = useSelector((state) => state.formName.value);
+  const budget = useSelector((state) => state.formBudget.value);
+  const interests = useSelector((state) => state.formInterests.value);
+
   return (
     <>
       <Flex
@@ -39,12 +31,12 @@ const Selections = () => {
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
         <Tag
           boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
-          size='xl'
+          size="xl"
           color="#FFDD99"
           bg="#644386"
           borderRadius="full"
           px="4"
-          py='2'
+          py="2"
         >
           {name}
         </Tag>
@@ -108,26 +100,26 @@ const Selections = () => {
           <IconButton
             colorScheme="#FFDD99"
             aria-label="Budget 1"
-            color={selectedBudget > 0 ? '#FFDD99' : '#644386'}
+            color={budget > 0 ? '#FFDD99' : '#644386'}
             icon={<BsCurrencyDollar />}
           />
           <IconButton
             colorScheme="#FFDD99"
-            color={selectedBudget > 1 ? '#FFDD99' : '#644386'}
+            color={budget > 1 ? '#FFDD99' : '#644386'}
             aria-label="Budget 2"
             icon={<BsCurrencyDollar />}
           />
           <IconButton
             colorScheme="#FFDD99"
-            color={selectedBudget > 2 ? '#FFDD99' : '#644386'}
+            color={budget > 2 ? '#FFDD99' : '#644386'}
             aria-label="Budget 3"
             icon={<BsCurrencyDollar />}
           />
           <Tag
             fontSize="0.2rem"
-            color={selectedBudget == 0 ? '#FFDD99' : '#644386'}
+            color={budget == 0 ? '#FFDD99' : '#644386'}
             bg="transparent"
-            p='2'
+            p="2"
           >
             Ignore Budget
           </Tag>
@@ -167,27 +159,26 @@ const Selections = () => {
         <Text fontSize="16">Interests</Text>
       </Flex>
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
-      <Flex flexWrap="wrap" >
-              
-      {defaultInterests.map((interest) => (     
+        <Flex flexWrap="wrap">
+          {interests.map((interest) => (
             <Tag
-            display={interest.selected ? 'block' : 'none'}
-            key={interest.id}
+              display={interest.selected ? 'block' : 'none'}
+              key={interest.id}
               rightIcon={<ChevronRightIcon />}
               size="lg"
               variant="solid"
               color="#FFDD99"
               bg="#644386"
-              px='1.5rem'
-              py='0.5rem'
+              px="1.5rem"
+              py="0.5rem"
               borderRadius="full"
-              m='0.1rem'
+              m="0.1rem"
               boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
             >
               {interest.name}
             </Tag>
-      ))}
-            </Flex>
+          ))}
+        </Flex>
       </Flex>
     </>
   );

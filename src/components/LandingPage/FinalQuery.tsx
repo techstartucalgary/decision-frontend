@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter, withRouter } from 'next/router'
+import { useRouter, withRouter } from 'next/router';
 
 import {
   Box,
@@ -24,15 +24,21 @@ import { useFormContext } from 'react-hook-form';
 
 import Link from 'next/link';
 
+import { useDispatch } from 'react-redux';
+import { setFormBudget } from '../../slices/formBudgetSlice';
+import { toggleInterest } from '../../slices/formInterestsSlice';
+
 import defaultInterests from './default-interests';
 
 export default function PreferencesPage() {
   const [selectedBudget, setSelectedBudget] = React.useState(1);
   const [interests, setInterests] = React.useState(defaultInterests);
-  const router = useRouter()
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const methods = useFormContext();
+
+  const dispatch = useDispatch();
 
   let interestButtons = interests.map((interest) => {
     return (
@@ -45,7 +51,10 @@ export default function PreferencesPage() {
         borderRadius="1rem"
         bg={interest.selected ? '#FFDD99' : '#644386'}
         _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
-        onClick={() => toggleInterest(interest.id)}
+        onClick={() => {
+          toggleInterests(interest.id);
+          dispatch(toggleInterest(interest.id));
+        }}
       >
         <Text
           fontSize="sm"
@@ -58,7 +67,7 @@ export default function PreferencesPage() {
     );
   });
 
-  function toggleInterest(id: number) {
+  function toggleInterests(id: number) {
     if (id === 0) {
       // If toggling the Everything interest
       if (interests[0].selected) {
@@ -121,7 +130,8 @@ export default function PreferencesPage() {
     console.log(session_id);
     router.push({
       pathname: 'linkgeneration',
-      query: {link: session_id}});
+      query: { link: session_id },
+    });
   }
 
   function onError() {
@@ -185,6 +195,7 @@ export default function PreferencesPage() {
                     onClick={() => {
                       setSelectedBudget(1);
                       methods.setValue('budget', '1');
+                      dispatch(setFormBudget(1));
                     }}
                     cursor="pointer"
                     _hover={{
@@ -204,6 +215,7 @@ export default function PreferencesPage() {
                     onClick={() => {
                       setSelectedBudget(2);
                       methods.setValue('budget', '2');
+                      dispatch(setFormBudget(2));
                     }}
                     cursor="pointer"
                     _hover={{
@@ -222,6 +234,7 @@ export default function PreferencesPage() {
                     onClick={() => {
                       setSelectedBudget(3);
                       methods.setValue('budget', '3');
+                      dispatch(setFormBudget(3));
                     }}
                     cursor="pointer"
                     _hover={{
@@ -241,6 +254,7 @@ export default function PreferencesPage() {
                   onClick={() => {
                     setSelectedBudget(0);
                     methods.setValue('budget', '0');
+                    dispatch(setFormBudget(0));
                   }}
                   cursor="pointer"
                   _hover={{
