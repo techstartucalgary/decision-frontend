@@ -79,10 +79,10 @@ export default function PreferencesPage() {
     });
 
     // DO SOMETHING WITH session_id
-    console.log(session_id);
+    console.log(session_id.linkID);
     router.push({
       pathname: 'linkgeneration',
-      query: { link: session_id },
+      query: { link: session_id.linkID },
     });
   }
 
