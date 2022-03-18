@@ -2,12 +2,16 @@ import { Flex, Text, Tag, HStack, IconButton } from '@chakra-ui/react';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setFormStep } from '../../slices/formStepSlice';
 
 const Selections = () => {
   const name = useSelector((state) => state.formName.value);
   const budget = useSelector((state) => state.formBudget.value);
   const interests = useSelector((state) => state.formInterests.value);
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -26,7 +30,9 @@ const Selections = () => {
         </Text>
       </Flex>
       <Flex align="center" p="3" mx="2" role="group" color="#FFDD99">
-        <Text fontSize="1rem">Name</Text>
+        <Text fontSize="1rem" onClick={() => dispatch(setFormStep(0))}>
+          Name
+        </Text>
       </Flex>
       <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
         <Tag

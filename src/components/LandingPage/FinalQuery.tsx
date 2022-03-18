@@ -29,8 +29,6 @@ import { setFormBudget } from '../../slices/formBudgetSlice';
 import { toggleInterest } from '../../slices/formInterestsSlice';
 
 export default function PreferencesPage() {
-  //const [selectedBudget, setSelectedBudget] = React.useState(1);
-  //const [interests, setInterests] = React.useState(defaultInterests);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
