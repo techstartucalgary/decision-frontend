@@ -146,7 +146,7 @@ const PollPage = ({ id }: any) => {
                     {data.locationName}
                   </Heading>
                   <Progress
-                    value={(data.votes / totalParticipants) * 100}
+                    value={(data.votes / data.members.length) * 100}
                     colorScheme="primary"
                     size="md"
                     width="100%"
@@ -159,13 +159,13 @@ const PollPage = ({ id }: any) => {
               </AccordionButton>
               <AccordionPanel>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.2rem">
-                  {data.type}
+                  {data.location.type}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.5rem">
-                  {data.location} | {data.distance}
+                  {data.location.location} | {data.location.distance}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100">
-                  {data.description}
+                  {data.location.description}
                 </Heading>
 
                 <HStack
@@ -177,10 +177,10 @@ const PollPage = ({ id }: any) => {
                 >
                   <HStack mr="auto">
                     <Text fontSize="1rem" color="primary.100" mt="2.5px">
-                      {data.rating}
+                      {data.location.rating}
                     </Text>
                     <StarRatings
-                      rating={data.rating}
+                      rating={data.location.rating}
                       starRatedColor="#FFDD99"
                       starEmptyColor="#332244"
                       numberOfStars={5}
@@ -189,7 +189,7 @@ const PollPage = ({ id }: any) => {
                     />
                   </HStack>
                   <Heading fontSize="0.75rem" color="primary.100" ml="auto">
-                    {data.reviews} Reviews
+                    {data.location.reviews} Reviews
                   </Heading>
                 </HStack>
                 {/* <HStack>

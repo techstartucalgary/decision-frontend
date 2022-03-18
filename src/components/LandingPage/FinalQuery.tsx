@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter, withRouter } from 'next/router'
+import { useCookies } from "react-cookie"
 
 import {
   Box,
@@ -27,6 +28,7 @@ import Link from 'next/link';
 import defaultInterests from './default-interests';
 
 export default function PreferencesPage() {
+  const [cookie, setCookie] = useCookies(["owner"]);
   const [selectedBudget, setSelectedBudget] = React.useState(1);
   const [interests, setInterests] = React.useState(defaultInterests);
   const router = useRouter()
