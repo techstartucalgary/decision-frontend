@@ -31,8 +31,6 @@ import { toggleInterest } from '../../slices/formInterestsSlice';
 
 export default function PreferencesPage() {
   const [cookies, setCookie, removeCookie] = useCookies(["creator", "user"]);
-  const [selectedBudget, setSelectedBudget] = React.useState(1);
-  const [interests, setInterests] = React.useState(defaultInterests);
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure();
 
