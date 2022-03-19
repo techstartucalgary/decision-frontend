@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter, withRouter } from 'next/router'
-import { useCookies } from "react-cookie"
+import { Cookies, useCookies } from "react-cookie"
 
 import {
   Box,
@@ -28,7 +28,7 @@ import Link from 'next/link';
 import defaultInterests from './default-interests';
 
 export default function PreferencesPage() {
-  const [cookie, setCookie] = useCookies(["owner"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["creator", "user"]);
   const [selectedBudget, setSelectedBudget] = React.useState(1);
   const [interests, setInterests] = React.useState(defaultInterests);
   const router = useRouter()
@@ -106,6 +106,8 @@ export default function PreferencesPage() {
   }
 
   async function onSubmit(data: object) {
+    removeCookie("user");
+    removeCookie("creator");
     // Get list of interests
     let selected_interests: string[] = [];
     for (let i = 0; i < interests.length; i++) {
@@ -133,7 +135,6 @@ export default function PreferencesPage() {
   async function getLink(data: object) {
     const URL = 'http://localhost:3000/';
     let session_id = '';
-
     await fetch(URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -141,7 +142,13 @@ export default function PreferencesPage() {
     })
       .then((res) => res.json())
       .then(async (res) => {
-        session_id = res;
+        session_id = res.linkID;
+        const data = res;
+        setCookie("creator", JSON.stringify(data), {
+          path: "/",
+          maxAge: 7200, // Expires after 2hr
+          sameSite: true,
+        })
       })
       .catch((error) => {
         console.error(error);

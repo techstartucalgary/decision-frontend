@@ -159,13 +159,13 @@ const PollPage = ({ id }: any) => {
               </AccordionButton>
               <AccordionPanel>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.2rem">
-                  {data.location.type}
+                  {data.locationDetails.type}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.5rem">
-                  {data.location.location} | {data.location.distance}
+                  {data.locationDetails.location} | {data.locationDetails.distance}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100">
-                  {data.location.description}
+                  {data.locationDetails.description}
                 </Heading>
 
                 <HStack
@@ -177,10 +177,10 @@ const PollPage = ({ id }: any) => {
                 >
                   <HStack mr="auto">
                     <Text fontSize="1rem" color="primary.100" mt="2.5px">
-                      {data.location.rating}
+                      {data.locationDetails.rating}
                     </Text>
                     <StarRatings
-                      rating={data.location.rating}
+                      rating={data.locationDetails.rating}
                       starRatedColor="#FFDD99"
                       starEmptyColor="#332244"
                       numberOfStars={5}
@@ -189,7 +189,7 @@ const PollPage = ({ id }: any) => {
                     />
                   </HStack>
                   <Heading fontSize="0.75rem" color="primary.100" ml="auto">
-                    {data.location.reviews} Reviews
+                    {data.locationDetails.reviews} Reviews
                   </Heading>
                 </HStack>
                 {/* <HStack>

@@ -1,5 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import { extendTheme } from "@chakra-ui/react"
+import { CookiesProvider } from "react-cookie"
 
 const theme = extendTheme({
   colors: {
@@ -14,9 +15,11 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps } : any) {
   return (
+    <CookiesProvider>
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
     </ChakraProvider>
+    </CookiesProvider>
   )
 }
 
