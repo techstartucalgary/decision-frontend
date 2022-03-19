@@ -10,24 +10,31 @@ import {
   Text,
   Spacer,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+
 import { BsArrowRight } from 'react-icons/bs';
 import FinalQuery from './FinalQuery';
 
 import { useForm, FormProvider } from 'react-hook-form';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setFormName } from '../../slices/formNameSlice';
+import { setFormStep } from '../../slices/formStepSlice';
+
 const LandingPage = () => {
-  const [currentStep, setCurrentStep] = useState(0);
   const methods = useForm({
     mode: 'all',
     defaultValues: { names: '', budget: '1' },
   });
+
+  const dispatch = useDispatch();
+  const step = useSelector((state) => state.formStep.value);
+
   return (
     <FormProvider {...methods}>
       <Box bg="#332244" minH="100vh">
         <Center flexDirection={'column'} minH="80vh">
-          {currentStep >= 0 && (
-            <Box width="100vw" display={currentStep !== 0 ? 'none' : 'block'}>
+          {step >= 0 && (
+            <Box width="100vw" display={step !== 0 ? 'none' : 'block'}>
               <Heading
                 as="h1"
                 size="4xl"
@@ -74,7 +81,10 @@ const LandingPage = () => {
                     bg: '#FFDD99',
                     color: 'white',
                   }}
-                  onClick={() => setCurrentStep(1)}
+                  onClick={() => {
+                    dispatch(setFormName(methods.getValues('names')));
+                    dispatch(setFormStep(1));
+                  }}
                   disabled={!methods.formState.isValid}
                 >
                   <BsArrowRight />
@@ -104,7 +114,7 @@ const LandingPage = () => {
               </Flex>
             </Box>
           )}
-          {currentStep >= 1 && <FinalQuery />}
+          {step >= 1 && <FinalQuery />}
         </Center>
       </Box>
     </FormProvider>
