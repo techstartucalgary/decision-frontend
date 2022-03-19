@@ -13,8 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import Selections from './Selections';
-import Link from 'next/link'
-
+import Link from 'next/link';
 
 export default function SidebarWithHeader({
   children,
@@ -27,7 +26,6 @@ export default function SidebarWithHeader({
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
-        
       />
       <Drawer
         autoFocus={false}
@@ -36,7 +34,6 @@ export default function SidebarWithHeader({
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        
       >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
@@ -45,10 +42,9 @@ export default function SidebarWithHeader({
 
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p='0'>
+      <Box ml={{ base: 0, md: 60 }} p="0">
         {children}
       </Box>
-      
     </>
   );
 }
@@ -66,9 +62,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       borderRightColor="#644386"
       w={{ base: 'full', md: 60 }}
       pos="fixed"
-      zIndex='20'
+      zIndex="20"
       h="full"
-      
       minH="100vh"
       {...rest}
       boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
@@ -80,10 +75,15 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         justifyContent="space-between"
         color="#FFDD99"
       >
-        <Link href='/'>
-        <Text fontSize="24" fontFamily="monospace" fontWeight="bold" cursor={'pointer'}>
-          Decision
-        </Text>
+        <Link href="/">
+          <Text
+            fontSize="24"
+            fontFamily="monospace"
+            fontWeight="bold"
+            cursor='pointer'
+          >
+            Decision
+          </Text>
         </Link>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
@@ -110,7 +110,24 @@ const Nav = () => {
             color: 'white',
           }}
         >
-          <Text fontSize="1rem">What is this?</Text>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="18"
+            width="18"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <Text fontSize="1rem" ml="2">
+            What is this?
+          </Text>
         </Flex>
       </Link>
       <Link href="/manual">
@@ -125,10 +142,24 @@ const Nav = () => {
             color: 'white',
           }}
         >
-          <Text fontSize="1rem">User Manual</Text>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="18"
+            width="18"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            />
+          </svg>
+          <Text fontSize="1rem" ml="2">User Manual</Text>
         </Flex>
       </Link>
-      
     </>
   );
 };
@@ -154,7 +185,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         onClick={onOpen}
         bg="transparent"
         variant="solid"
-        position='absolute'
+        position="absolute"
         aria-label="open menu"
         color="#FFDD99"
         _hover={{
@@ -163,18 +194,19 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         }}
         icon={<FiMenu />}
       />
-      <Link href='/'>
-      <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize='1.125rem'
-        fontFamily="Roboto"
-        fontWeight="900"
-        color="#FFDD99"
-        mr='auto'
-        ml='auto'
-      >
-        Decision
-      </Text>
+      <Link href="/">
+        <Text
+          display={{ base: 'flex', md: 'none' }}
+          fontSize="1.125rem"
+          fontFamily="Roboto"
+          fontWeight="900"
+          color="#FFDD99"
+          mr="auto"
+          ml="auto"
+          cursor='pointer'
+        >
+          Decision
+        </Text>
       </Link>
     </Flex>
   );
