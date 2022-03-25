@@ -101,16 +101,11 @@ export default function PreferencesPage() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
+      credentials: 'include'
     })
       .then((res) => res.json())
       .then(async (res) => {
         session_id = res.linkID;
-        const data = res;
-        setCookie("creator", JSON.stringify(data), {
-          path: "/",
-          maxAge: 7200, // Expires after 2hr
-          sameSite: true,
-        })
       })
       .catch((error) => {
         console.error(error);
