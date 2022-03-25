@@ -25,14 +25,20 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
+// @ts-ignore
 import StarRatings from 'react-star-ratings';
 import React, { useState } from 'react';
 import useSWR, { mutate, useSWRConfig } from 'swr';
+import { withCookies, useCookies } from "react-cookie";
+import ErrorScreen from './ErrorScreen';
+import LoadingScreen from './LoadingScreen';
 
-const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
+// @ts-ignore
+const fetcher = (...args: any) => fetch(...args ).then((res) => res.json());
 
 const PollPage = ({ id }: any) => {
   const [selected, setSelected] = useState(false);
+  const [cookies, setCookie] = useCookies();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [votedLocations, setVotedLocations] = useState<String[]>([]);
   const handleVote = (oid : string) => {
@@ -44,14 +50,15 @@ const PollPage = ({ id }: any) => {
     fetcher,
   );
 
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error) return <ErrorScreen/>;
+  if (!data) return <LoadingScreen />;
 
   const updateVotes = async () => {
     const sessionData = {
-      memberName: 'Nemanja',
+      memberName: 'Nemanja grujic',
       locationIds: votedLocations,
     };
+    console.log(votedLocations);
     fetch(`http://localhost:3000/${id}/addVotes`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
