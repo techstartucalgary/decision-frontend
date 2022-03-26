@@ -29,33 +29,34 @@ import {
 import StarRatings from 'react-star-ratings';
 import React, { useState } from 'react';
 import useSWR, { mutate, useSWRConfig } from 'swr';
-import { withCookies, useCookies } from "react-cookie";
+import { withCookies, useCookies } from 'react-cookie';
 import ErrorScreen from './ErrorScreen';
 import LoadingScreen from './LoadingScreen';
 
 // @ts-ignore
-const fetcher = (...args: any) => fetch(...args ).then((res) => res.json());
+const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
 
 const PollPage = ({ id }: any) => {
   const [selected, setSelected] = useState(false);
   const [cookies, setCookie] = useCookies();
+  const [response, setResponse] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [votedLocations, setVotedLocations] = useState<String[]>([]);
-  const handleVote = (oid : string) => {
-    setVotedLocations(votedLocations.concat(oid))
-  }
+  const handleVote = (oid: string) => {
+    setVotedLocations(votedLocations.concat(oid));
+  };
   let totalParticipants = 10;
   const { data, error } = useSWR(
     `http://localhost:3000/${id}/getPolls`,
     fetcher,
   );
 
-  if (error) return <ErrorScreen/>;
+  if (error) return <ErrorScreen />;
   if (!data) return <LoadingScreen />;
 
   const updateVotes = async () => {
     const sessionData = {
-      memberName: 'Nemanja grujic',
+      userId: cookies.userID,
       locationIds: votedLocations,
     };
     console.log(votedLocations);
@@ -66,7 +67,7 @@ const PollPage = ({ id }: any) => {
     })
       .then((res) => res.text())
       .then(async (res) => {
-        console.log(res);
+        setResponse(res);
         onOpen();
         mutate(`http://localhost:3000/${id}/getPolls`);
         setVotedLocations([]);
@@ -131,7 +132,11 @@ const PollPage = ({ id }: any) => {
                     _hover={{
                       fill: 'primary.100',
                     }}
-                    fill={`${votedLocations.includes(data.locationID) ? 'primary.100' : '#332244'}`}
+                    fill={`${
+                      votedLocations.includes(data.locationID)
+                        ? 'primary.100'
+                        : '#332244'
+                    }`}
                     viewBox="0 0 24 24"
                     stroke="none"
                     width="8"
@@ -169,7 +174,8 @@ const PollPage = ({ id }: any) => {
                   {data.locationDetails.type}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.5rem">
-                  {data.locationDetails.location} | {data.locationDetails.distance}
+                  {data.locationDetails.location} |{' '}
+                  {data.locationDetails.distance}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100">
                   {data.locationDetails.description}
@@ -277,7 +283,7 @@ const PollPage = ({ id }: any) => {
               alignItems="center"
               justifyContent="center"
             >
-              <Text ml="auto">Vote Sent</Text>
+              <Text ml="auto">{response}</Text>
               <Button
                 background="#4B3265"
                 borderColor="#4B3265"
