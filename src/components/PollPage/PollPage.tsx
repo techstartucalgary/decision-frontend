@@ -12,18 +12,14 @@ import {
   Icon,
   Progress,
   HStack,
-  Flex,
   Button,
-  Divider,
-  IconButton,
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   useDisclosure,
   ModalBody,
-  ModalCloseButton,
+  Avatar,
+  AvatarGroup,
 } from '@chakra-ui/react';
 // @ts-ignore
 import StarRatings from 'react-star-ratings';
@@ -37,7 +33,6 @@ import LoadingScreen from './LoadingScreen';
 const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
 
 const PollPage = ({ id }: any) => {
-  const [selected, setSelected] = useState(false);
   const [cookies, setCookie] = useCookies();
   const [response, setResponse] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -76,12 +71,7 @@ const PollPage = ({ id }: any) => {
 
   return (
     <>
-      <Center
-        bg="#4B3265"
-        boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
-        p="3"
-        pb="4"
-      >
+      <Center bg="#4B3265" p="3" pb="4">
         <Heading
           as="h1"
           fontSize={'2.25rem'}
@@ -102,7 +92,7 @@ const PollPage = ({ id }: any) => {
         alignItems="center"
         flexDirection="column"
       >
-        <Accordion maxWidth="500px" mb="3rem">
+        <Accordion maxWidth="500px" w="100%" mb="3rem">
           {data.map((data: any, index: any) => (
             <AccordionItem
               key={index}
@@ -118,7 +108,7 @@ const PollPage = ({ id }: any) => {
               >
                 <VStack
                   p="1rem"
-                  my="1rem"
+                  my="0rem"
                   borderRight="1px"
                   borderColor="#332244"
                 >
@@ -205,29 +195,49 @@ const PollPage = ({ id }: any) => {
                     {data.locationDetails.reviews} Reviews
                   </Heading>
                 </HStack>
-                {/* <HStack>
-                  add avatars for ppl that voted
-                </HStack> */}
+                <HStack mt="1rem" overflowX="scroll">
+                  <AvatarGroup>
+                    {data.members.map((index: string) => (
+                      <Avatar
+                        name={index}
+                        borderWidth="1px"
+                        borderColor="#332244"
+                        size="sm"
+                      />
+                    ))}
+                  </AvatarGroup>
+                </HStack>
+
+                <HStack
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mt="1rem"
+                  borderTop="2px"
+                  borderColor="#332244"
+                  pt="0.7rem"
+                >
+                  <Button
+                    bg="#644386"
+                    border="1px solid #332244"
+                    borderRadius="2rem"
+                    color="primary.100"
+                    fontWeight="bold"
+                    fontFamily="Roboto"
+                    fontSize="1rem"
+                    h="2rem"
+                    _hover={{
+                      bg: '#644386',
+                      color: 'white',
+                    }}
+                  >
+                    View On Map
+                  </Button>
+                </HStack>
               </AccordionPanel>
             </AccordionItem>
           ))}
         </Accordion>
-        {/* <Button
-          borderRadius="24px"
-          bg="#4B3265"
-          color="primary.100"       MVP ???
-          fontWeight="bold"
-          mb='3.5rem'
-          fontFamily="Roboto"
-          fontSize="1.125rem"
-          _hover={{
-            bg: '#644386',
-            color: 'white',
-          }}
-          leftIcon={<BsPlus />}
-        >
-          Add Custom Venue
-        </Button> */}
       </Box>
       <Center
         bg="#4B3265"
@@ -244,7 +254,7 @@ const PollPage = ({ id }: any) => {
             updateVotes();
           }}
           bg="#644386"
-          border="2px solid #332244"
+          border="1.5px solid #332244"
           borderRadius="18px"
           color="primary.100"
           fontWeight="bold"
