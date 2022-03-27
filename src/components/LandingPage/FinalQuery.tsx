@@ -1,6 +1,6 @@
 import React from 'react';
-import { useRouter, withRouter } from 'next/router'
-import { Cookies, useCookies } from "react-cookie"
+import { useRouter, withRouter } from 'next/router';
+import { Cookies, useCookies } from 'react-cookie';
 
 import {
   Box,
@@ -30,8 +30,8 @@ import { setFormBudget } from '../../slices/formBudgetSlice';
 import { toggleInterest } from '../../slices/formInterestsSlice';
 
 export default function PreferencesPage() {
-  const [cookies, setCookie, removeCookie] = useCookies(["creator", "user"]);
-  const router = useRouter()
+  const [cookies, setCookie, removeCookie] = useCookies(['creator', 'user']);
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const methods = useFormContext();
@@ -40,7 +40,7 @@ export default function PreferencesPage() {
   const budget = useSelector((state) => state.formBudget.value);
   const interests = useSelector((state) => state.formInterests.value);
 
-  let interestButtons = interests.map((interest) => {
+  let interestButtons = interests.map((interest: any) => {
     return (
       <Button
         key={interest.name}
@@ -67,8 +67,8 @@ export default function PreferencesPage() {
   });
 
   async function onSubmit(data: object) {
-    removeCookie("user");
-    removeCookie("creator");
+    removeCookie('user');
+    removeCookie('creator');
     // Get list of interests
     let selected_interests: string[] = [];
     for (let i = 0; i < interests.length; i++) {
@@ -101,7 +101,7 @@ export default function PreferencesPage() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
-      credentials: 'include'
+      credentials: 'include',
     })
       .then((res) => res.json())
       .then(async (res) => {
