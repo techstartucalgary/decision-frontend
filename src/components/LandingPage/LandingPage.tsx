@@ -49,17 +49,20 @@ const LandingPage = () => {
                 width="100%"
                 alignItems={'center'}
                 justifyContent={'center'}
-                marginTop={'5rem'}
+                marginTop={'7.5rem'}
               >
                 <Editable
                   placeholder="Your name here"
                   variant="solid"
                   color="#FFDD99"
                   bg="#644386"
-                  borderRadius="full"
-                  px="4"
+                  borderRadius="1rem"
                   width="60%"
                   maxWidth={'400px'}
+                  height="2.25rem"
+                  fontSize="sm"
+                  paddingLeft="1.25rem"
+                  lineHeight="225%"
                 >
                   <EditablePreview />
                   <EditableInput
@@ -72,9 +75,9 @@ const LandingPage = () => {
                   />
                 </Editable>
                 <Button
-                  borderRadius={'30px'}
+                  borderRadius={'1rem'}
                   size="sm"
-                  marginLeft={'1rem'}
+                  marginLeft={'1.5rem'}
                   bg="#644386"
                   color="#FFDD99"
                   _hover={{
@@ -86,6 +89,10 @@ const LandingPage = () => {
                     dispatch(setFormStep(1));
                   }}
                   disabled={!methods.formState.isValid}
+                  padding="0"
+                  width="2.25rem"
+                  height="2.25rem"
+                  fontSize="lg"
                 >
                   <BsArrowRight />
                 </Button>
@@ -99,7 +106,7 @@ const LandingPage = () => {
                 justifyContent={'center'}
                 marginTop="0.25rem"
               >
-                <Box width="8"></Box>
+                <Box width="2.5rem"></Box>
                 {methods.formState.errors.names && (
                   <Text
                     color="#FFDD99"
@@ -110,7 +117,7 @@ const LandingPage = () => {
                     {methods.formState.errors.names.message}
                   </Text>
                 )}
-                <Box width="2.25rem" marginLeft="1rem"></Box>
+                <Box width="2.25rem" marginLeft="1.5rem"></Box>
               </Flex>
             </Box>
           )}
