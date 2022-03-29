@@ -45,7 +45,7 @@ export default function PreferencesPage() {
       <Button
         key={interest.name}
         width={interest.width}
-        height="2.2rem"
+        height="2.25rem"
         marginRight="1rem"
         marginTop="1rem"
         borderRadius="1rem"
@@ -106,6 +106,12 @@ export default function PreferencesPage() {
       .then((res) => res.json())
       .then(async (res) => {
         session_id = res.linkID;
+        const data = res;
+        setCookie('creator', JSON.stringify(data), {
+          path: '/',
+          maxAge: 7200, // Expires after 2hr
+          sameSite: true,
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -117,14 +123,13 @@ export default function PreferencesPage() {
   return (
     <Box bg="#332244" minH="100vh">
       <Flex flexDirection="column" minH="80vh" alignItems="center">
-        <Box>
+        <Box width="100vw">
           <Flex
             direction="column"
             align={{ base: 'left', md: 'center' }}
             justifyContent="left"
-            marginTop="5vh"
-            p="1rem"
-            marginLeft="1.5rem"
+            marginTop="3.25rem"
+            marginLeft="2rem"
           >
             <Heading
               color="#FFDD99"
@@ -138,7 +143,7 @@ export default function PreferencesPage() {
               flex-direction="row"
               alignItems="center"
               justifyContent="space-between"
-              marginTop="2rem"
+              marginTop="1.25rem"
             >
               <Flex direction={{ base: 'column', md: 'row' }}>
                 <Flex>
@@ -197,13 +202,24 @@ export default function PreferencesPage() {
                   >
                     $
                   </Text>
+                  <Text
+                    color="#FFDD99"
+                    fontSize="7xl"
+                    fontWeight="regular"
+                    lineHeight="48px"
+                    ml={{ base: '4rem', md: '3rem' }}
+                    mr={{ base: '4rem', md: '0' }}
+                    onClick={onOpen}
+                    cursor="pointer"
+                  >
+                    ?
+                  </Text>
                 </Flex>
                 <Text
                   color={budget === 0 ? '#FFDD99' : '#644386'}
                   fontSize="lg"
                   fontWeight="medium"
                   mt={{ base: '1.5rem', md: '0.7rem' }}
-                  mx="1rem"
                   onClick={() => {
                     methods.setValue('budget', '0');
                     dispatch(setFormBudget(0));
@@ -217,32 +233,20 @@ export default function PreferencesPage() {
                   Ignore budget
                 </Text>
               </Flex>
-              <Text
-                color="#FFDD99"
-                fontSize="5xl"
-                fontWeight="regular"
-                lineHeight="48px"
-                ml={{ base: '0', md: '3rem' }}
-                mr={{ base: '4rem', md: '0' }}
-                onClick={onOpen}
-                cursor="pointer"
-              >
-                ?
-              </Text>
             </Flex>
           </Flex>
           <Flex
             direction="column"
             align={{ base: 'left', md: 'center' }}
-            marginTop="8vh"
-            marginLeft="1.5rem"
+            marginTop="6.5rem"
+            marginLeft="2rem"
             marginRight="1.5rem"
           >
             <Heading
               color="#FFDD99"
               fontSize="3xl"
               fontWeight="medium"
-              marginBottom="1vh"
+              marginBottom="0.25rem"
             >
               What interests you?
             </Heading>
@@ -252,15 +256,15 @@ export default function PreferencesPage() {
             <Editable
               bg="#644386"
               color="#FFDD99"
-              height="36px"
+              height="2.25rem"
               width="80vw"
-              maxWidth="284px"
-              borderRadius="16px"
+              maxWidth="17.75rem"
+              borderRadius="1rem"
               placeholder="Not here? Type here"
               fontSize="sm"
               fontWeight="regular"
-              marginTop="5vh"
-              paddingLeft="20px"
+              marginTop="2.25rem"
+              paddingLeft="1.25rem"
               lineHeight="200%"
             >
               <EditablePreview />

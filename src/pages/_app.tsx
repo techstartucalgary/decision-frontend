@@ -1,7 +1,6 @@
-
-import { ChakraProvider } from "@chakra-ui/react"
-import { extendTheme } from "@chakra-ui/react"
-import { CookiesProvider } from "react-cookie"
+import { ChakraProvider } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
+import { CookiesProvider } from 'react-cookie';
 import { store } from '../store';
 import { Provider } from 'react-redux';
 
@@ -19,12 +18,12 @@ function MyApp({ Component, pageProps }: any) {
   return (
     <CookiesProvider>
       <Provider store={store}>
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
-        </Provider>
+        <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </Provider>
     </CookiesProvider>
-  )
+  );
 }
 
 export default MyApp;
