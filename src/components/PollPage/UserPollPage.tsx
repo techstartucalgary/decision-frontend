@@ -26,15 +26,15 @@ const UserPollPage = ({ id }: any) => {
         const URL = `http://localhost:3000/${id}`;
         try {
           const response = await fetch(URL, {
-            method: 'POST',
+            method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(name),
+            credentials: 'include'
           }) //handle API call to sign in here.
-          const data = response
-          // create a user cookie
-          setCookie("user", JSON.stringify(data), {
+          
+          setCookie("user", {
             path: "/",
-            maxAge: 7200, // Expires after 2hr
+            maxAge: 1, // Expires after 2hr
             sameSite: true,
           })
         } catch (err) {

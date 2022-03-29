@@ -40,7 +40,7 @@ export default function PreferencesPage() {
   const budget = useSelector((state) => state.formBudget.value);
   const interests = useSelector((state) => state.formInterests.value);
 
-  let interestButtons = interests.map((interest) => {
+  let interestButtons = interests.map((interest: any) => {
     return (
       <Button
         key={interest.name}
@@ -101,6 +101,7 @@ export default function PreferencesPage() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
+      credentials: 'include',
     })
       .then((res) => res.json())
       .then(async (res) => {
