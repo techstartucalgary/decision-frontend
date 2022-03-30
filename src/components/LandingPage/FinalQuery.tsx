@@ -29,6 +29,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFormBudget } from '../../slices/formBudgetSlice';
 import { toggleInterest } from '../../slices/formInterestsSlice';
 
+import { useAppSelector, useAppDispatch } from '../../hooks';
+
 export default function PreferencesPage() {
   const [cookies, setCookie, removeCookie] = useCookies(['creator', 'user']);
   const router = useRouter();
@@ -36,35 +38,42 @@ export default function PreferencesPage() {
 
   const methods = useFormContext();
 
-  const dispatch = useDispatch();
-  const budget = useSelector((state) => state.formBudget.value);
-  const interests = useSelector((state) => state.formInterests.value);
+  const dispatch = useAppDispatch();
+  const budget = useAppSelector((state) => state.formBudget.value);
+  const interests = useAppSelector((state) => state.formInterests.value);
 
-  let interestButtons = interests.map((interest: any) => {
-    return (
-      <Button
-        key={interest.name}
-        width={interest.width}
-        height="2.25rem"
-        marginRight="1rem"
-        marginTop="1rem"
-        borderRadius="1rem"
-        bg={interest.selected ? '#FFDD99' : '#644386'}
-        _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
-        onClick={() => {
-          dispatch(toggleInterest(interest.id));
-        }}
-      >
-        <Text
-          fontSize="sm"
-          fontWeight="medium"
-          color={interest.selected ? '#644386' : '#FFDD99'}
+  let interestButtons = interests.map(
+    (interest: {
+      id: number;
+      name: string;
+      width: string;
+      selected: boolean;
+    }) => {
+      return (
+        <Button
+          key={interest.name}
+          width={interest.width}
+          height="2.25rem"
+          marginRight="1rem"
+          marginTop="1rem"
+          borderRadius="1rem"
+          bg={interest.selected ? '#FFDD99' : '#644386'}
+          _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
+          onClick={() => {
+            dispatch(toggleInterest(interest.id));
+          }}
         >
-          {interest.name}
-        </Text>
-      </Button>
-    );
-  });
+          <Text
+            fontSize="sm"
+            fontWeight="medium"
+            color={interest.selected ? '#644386' : '#FFDD99'}
+          >
+            {interest.name}
+          </Text>
+        </Button>
+      );
+    },
+  );
 
   async function onSubmit(data: object) {
     removeCookie('user');

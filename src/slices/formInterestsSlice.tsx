@@ -1,8 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from '../store';
 
 import defaultInterests from '../default-interests';
 
-const initialState = {
+interface InterestsState {
+  value: { id: number; name: string; width: string; selected: boolean }[];
+}
+
+const initialState: InterestsState = {
   value: defaultInterests,
 };
 
@@ -10,7 +15,7 @@ export const formInterestsSlice = createSlice({
   name: 'formInterests',
   initialState,
   reducers: {
-    toggleInterest: (state, action) => {
+    toggleInterest: (state, action: PayloadAction<number>) => {
       if (action.payload === 0) {
         // If toggling the Everything interest
         if (state.value[0].selected) {
@@ -50,4 +55,5 @@ export const formInterestsSlice = createSlice({
 });
 
 export const { toggleInterest } = formInterestsSlice.actions;
+export const selectInterests = (state: RootState) => state.formInterests.value;
 export default formInterestsSlice.reducer;

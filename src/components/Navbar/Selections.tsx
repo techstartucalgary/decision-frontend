@@ -6,12 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setFormStep } from '../../slices/formStepSlice';
 
-const Selections = () => {
-  const name = useSelector((state) => state.formName.value);
-  const budget = useSelector((state) => state.formBudget.value);
-  const interests = useSelector((state) => state.formInterests.value);
+import { useAppSelector, useAppDispatch } from '../../hooks';
 
-  const dispatch = useDispatch();
+const Selections = () => {
+  const name = useAppSelector((state) => state.formName.value);
+  const budget = useAppSelector((state) => state.formBudget.value);
+  const interests = useAppSelector((state) => state.formInterests.value);
+
+  const dispatch = useAppDispatch();
 
   return (
     <>
