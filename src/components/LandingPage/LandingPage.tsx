@@ -16,9 +16,9 @@ import FinalQuery from './FinalQuery';
 
 import { useForm, FormProvider } from 'react-hook-form';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { setFormName } from '../../slices/formNameSlice';
 import { setFormStep } from '../../slices/formStepSlice';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 
 const LandingPage = () => {
   const methods = useForm({
@@ -26,8 +26,8 @@ const LandingPage = () => {
     defaultValues: { names: '', budget: '1' },
   });
 
-  const dispatch = useDispatch();
-  const step = useSelector((state) => state.formStep.value);
+  const dispatch = useAppDispatch();
+  const step = useAppSelector((state) => state.formStep.value);
 
   return (
     <FormProvider {...methods}>

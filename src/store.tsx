@@ -12,3 +12,7 @@ export const store = configureStore({
     formStep: formStepReducer,
   },
 });
+
+// Infer RootState and AppDispatch from the store
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
