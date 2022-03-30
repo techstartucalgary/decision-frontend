@@ -16,10 +16,8 @@ import FinalQuery from './FinalQuery';
 
 import { useForm, FormProvider } from 'react-hook-form';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { setFormName } from '../../slices/formNameSlice';
 import { setFormStep } from '../../slices/formStepSlice';
-
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
 const LandingPage = () => {

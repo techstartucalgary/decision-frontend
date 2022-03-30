@@ -25,10 +25,8 @@ import { useFormContext } from 'react-hook-form';
 
 import Link from 'next/link';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { setFormBudget } from '../../slices/formBudgetSlice';
 import { toggleInterest } from '../../slices/formInterestsSlice';
-
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
 export default function PreferencesPage() {

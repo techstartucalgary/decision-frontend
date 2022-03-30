@@ -2,10 +2,7 @@ import { Flex, Text, Tag, HStack, IconButton } from '@chakra-ui/react';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
-import { useSelector, useDispatch } from 'react-redux';
-
 import { setFormStep } from '../../slices/formStepSlice';
-
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
 const Selections = () => {

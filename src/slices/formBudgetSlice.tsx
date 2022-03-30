@@ -20,7 +20,5 @@ export const formBudgetSlice = createSlice({
 });
 
 export const { setFormBudget } = formBudgetSlice.actions;
-
 export const selectBudget = (state: RootState) => state.formBudget.value;
-
 export default formBudgetSlice.reducer;
