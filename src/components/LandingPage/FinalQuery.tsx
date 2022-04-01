@@ -65,7 +65,7 @@ export default function PreferencesPage() {
               height="2rem"
               borderRadius="0.875rem"
               bg={interest.selected ? '#FFDD99' : '#4B3265'}
-              _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
+              _hover={{ bg: interest.selected ? '#FFDD99' : '#4B3265' }}
               onClick={() => {
                 dispatch(toggleInterest(interest.id));
               }}
@@ -367,6 +367,8 @@ export default function PreferencesPage() {
                 height="3rem"
                 borderRadius="1.5rem"
                 bg="#FFDD99"
+                _hover={{ bg: '#FFDD99' }}
+                onClick={methods.handleSubmit(onSubmit, onError)}
               >
                 <Text fontSize="1.5rem" fontWeight="bold" color="#332244">
                   Generate Link
