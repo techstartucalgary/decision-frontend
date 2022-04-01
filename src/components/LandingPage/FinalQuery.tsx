@@ -1,7 +1,6 @@
 import React from 'react';
-import { useRouter, withRouter } from 'next/router';
-import { Cookies, useCookies } from 'react-cookie';
-
+import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
 import {
   Box,
   Flex,
@@ -17,15 +16,11 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalBody,
   SlideFade,
 } from '@chakra-ui/react';
 
 import { useFormContext } from 'react-hook-form';
-
-import Link from 'next/link';
-
 import { setFormBudget } from '../../slices/formBudgetSlice';
 import { toggleInterest } from '../../slices/formInterestsSlice';
 import { useAppSelector, useAppDispatch } from '../../hooks';
@@ -143,7 +138,7 @@ export default function PreferencesPage() {
   }
 
   async function getLink(data: object) {
-    const URL = 'https://decision-backend-heroku.herokuapp.com/';
+    const URL = `${process.env.DATABASE_API_URL}`;
     let session_id = '';
     await fetch(URL, {
       method: 'POST',
@@ -157,7 +152,7 @@ export default function PreferencesPage() {
         const data = res;
         setCookie('creator', JSON.stringify(data), {
           path: '/',
-          maxAge: 7200, // Expires after 2hr
+          maxAge: 1,
           sameSite: true,
         });
       })
@@ -170,7 +165,7 @@ export default function PreferencesPage() {
 
   return (
     <SlideFade in={step >= 1}>
-      <Box bg="#332244" minH="100vh">
+      <Box bg="#332244" minH="100vh" fontFamily="Roboto, sans-serif">
         <Flex flexDirection="column" minH="80vh" alignItems="center">
           <Box width="100vw">
             <Flex
@@ -395,7 +390,7 @@ export default function PreferencesPage() {
               color="#FFDD99"
               fontWeight="regular"
               fontSize="sm"
-              fontFamily={'Roboto'}
+              fontFamily="Roboto, sans-serif"
               textAlign="left"
               margin="3vw 0vw 0vw"
             >
@@ -411,7 +406,7 @@ export default function PreferencesPage() {
               color="#FFDD99"
               fontWeight="regular"
               fontSize="sm"
-              fontFamily={'Roboto'}
+              fontFamily="Roboto, sans-serif"
               textAlign="left"
               margin="0vw 0vw 3vw"
             >

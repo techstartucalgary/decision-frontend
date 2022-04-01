@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import router, { useRouter, withRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { Box, Flex, Heading, Text, Button, IconButton } from '@chakra-ui/react';
 import Link from 'next/link';
 
@@ -10,7 +10,7 @@ export default function LinkGenerationPage() {
   const generatedLink = `www.decision.ca/${linkid.query.link}`;
   const [copied, setCopied] = useState(false);
   return (
-    <Box height="100vh"  bg="#332244">
+    <Box height="100vh" bg="#332244" fontFamily="Roboto, sans-serif">
       <Flex direction="column" align="center">
         <Heading
           color="#FFDD99"
@@ -37,7 +37,7 @@ export default function LinkGenerationPage() {
             {generatedLink}
           </Text>
           <IconButton
-          aria-label='copy link'
+            aria-label="copy link"
             icon={<MdContentCopy />}
             borderRadius="0px 16px 16px 0px"
             width="36px"
@@ -49,29 +49,30 @@ export default function LinkGenerationPage() {
               bg: '#FFDD99',
               color: '#4B3265',
             }}
-            onClick={() => {navigator.clipboard.writeText(generatedLink);
-              setCopied(true)} }
+            onClick={() => {
+              navigator.clipboard.writeText(generatedLink);
+              setCopied(true);
+            }}
           />
         </Flex>
-        {copied &&
-        <Text color='primary.500' size='lg' mt='2'>
-          Copied to clipboard!
-        </Text>
-}         
-        <Link href={`/${linkid.query.link}`}>
-        <Button
-          bg="#FFDD99"
-          height="36px"
-          width="154px"
-          borderRadius="16px"
-          marginTop="5vh"
-          _hover={{ bg: '#FFDD99' }}
-          
-        >
-          <Text color="#644386" fontSize="md" fontWeight="bold">
-            Redirect to link
+        {copied && (
+          <Text color="primary.500" size="lg" mt="2">
+            Copied to clipboard!
           </Text>
-        </Button>
+        )}
+        <Link href={`/${linkid.query.link}`}>
+          <Button
+            bg="#FFDD99"
+            height="36px"
+            width="154px"
+            borderRadius="16px"
+            marginTop="5vh"
+            _hover={{ bg: '#FFDD99' }}
+          >
+            <Text color="#644386" fontSize="md" fontWeight="bold">
+              Redirect to link
+            </Text>
+          </Button>
         </Link>
       </Flex>
     </Box>

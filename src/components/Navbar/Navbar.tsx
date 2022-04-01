@@ -57,6 +57,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
       transition="3s ease"
+      fontFamily="Roboto, sans-serif"
       bg="#4B3265"
       borderRight="1px"
       borderRightColor="#644386"
@@ -78,8 +79,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Link href="/">
           <Text
             fontSize="24"
-            fontFamily="monospace"
-            fontWeight="bold"
+            fontFamily="Roboto, sans-serif"
             cursor="pointer"
             whiteSpace="nowrap"
           >
@@ -178,6 +178,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       height="20"
       alignItems="center"
       bg="#442D5A"
+      fontFamily="Roboto, sans-serif"
       borderBottomWidth="1.5px"
       borderBottomColor="#332244"
       justifyContent={{ base: 'space-between', md: 'flex-end' }}
@@ -201,8 +202,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         <Text
           display={{ base: 'flex', md: 'none' }}
           fontSize="1.125rem"
-          fontFamily="Roboto"
-          fontWeight="900"
+          fontFamily="Roboto, sans-serif"
+          fontWeight="bold"
           color="#FFDD99"
           mr="auto"
           ml="auto"
