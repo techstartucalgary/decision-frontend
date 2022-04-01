@@ -42,7 +42,7 @@ const PollPage = ({ id }: any) => {
   };
   let totalParticipants = 10;
   const { data, error } = useSWR(
-    `https://decision-backend-heroku.herokuapp.com/${id}/getPolls`,
+    `${process.env.DATABASE_API_URL}${id}/getPolls`,
     fetcher,
   );
 
@@ -55,7 +55,7 @@ const PollPage = ({ id }: any) => {
       locationIds: votedLocations,
     };
     console.log(votedLocations);
-    fetch(`https://decision-backend-heroku.herokuapp.com/${id}/addVotes`, {
+    fetch(`${process.env.DATABASE_API_URL}${id}/addVotes`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sessionData),
@@ -64,19 +64,19 @@ const PollPage = ({ id }: any) => {
       .then(async (res) => {
         setResponse(res);
         onOpen();
-        mutate(`https://decision-backend-heroku.herokuapp.com/${id}/getPolls`);
+        mutate(`${process.env.DATABASE_API_URL}${id}/getPolls`);
         setVotedLocations([]);
       });
   };
 
   return (
     <>
-      <Center bg="#4B3265" p="3" pb="4">
+      <Center bg="#4B3265" p="3" pb="4" fontFamily="Roboto, sans-serif">
         <Heading
           as="h1"
           fontSize={'2.25rem'}
           color="primary.100"
-          fontFamily={'Roboto'}
+          fontFamily="Roboto, sans-serif"
           fontWeight={500}
           lineHeight={'42px'}
         >
@@ -223,7 +223,7 @@ const PollPage = ({ id }: any) => {
                     borderRadius="2rem"
                     color="primary.100"
                     fontWeight="bold"
-                    fontFamily="Roboto"
+                    fontFamily="Roboto, sans-serif"
                     fontSize="1rem"
                     h="2rem"
                     _hover={{
@@ -258,7 +258,7 @@ const PollPage = ({ id }: any) => {
           borderRadius="18px"
           color="primary.100"
           fontWeight="bold"
-          fontFamily="Roboto"
+          fontFamily="Roboto, sans-serif"
           fontSize="1.125rem"
           _hover={{
             bg: '#644386',
@@ -287,7 +287,7 @@ const PollPage = ({ id }: any) => {
               color="#FFDD99"
               fontWeight="regular"
               fontSize="4xl"
-              fontFamily={'Roboto'}
+              fontFamily="Roboto, sans-serif"
               textAlign="center"
               display="flex"
               alignItems="center"

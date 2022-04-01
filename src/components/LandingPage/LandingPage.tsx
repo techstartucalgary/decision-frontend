@@ -8,9 +8,6 @@ import {
   Button,
   Box,
   Text,
-  Spacer,
-  Slide,
-  SlideFade,
 } from '@chakra-ui/react';
 
 import { BsArrowRight } from 'react-icons/bs';
@@ -33,7 +30,7 @@ const LandingPage = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box bg="#332244" minH="100vh">
+      <Box bg="#332244" minH="100vh" fontFamily="Roboto, sans-serif">
         <Center flexDirection={'column'} minH="80vh">
           {step >= 0 && (
             <Box width="100vw" display={step !== 0 ? 'none' : 'block'}>
@@ -44,6 +41,7 @@ const LandingPage = () => {
                 color="#FFDD99"
                 letterSpacing={'2px'}
                 textAlign="center"
+                fontFamily="Roboto, sans-serif"
               >
                 Hello
               </Heading>
@@ -65,6 +63,7 @@ const LandingPage = () => {
                   fontSize="sm"
                   paddingLeft="1.25rem"
                   lineHeight="225%"
+                  fontFamily="Roboto, sans-serif"
                 >
                   <EditablePreview />
                   <EditableInput

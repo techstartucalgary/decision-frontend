@@ -23,13 +23,18 @@ const Selections = () => {
         borderTopColor="#644386"
         role="group"
         color="#FFDD99"
+        fontFamily="Roboto, sans-serif"
       >
         <Text mx="5" fontSize="1.2rem" fontWeight="bold">
           Your Selections
         </Text>
       </Flex>
       <Flex align="center" p="3" mx="2" role="group" color="#FFDD99">
-        <Text fontSize="1rem" onClick={() => dispatch(setFormStep(0))}>
+        <Text
+          fontSize="1rem"
+          cursor="pointer"
+          onClick={() => dispatch(setFormStep(0))}
+        >
           Name
         </Text>
       </Flex>
@@ -46,49 +51,7 @@ const Selections = () => {
           {name}
         </Tag>
       </Flex>
-      {/* <Flex
-        align="center"
-        p="3"
-        mx="2"
-        role="group"
-        color="#FFDD99"
-        borderTop="1px"
-        borderTopColor="#644386"
-      >
-        <Text fontSize="1rem">Location</Text>
-      </Flex>
-      <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
-        <Tag
-          as={Button}
-          size="lg"
-          variant="solid"
-          color="#FFDD99"
-          bg="#644386"
-          borderRadius="full"
-          _hover={{
-            bg: '#644386',
-            color: '#FFDD99',
-          }}
-        >
-          Calgary,AB
-        </Tag>
-        <Modal>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Lorem count={2} />
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3}>
-                Close
-              </Button>
-              <Button variant="ghost">Secondary Action</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Flex> */}
+
       <Flex
         align="center"
         p="3"
@@ -130,28 +93,6 @@ const Selections = () => {
           </Tag>
         </HStack>
       </Flex>
-      {/* <Flex
-        align="center"
-        p="3"
-        mx="2"
-        role="group"
-        color="#FFDD99"
-        borderTop="1px"
-        borderTopColor="#644386"
-      >
-        <Text fontSize="16">Time</Text>
-      </Flex>
-      <Flex align="center" mx="3" pb="3" role="group" color="#FFDD99">
-        <Tag
-          size="lg"
-          variant="solid"
-          color="#FFDD99"
-          bg="#644386"
-          borderRadius="full"
-        >
-          12:00 PM
-        </Tag>
-      </Flex> */}
       <Flex
         align="center"
         p="3"

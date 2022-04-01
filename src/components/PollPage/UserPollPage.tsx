@@ -9,7 +9,6 @@ import {
   Button,
   Box,
   Text,
-  Spacer,
 } from '@chakra-ui/react';
 import { useCookies } from 'react-cookie';
 import { BsArrowRight } from 'react-icons/bs';
@@ -23,7 +22,7 @@ const UserPollPage = ({ id }: any) => {
   const [cookies, setCookie] = useCookies();
 
   const handleUserRegistration = async (name: any) => {
-    const URL = `https://decision-backend-heroku.herokuapp.com/${id}`;
+    const URL = `${process.env.DATABASE_API_URL}${id}`;
     try {
       const response = await fetch(URL, {
         method: 'PUT',
@@ -52,7 +51,7 @@ const UserPollPage = ({ id }: any) => {
 
   return (
     <FormProvider {...methods}>
-      <Box bg="#332244" minH="100vh">
+      <Box bg="#332244" minH="100vh" fontFamily="Roboto, sans-serif">
         <Center flexDirection={'column'} minH="80vh">
           <Box width="100vw">
             <Heading
