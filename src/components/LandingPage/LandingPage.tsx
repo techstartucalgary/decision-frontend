@@ -9,6 +9,8 @@ import {
   Box,
   Text,
   Spacer,
+  Slide,
+  SlideFade,
 } from '@chakra-ui/react';
 
 import { BsArrowRight } from 'react-icons/bs';
