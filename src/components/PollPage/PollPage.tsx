@@ -42,7 +42,7 @@ const PollPage = ({ id }: any) => {
   };
   let totalParticipants = 10;
   const { data, error } = useSWR(
-    `http://localhost:3000/${id}/getPolls`,
+    `https://decision-backend-heroku.herokuapp.com/${id}/getPolls`,
     fetcher,
   );
 
@@ -55,7 +55,7 @@ const PollPage = ({ id }: any) => {
       locationIds: votedLocations,
     };
     console.log(votedLocations);
-    fetch(`http://localhost:3000/${id}/addVotes`, {
+    fetch(`https://decision-backend-heroku.herokuapp.com/${id}/addVotes`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sessionData),
@@ -64,7 +64,7 @@ const PollPage = ({ id }: any) => {
       .then(async (res) => {
         setResponse(res);
         onOpen();
-        mutate(`http://localhost:3000/${id}/getPolls`);
+        mutate(`https://decision-backend-heroku.herokuapp.com/${id}/getPolls`);
         setVotedLocations([]);
       });
   };
