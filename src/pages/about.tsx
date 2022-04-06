@@ -1,4 +1,6 @@
 import Navbar from '../components/Navbar/Navbar';
+import AboutInfo from '../components/About/AboutInfo';
+
 import Head from 'next/head';
 
 export default function About() {
@@ -12,6 +14,7 @@ export default function About() {
         />
       </Head>
       <Navbar children />
+      <AboutInfo />
     </>
   );
 }
