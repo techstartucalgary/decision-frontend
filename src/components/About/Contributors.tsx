@@ -18,11 +18,11 @@ export default function Contributors() {
       flexDirection="column"
       alignSelf="center"
       bg="#4B3265"
-      width="90%"
       border="2px"
       borderColor="#442D5A"
       borderRadius="1rem"
       marginTop="1.25rem"
+      boxShadow="lg"
     >
       <Flex
         flexDirecton="row"
@@ -127,7 +127,7 @@ export default function Contributors() {
           width="88%"
           marginLeft="1.25rem"
         >
-          Nemanja Grujic (frontend lead)
+          Nemanja Grujic (Frontend Lead)
         </ListItem>
         <ListItem
           color="#FFDD99"
@@ -136,7 +136,7 @@ export default function Contributors() {
           width="88%"
           marginLeft="1.25rem"
         >
-          Nolan Chan (designer/frontend developer)
+          Nolan Chan (Designer/Frontend Developer)
         </ListItem>
       </UnorderedList>
       <Text
@@ -158,7 +158,7 @@ export default function Contributors() {
           width="88%"
           marginLeft="1.25rem"
         >
-          Naveed Aria (backend lead)
+          Naveed Aria (Backend Lead)
         </ListItem>
         <ListItem
           color="#FFDD99"
@@ -167,7 +167,7 @@ export default function Contributors() {
           width="88%"
           marginLeft="1.25rem"
         >
-          Lubaba Sheikh (backend developer)
+          Lubaba Sheikh (Backend Developer)
         </ListItem>
         <ListItem
           color="#FFDD99"
@@ -176,7 +176,7 @@ export default function Contributors() {
           width="88%"
           marginLeft="1.25rem"
         >
-          Noman Sanjari (backend developer)
+          Noman Sanjari (Backend Developer)
         </ListItem>
       </UnorderedList>
       <Image

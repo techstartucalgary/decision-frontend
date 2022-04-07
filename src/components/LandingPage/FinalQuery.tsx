@@ -297,7 +297,7 @@ export default function PreferencesPage() {
               <Flex flexWrap="wrap" maxW={{ base: '80vw', md: '400px' }}>
                 {interestButtons}
               </Flex>
-              <Editable
+              {/* <Editable
                 bg="#644386"
                 color="#FFDD99"
                 height="2.25rem"
@@ -315,7 +315,7 @@ export default function PreferencesPage() {
               >
                 <EditablePreview />
                 <EditableInput />
-              </Editable>
+              </Editable> */}
             </Flex>
           </Box>
           {/*
