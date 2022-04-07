@@ -17,7 +17,14 @@ export default function AboutInfo() {
       </Center>
 
       {/* Page contents */}
-      <Flex flexDirection="column" width="100%">
+      <Flex
+        flexDirection="column"
+        width="100%"
+        px="4"
+        maxW="500px"
+        justifyContent="center"
+        mx="auto"
+      >
         <ElevatorPitch />
         <TechnologiesUsed />
         <Contributors />
@@ -26,7 +33,6 @@ export default function AboutInfo() {
         <Flex
           flexDirection="row"
           alignSelf="center"
-          width="90%"
           marginTop="1.25rem"
           marginBottom="3rem"
         >
@@ -35,6 +41,7 @@ export default function AboutInfo() {
             alt="TechStart Logo"
             width="47%"
             borderRadius="1rem"
+            boxShadow="lg"
           />
           <Spacer />
           <Image
@@ -42,6 +49,7 @@ export default function AboutInfo() {
             alt="UCalgary Logo"
             width="47%"
             borderRadius="1rem"
+            boxShadow="lg"
           />
         </Flex>
       </Flex>

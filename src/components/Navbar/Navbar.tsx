@@ -131,7 +131,7 @@ const Nav = () => {
           </Text>
         </Flex>
       </Link>
-      <Link href="/manual">
+      {/* <Link href="/manual">
         <Flex
           align="center"
           p="4"
@@ -162,7 +162,7 @@ const Nav = () => {
             User Manual
           </Text>
         </Flex>
-      </Link>
+      </Link> */}
     </>
   );
 };

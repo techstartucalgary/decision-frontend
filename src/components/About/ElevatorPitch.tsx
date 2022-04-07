@@ -10,11 +10,11 @@ export default function ElevatorPitch() {
       flexDirection="column"
       alignSelf="center"
       bg="#4B3265"
-      width="90%"
       border="2px"
       borderColor="#442D5A"
       borderRadius="1rem"
       marginTop="1.25rem"
+      boxShadow="lg"
     >
       <Flex
         flexDirecton="row"

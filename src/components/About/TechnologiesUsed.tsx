@@ -18,11 +18,12 @@ export default function TechnologiesUsed() {
       flexDirection="column"
       alignSelf="center"
       bg="#4B3265"
-      width="90%"
       border="2px"
+      width="100%"
       borderColor="#442D5A"
       borderRadius="1rem"
       marginTop="1.25rem"
+      boxShadow="lg"
     >
       <Flex
         flexDirecton="row"
@@ -211,7 +212,7 @@ export default function TechnologiesUsed() {
                 fontWeight="bold"
                 lineHeight="0.875rem"
               >
-                Frontend repository link
+                Frontend Repository Link
               </Text>
             </Flex>
           </Link>
@@ -242,7 +243,7 @@ export default function TechnologiesUsed() {
                 fontWeight="bold"
                 lineHeight="0.875rem"
               >
-                Backend repository link
+                Backend Repository Link
               </Text>
             </Flex>
           </Link>
