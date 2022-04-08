@@ -26,7 +26,7 @@ import { toggleInterest } from '../../slices/formInterestsSlice';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
 export default function PreferencesPage() {
-  const [cookies, setCookie, removeCookie] = useCookies(['userID']);
+  const [cookies, setCookie, removeCookie] = useCookies([`userID`]);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -37,7 +37,7 @@ export default function PreferencesPage() {
   const interests = useAppSelector((state) => state.formInterests.value);
   const step = useAppSelector((state) => state.formStep.value);
 
-  let interestButtons = interests.map(
+  const interestButtons = interests.map(
     (interest: {
       id: number;
       name: string;
@@ -59,8 +59,8 @@ export default function PreferencesPage() {
               width="6.5rem"
               height="2rem"
               borderRadius="0.875rem"
-              bg={interest.selected ? '#FFDD99' : '#4B3265'}
-              _hover={{ bg: interest.selected ? '#FFDD99' : '#4B3265' }}
+              bg={interest.selected ? `#FFDD99` : `#4B3265`}
+              _hover={{ bg: interest.selected ? `#FFDD99` : `#4B3265` }}
               onClick={() => {
                 dispatch(toggleInterest(interest.id));
               }}
@@ -68,11 +68,11 @@ export default function PreferencesPage() {
               <Text
                 fontSize="sm"
                 fontWeight="bold"
-                color={interest.selected ? '#644386' : '#FFDD99'}
+                color={interest.selected ? `#644386` : `#FFDD99`}
                 bgGradient={
                   interest.selected
-                    ? 'linear(to-r, #584386, #FF8753)'
-                    : 'linear(to-r, #FFDD99, #FFDD99)'
+                    ? `linear(to-r, #584386, #FF8753)`
+                    : `linear(to-r, #FFDD99, #FFDD99)`
                 }
                 bgClip="text"
               >
@@ -90,8 +90,8 @@ export default function PreferencesPage() {
             marginRight="1rem"
             marginTop="1rem"
             borderRadius="1rem"
-            bg={interest.selected ? '#FFDD99' : '#644386'}
-            _hover={{ bg: interest.selected ? '#FFDD99' : '#644386' }}
+            bg={interest.selected ? `#FFDD99` : `#644386`}
+            _hover={{ bg: interest.selected ? `#FFDD99` : `#644386` }}
             onClick={() => {
               dispatch(toggleInterest(interest.id));
             }}
@@ -99,7 +99,7 @@ export default function PreferencesPage() {
             <Text
               fontSize="sm"
               fontWeight="medium"
-              color={interest.selected ? '#644386' : '#FFDD99'}
+              color={interest.selected ? `#644386` : `#FFDD99`}
             >
               {interest.name}
             </Text>
@@ -110,9 +110,9 @@ export default function PreferencesPage() {
   );
 
   async function onSubmit(data: object) {
-    removeCookie('userID');
+    removeCookie(`userID`);
     // Get list of interests
-    let selected_interests: string[] = [];
+    const selected_interests: string[] = [];
     for (let i = 0; i < interests.length; i++) {
       if (interests[i].selected) {
         selected_interests.push(interests[i].name);
@@ -127,18 +127,18 @@ export default function PreferencesPage() {
     // DO SOMETHING WITH session_id
     console.log(session_id);
     router.push({
-      pathname: 'linkgeneration',
+      pathname: `linkgeneration`,
       query: { link: session_id },
     });
   }
 
   function onError() {
-    console.log('CANNOT SUBMIT FORM');
+    console.log(`CANNOT SUBMIT FORM`);
   }
 
   async function getLink(data: object) {
     const URL = `https://decision-backend-heroku.herokuapp.com/`;
-    let session_id = '';
+    let session_id = ``;
     await fetch(URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -36,7 +36,7 @@ const PollPage = ({ id }: any) => {
   const [cookies, setCookie] = useCookies();
   const [response, setResponse] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [votedLocations, setVotedLocations] = useState<String[]>([]);
+  const [votedLocations, setVotedLocations] = useState<string[]>([]);
   const handleVote = (oid: string) => {
     setVotedLocations(votedLocations.concat(oid));
   };
@@ -197,6 +197,7 @@ const PollPage = ({ id }: any) => {
                   <AvatarGroup>
                     {data.members.map((index: string) => (
                       <Avatar
+                        key={index}
                         name={index}
                         borderWidth="1px"
                         borderColor="#332244"
