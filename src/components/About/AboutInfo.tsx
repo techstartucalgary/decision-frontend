@@ -8,7 +8,7 @@ import Contributors from './Contributors';
 
 export default function AboutInfo() {
   return (
-    <Box bg="#332244" minW="100vw" minH="100vh">
+    <Box bg="#332244" minH="100vh">
       {/* Page title */}
       <Center bg="#4B3265" width="100%" height="6rem">
         <Heading color="#FFDD99" fontSize="2.5rem" fontWeight="bold">
