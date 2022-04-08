@@ -397,12 +397,14 @@ export default function PreferencesPage() {
               margin="3vw 0vw 0vw"
             >
               Select a budget rating ($ to $$$) to specify the cost of the
-              venue's recommended to you. Each venue's cost comes from Google
-              and there is no direct numerical translation from dollars to a
-              cost rating. Typically, "$" refers to an "inexpensive" venue,
-              while "$$" refers to a "moderately expensive" venue, and "$$$"
-              refers to an "expensive" venue. For example, selecting "$$" means
-              that only venues that cost "$$" will be recommended.
+              venue&apos;s recommended to you. Each venue&apos;s cost comes from
+              Google and there is no direct numerical translation from dollars
+              to a cost rating. Typically, &quot;$&quot; refers to an
+              &quot;inexpensive&quot; venue, while &quot;$$&quot; refers to a
+              &quot;moderately expensive&quot; venue, and &quot;$$$&quot; refers
+              to an &quot;expensive&quot; venue. For example, selecting
+              &quot;$$&quot; means that only venues that cost &quot;$$&quot;
+              will be recommended.
             </ModalBody>
             <ModalBody
               color="#FFDD99"
@@ -412,9 +414,10 @@ export default function PreferencesPage() {
               textAlign="left"
               margin="0vw 0vw 3vw"
             >
-              Alternatively, select "Ignore budget" to not filter the generated
-              recommendations based on cost (you will receive recommendations
-              that cost either "$", "$$", or "$$$").
+              Alternatively, select &quot;Ignore budget&quot; to not filter the
+              generated recommendations based on cost (you will receive
+              recommendations that cost either &quot;$&quot;, &quot;$$&quot;, or
+              &quot;$$$&quot;).
             </ModalBody>
           </ModalContent>
         </Modal>
