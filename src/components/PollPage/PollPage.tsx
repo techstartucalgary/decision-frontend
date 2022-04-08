@@ -40,9 +40,8 @@ const PollPage = ({ id }: any) => {
   const handleVote = (oid: string) => {
     setVotedLocations(votedLocations.concat(oid));
   };
-  let totalParticipants = 10;
   const { data, error } = useSWR(
-    `${process.env.DATABASE_API_URL}${id}/getPolls`,
+    `https://decision-backend-heroku.herokuapp.com/${id}/getPolls`,
     fetcher,
   );
 
@@ -55,7 +54,7 @@ const PollPage = ({ id }: any) => {
       locationIds: votedLocations,
     };
     console.log(votedLocations);
-    fetch(`${process.env.DATABASE_API_URL}${id}/addVotes`, {
+    fetch(`https://decision-backend-heroku.herokuapp.com/${id}/addVotes`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sessionData),
@@ -64,7 +63,7 @@ const PollPage = ({ id }: any) => {
       .then(async (res) => {
         setResponse(res);
         onOpen();
-        mutate(`${process.env.DATABASE_API_URL}${id}/getPolls`);
+        mutate(`https://decision-backend-heroku.herokuapp.com/${id}/getPolls`);
         setVotedLocations([]);
       });
   };
@@ -161,14 +160,13 @@ const PollPage = ({ id }: any) => {
               </AccordionButton>
               <AccordionPanel>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.2rem">
-                  {data.locationDetails.type}
+                  {data.locationDetails.address}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100" mb="0.5rem">
-                  {data.locationDetails.location} |{' '}
-                  {data.locationDetails.distance}
+                  {data.locationDetails.website}
                 </Heading>
                 <Heading fontSize="0.75rem" color="primary.100">
-                  {data.locationDetails.description}
+                  Tags: {data.locationDetails.type}
                 </Heading>
 
                 <HStack

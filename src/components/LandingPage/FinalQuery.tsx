@@ -26,7 +26,7 @@ import { toggleInterest } from '../../slices/formInterestsSlice';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
 export default function PreferencesPage() {
-  const [cookies, setCookie, removeCookie] = useCookies(['creator', 'user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['userID']);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -110,8 +110,7 @@ export default function PreferencesPage() {
   );
 
   async function onSubmit(data: object) {
-    removeCookie('user');
-    removeCookie('creator');
+    removeCookie('userID');
     // Get list of interests
     let selected_interests: string[] = [];
     for (let i = 0; i < interests.length; i++) {
@@ -138,7 +137,7 @@ export default function PreferencesPage() {
   }
 
   async function getLink(data: object) {
-    const URL = `${process.env.DATABASE_API_URL}`;
+    const URL = `https://decision-backend-heroku.herokuapp.com/`;
     let session_id = '';
     await fetch(URL, {
       method: 'POST',
@@ -148,11 +147,12 @@ export default function PreferencesPage() {
     })
       .then((res) => res.json())
       .then(async (res) => {
-        session_id = res.linkID;
+        session_id = res.linkId;
         const data = res;
-        setCookie('creator', JSON.stringify(data), {
+        console.log(data);
+        setCookie('userID', JSON.stringify(data.userId), {
           path: '/',
-          maxAge: 1,
+          maxAge: 10000,
           sameSite: true,
         });
       })
