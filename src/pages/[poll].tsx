@@ -18,7 +18,7 @@ export default function GetPolls() {
           content="Where To? is an app that helps you and your group of friends decide where to go out a little easier!"
         />
       </Head>
-      <Navbar children />
+      <Navbar>Children</Navbar>
       {cookies.userID ? ( // if user is already registered as user or creator poll page will be rendered, otherwise they have to register first for their cookie to be created
         <PollPage id={poll} />
       ) : (
