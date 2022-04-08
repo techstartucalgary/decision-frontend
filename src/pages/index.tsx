@@ -12,7 +12,7 @@ export default function Home() {
           content="Where To? is an app that helps you and your group of friends decide where to go out a little easier!"
         />
       </Head>
-      <SidebarWithHeader children />
+      <SidebarWithHeader>Children</SidebarWithHeader>
       <LandingPage />
     </>
   );
