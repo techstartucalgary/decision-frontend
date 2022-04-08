@@ -21,7 +21,7 @@ import {
   Avatar,
   AvatarGroup,
 } from '@chakra-ui/react';
-// @ts-ignore
+
 import StarRatings from 'react-star-ratings';
 import React, { useState } from 'react';
 import useSWR, { mutate, useSWRConfig } from 'swr';
@@ -29,8 +29,7 @@ import { withCookies, useCookies } from 'react-cookie';
 import ErrorScreen from './ErrorScreen';
 import LoadingScreen from './LoadingScreen';
 
-// @ts-ignore
-const fetcher = (...args: any) => fetch(...args).then((res) => res.json());
+const fetcher = (...args: [any]) => fetch(...args).then((res) => res.json());
 
 const PollPage = ({ id }: any) => {
   const [cookies, setCookie] = useCookies();
