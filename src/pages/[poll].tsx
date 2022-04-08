@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 import UserPollPage from '@/components/PollPage/UserPollPage';
 import Head from 'next/head';
 
-export default function getPolls() {
+export default function GetPolls() {
   const [cookies, setCookie] = useCookies();
   const router = useRouter();
   const { poll } = router.query;
