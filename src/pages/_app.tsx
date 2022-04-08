@@ -8,9 +8,9 @@ import Head from 'next/head';
 const theme = extendTheme({
   colors: {
     primary: {
-      100: '#FFDD99',
-      300: '#FFDD99',
-      500: '#FFDD99',
+      100: `#FFDD99`,
+      300: `#FFDD99`,
+      500: `#FFDD99`,
     },
   },
 });

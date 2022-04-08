@@ -19,7 +19,7 @@ export default function getPolls() {
         />
       </Head>
       <Navbar children />
-      {cookies.creator || cookies.userID ? ( // if user is already registered as user or creator poll page will be rendered, otherwise they have to register first for their cookie to be created
+      {cookies.userID ? ( // if user is already registered as user or creator poll page will be rendered, otherwise they have to register first for their cookie to be created
         <PollPage id={poll} />
       ) : (
         <UserPollPage id={poll} />

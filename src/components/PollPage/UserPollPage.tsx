@@ -22,24 +22,29 @@ const UserPollPage = ({ id }: any) => {
   const [cookies, setCookie] = useCookies();
 
   const handleUserRegistration = async (name: any) => {
-    const URL = `${process.env.DATABASE_API_URL}${id}`;
-    try {
-      const response = await fetch(URL, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(name),
-        credentials: 'include',
-      }); //handle API call to sign in here.
+    const URL = `https://decision-backend-heroku.herokuapp.com/${id}`;
 
-      setCookie('user', {
-        path: '/',
-        maxAge: 1, // Expires after 2hr
-        sameSite: true,
+    await fetch(URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(name),
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then(async (res) => {
+        const data = res;
+        console.log(data);
+        setCookie('userID', JSON.stringify(data), {
+          path: '/',
+          maxAge: 10000,
+          sameSite: true,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    } catch (err) {
-      console.log(err);
-    }
   };
+
   async function onSubmit(data: object) {
     await handleUserRegistration({
       data,
