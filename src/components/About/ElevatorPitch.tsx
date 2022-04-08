@@ -47,7 +47,7 @@ export default function ElevatorPitch() {
         Have you ever been trying to plan a night out with your friends, but
         everyone is conflicted on what to do? Or, maybe no one knows what to do
         and you need some ideas presented to you in an organized format, which
-        also match everyone's needs and wants?
+        also match everyone&apos;s needs and wants?
       </Text>
       <Text
         color="#FFDD99"
@@ -59,10 +59,10 @@ export default function ElevatorPitch() {
         marginBottom="1.25rem"
       >
         That is what this website aims to solve! One person in the group selects
-        how much you all want to spend, and what you're interesting in doing
-        (for example, dining). Afterwards, a link is generated where you and
-        your friends can vote on a selection of venues generated from Google's
-        location API.
+        how much you all want to spend, and what you&apos;re interesting in
+        doing (for example, dining). Afterwards, a link is generated where you
+        and your friends can vote on a selection of venues generated from
+        Google&apos;s location API.
       </Text>
     </Flex>
   );
