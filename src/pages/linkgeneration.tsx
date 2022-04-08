@@ -12,7 +12,7 @@ export default function LinkGeneration() {
           content="Where To? is an app that helps you and your group of friends decide where to go out a little easier!"
         />
       </Head>
-      <Navbar children />
+      <Navbar>Children</Navbar>
       <LinkGenerationPage />
     </>
   );
