@@ -10,8 +10,8 @@ export default function LinkGenerationPage() {
   const generatedLink = `www.decision.ca/${linkid.query.link}`;
   const [copied, setCopied] = useState(false);
   return (
-    <Box height="100vh" bg="#332244" fontFamily="Roboto, sans-serif">
-      <Flex direction="column" align="center">
+    <Box minHeight="91vh" bg="#332244" fontFamily="Roboto, sans-serif">
+      <Flex direction="column" align="center" mr={{ base: '0', md: '10rem' }}>
         <Heading
           color="#FFDD99"
           fontSize="5xl"

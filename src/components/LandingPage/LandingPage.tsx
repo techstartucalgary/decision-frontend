@@ -30,10 +30,14 @@ const LandingPage = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box bg="#332244" minH="100vh" fontFamily="Roboto, sans-serif">
-        <Center flexDirection={'column'} minH="80vh">
+      <Box bg="#332244" minH="91vh" fontFamily="Roboto, sans-serif">
+        <Center
+          flexDirection={'column'}
+          minH="80vh"
+          mr={{ base: '0', md: '10rem' }}
+        >
           {step >= 0 && (
-            <Box width="100vw" display={step !== 0 ? 'none' : 'block'}>
+            <Box width="full" display={step !== 0 ? 'none' : 'block'}>
               <Heading
                 as="h1"
                 size="4xl"
