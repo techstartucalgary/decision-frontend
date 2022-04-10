@@ -165,9 +165,9 @@ export default function PreferencesPage() {
 
   return (
     <SlideFade in={step >= 1}>
-      <Box bg="#332244" minH="100vh" fontFamily="Roboto, sans-serif">
+      <Box bg="#332244" minH="90vh" fontFamily="Roboto, sans-serif">
         <Flex flexDirection="column" minH="80vh" alignItems="center">
-          <Box width="100vw">
+          <Box>
             <Flex
               direction="column"
               align={{ base: 'left', md: 'center' }}
