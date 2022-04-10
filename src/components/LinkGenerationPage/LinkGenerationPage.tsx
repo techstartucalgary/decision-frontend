@@ -7,7 +7,7 @@ import { MdContentCopy } from 'react-icons/md';
 
 export default function LinkGenerationPage() {
   const linkid = useRouter();
-  const generatedLink = `www.decision.ca/${linkid.query.link}`;
+  const generatedLink = `https://decision-frontend-eight.vercel.app/${linkid.query.link}`;
   const [copied, setCopied] = useState(false);
   return (
     <Box minHeight="91vh" bg="#332244" fontFamily="Roboto, sans-serif">

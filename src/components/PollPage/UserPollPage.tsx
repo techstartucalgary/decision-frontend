@@ -36,7 +36,7 @@ const UserPollPage = ({ id }: any) => {
         console.log(data);
         setCookie('userID', JSON.stringify(data), {
           path: '/',
-          maxAge: 10000,
+          maxAge: 86400,
           sameSite: true,
         });
       })
