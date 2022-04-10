@@ -8,9 +8,6 @@ import {
   Heading,
   Text,
   Button,
-  Editable,
-  EditablePreview,
-  EditableInput,
   Center,
   useDisclosure,
   Modal,
@@ -152,7 +149,7 @@ export default function PreferencesPage() {
         console.log(data);
         setCookie('userID', JSON.stringify(data.userId), {
           path: '/',
-          maxAge: 10000,
+          maxAge: 86400,
           sameSite: true,
         });
       })

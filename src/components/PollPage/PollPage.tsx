@@ -77,6 +77,7 @@ const PollPage = ({ id }: any) => {
           fontFamily="Roboto, sans-serif"
           fontWeight={500}
           lineHeight={'42px'}
+          mr={{ base: '0', md: '10rem' }}
         >
           Time To Decide
         </Heading>
@@ -90,7 +91,12 @@ const PollPage = ({ id }: any) => {
         alignItems="center"
         flexDirection="column"
       >
-        <Accordion maxWidth="500px" w="100%" mb="3rem">
+        <Accordion
+          maxWidth="500px"
+          w="100%"
+          mb="3rem"
+          mr={{ base: '0', md: '10rem' }}
+        >
           {data.map((data: any, index: any) => (
             <AccordionItem
               key={index}
@@ -146,7 +152,11 @@ const PollPage = ({ id }: any) => {
                     {data.locationName}
                   </Heading>
                   <Progress
-                    value={(data.votes / data.members.length) * 100}
+                    value={
+                      data.votes > 0
+                        ? (data.votes / data.members.length) * 100
+                        : 0
+                    }
                     colorScheme="primary"
                     size="md"
                     width="100%"
