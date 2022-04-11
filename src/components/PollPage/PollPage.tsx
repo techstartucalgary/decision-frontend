@@ -225,22 +225,31 @@ const PollPage = ({ id }: any) => {
                   borderColor="#332244"
                   pt="0.7rem"
                 >
-                  <Button
-                    bg="#644386"
-                    border="1px solid #332244"
-                    borderRadius="2rem"
-                    color="primary.100"
-                    fontWeight="bold"
-                    fontFamily="Roboto, sans-serif"
-                    fontSize="1rem"
-                    h="2rem"
-                    _hover={{
-                      bg: '#644386',
-                      color: 'white',
-                    }}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={
+                      'https://www.google.com/maps/place/?q=place_id:' +
+                      data.locationID
+                    }
                   >
-                    View On Map
-                  </Button>
+                    <Button
+                      bg="#644386"
+                      border="1px solid #332244"
+                      borderRadius="2rem"
+                      color="primary.100"
+                      fontWeight="bold"
+                      fontFamily="Roboto, sans-serif"
+                      fontSize="1rem"
+                      h="2rem"
+                      _hover={{
+                        bg: '#644386',
+                        color: 'white',
+                      }}
+                    >
+                      View On Map
+                    </Button>
+                  </a>
                 </HStack>
               </AccordionPanel>
             </AccordionItem>
