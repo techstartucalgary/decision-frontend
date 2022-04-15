@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Flex, Heading, Text, Button, IconButton } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  IconButton,
+  useDisclosure,
+  Modal,
+  ModalBody,
+  ModalOverlay,
+  ModalContent,
+  Center,
+} from '@chakra-ui/react';
 import Link from 'next/link';
 
-import { MdContentCopy } from 'react-icons/md';
+import { MdContentCopy, MdQrCode } from 'react-icons/md';
+import QRCode from 'react-qr-code';
 
 export default function LinkGenerationPage() {
   const linkid = useRouter();
-  const generatedLink = `https://decision-frontend-eight.vercel.app/${linkid.query.link}`;
+  const generatedLink = `https://www.where-to-app.com/${linkid.query.link}`;
   const [copied, setCopied] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box minHeight="91vh" bg="#332244" fontFamily="Roboto, sans-serif">
       <Flex direction="column" align="center" mr={{ base: '0', md: '10rem' }}>
@@ -54,6 +69,22 @@ export default function LinkGenerationPage() {
               setCopied(true);
             }}
           />
+          <IconButton
+            aria-label="get qr code"
+            icon={<MdQrCode />}
+            borderRadius="12px"
+            marginLeft={1}
+            width="36px"
+            height="36px"
+            fontSize="18px"
+            bg="#4B3265"
+            color="#FFDD99"
+            _hover={{
+              bg: '#FFDD99',
+              color: '#4B3265',
+            }}
+            onClick={() => onOpen()}
+          />
         </Flex>
         {copied && (
           <Text color="primary.500" size="lg" mt="2">
@@ -75,6 +106,38 @@ export default function LinkGenerationPage() {
           </Button>
         </Link>
       </Flex>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        blockScrollOnMount={true}
+        closeOnOverlayClick={true}
+        motionPreset="slideInBottom"
+      >
+        <ModalOverlay />
+        <ModalContent
+          width="90vw"
+          borderRadius="30px"
+          border="1px"
+          borderColor="#332244"
+          bg="#4B3265"
+          my="auto"
+        >
+          <ModalBody
+            color="#FFDD99"
+            fontWeight="regular"
+            fontSize="4xl"
+            fontFamily="Roboto, sans-serif"
+            textAlign="center"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Center my={10}>
+              <QRCode value={generatedLink} />
+            </Center>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 }
