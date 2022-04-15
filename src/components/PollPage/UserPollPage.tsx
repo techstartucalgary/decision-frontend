@@ -23,11 +23,11 @@ const UserPollPage = ({ id }: any) => {
 
   const handleUserRegistration = async (name: any) => {
     const URL = `https://decision-backend-heroku.herokuapp.com/${id}`;
-    console.log(name.data.names);
+    console.log(name.data);
     await fetch(URL, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(name.data.names),
+      body: JSON.stringify(name.data),
       credentials: 'include',
     })
       .then((res) => res.json())
