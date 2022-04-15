@@ -53,7 +53,7 @@ const PollPage = ({ id }: any) => {
     pollsFetcher,
   );
   const { data: members, error: membersError } = useSWR(
-    `https://decision-backend-heroku.herokuapp.com/${id}/getMembers`,
+    `https://decision-backend-heroku.herokuapp.com/${id}`,
     membersFetcher,
   );
 
@@ -167,6 +167,7 @@ const PollPage = ({ id }: any) => {
                       height="8"
                       onClick={() => {
                         handleVote(poll.locationID);
+                        console.log(members);
                       }}
                     >
                       <path
@@ -184,7 +185,7 @@ const PollPage = ({ id }: any) => {
                     <Progress
                       value={
                         poll.votes > 0
-                          ? (poll.votes / members[0].members.length) * 100
+                          ? (poll.votes / members.names.length) * 100
                           : 0
                       }
                       colorScheme="primary"
