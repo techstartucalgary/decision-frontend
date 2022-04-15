@@ -13,6 +13,36 @@ const theme = extendTheme({
       500: `#FFDD99`,
     },
   },
+  components: {
+    Link: {
+      baseStyle: {
+        _focus: {
+          boxShadow: 'none',
+        },
+      },
+    },
+    Button: {
+      baseStyle: {
+        _focus: {
+          boxShadow: 'none',
+        },
+      },
+    },
+    IconButton: {
+      baseStyle: {
+        _focus: {
+          boxShadow: 'none',
+        },
+      },
+    },
+    AccordionItem: {
+      baseStyle: {
+        _focus: {
+          boxShadow: 'none',
+        },
+      },
+    },
+  },
 });
 
 function MyApp({ Component, pageProps }: any) {

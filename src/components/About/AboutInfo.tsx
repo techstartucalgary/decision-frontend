@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { Box, Flex, Spacer, Heading, Center, Image } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Spacer,
+  Heading,
+  Center,
+  Image,
+  Link,
+} from '@chakra-ui/react';
 
 import ElevatorPitch from './ElevatorPitch';
 import TechnologiesUsed from './TechnologiesUsed';
@@ -36,16 +44,23 @@ export default function AboutInfo() {
           marginTop="1.25rem"
           marginBottom="3rem"
         >
-          <Image
-            src="/tech-start-logo.png"
-            alt="TechStart Logo"
+          <Link
+            href="https://techstartucalgary.com/"
             width="47%"
-            borderRadius="1rem"
-            boxShadow="lg"
-          />
+            _hover={{ border: '0rem' }}
+            isExternal
+          >
+            <Image
+              src="/tech-start-logo.png"
+              alt="TechStart Logo"
+              borderRadius="1rem"
+              boxShadow="lg"
+            />
+          </Link>
+
           <Spacer />
           <Image
-            src="/ucalgary-logo.png"
+            src="/whereto-logo-alt4.png"
             alt="UCalgary Logo"
             width="47%"
             borderRadius="1rem"

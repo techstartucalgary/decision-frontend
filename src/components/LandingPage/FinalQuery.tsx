@@ -15,10 +15,14 @@ import {
   ModalContent,
   ModalBody,
   SlideFade,
+  IconButton,
 } from '@chakra-ui/react';
+
+import { RiArrowGoBackLine } from 'react-icons/ri';
 
 import { useFormContext } from 'react-hook-form';
 import { setFormBudget } from '../../slices/formBudgetSlice';
+import { setFormStep } from '../../slices/formStepSlice';
 import { toggleInterest } from '../../slices/formInterestsSlice';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
@@ -57,10 +61,13 @@ export default function PreferencesPage() {
               height="2rem"
               borderRadius="0.875rem"
               bg={interest.selected ? `#FFDD99` : `#4B3265`}
-              _hover={{ bg: interest.selected ? `#FFDD99` : `#4B3265` }}
+              _hover={{
+                bg: interest.selected ? `#FFDD99` : `#4B3265`,
+              }}
               onClick={() => {
                 dispatch(toggleInterest(interest.id));
               }}
+              outline="0"
             >
               <Text
                 fontSize="sm"
@@ -88,10 +95,13 @@ export default function PreferencesPage() {
             marginTop="1rem"
             borderRadius="1rem"
             bg={interest.selected ? `#FFDD99` : `#644386`}
-            _hover={{ bg: interest.selected ? `#FFDD99` : `#644386` }}
+            _hover={{
+              bg: interest.selected ? `#FFDD99` : `#644386`,
+            }}
             onClick={() => {
               dispatch(toggleInterest(interest.id));
             }}
+            _focus={{ boxShadow: 'none' }}
           >
             <Text
               fontSize="sm"
@@ -340,6 +350,21 @@ export default function PreferencesPage() {
           */}
           <Spacer />
           <Box height="6rem" />
+          <IconButton
+            aria-label="Go Back"
+            icon={<RiArrowGoBackLine />}
+            fontSize="2rem"
+            color="#FFDD99"
+            bg="#644386"
+            position="fixed"
+            right="1.5rem"
+            bottom="6.5rem"
+            width="3.75rem"
+            height="3.75rem"
+            borderRadius="2rem"
+            boxShadow="4px 4px 8px rgba(0, 0, 0, 0.25)"
+            onClick={() => dispatch(setFormStep(0))}
+          />
           <Center
             position="fixed"
             left="0"
