@@ -28,11 +28,13 @@ export default function LinkGenerationPage() {
             bg="#644386"
             color="#FFDD99"
             width="65vw"
-            height="36px"
+            height="2.25rem"
             maxWidth="400px"
-            padding="6px 20px"
+            padding="0px 1.25rem"
             fontSize="sm"
             borderRadius="16px 0px 0px 16px"
+            lineHeight="225%"
+            isTruncated
           >
             {generatedLink}
           </Text>
