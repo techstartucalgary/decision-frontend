@@ -66,6 +66,7 @@ const UserPollPage = ({ id }: any) => {
               color="#FFDD99"
               letterSpacing={'2px'}
               textAlign="center"
+              fontFamily="Roboto, sans-serif"
             >
               Hello
             </Heading>
@@ -73,17 +74,21 @@ const UserPollPage = ({ id }: any) => {
               width="100%"
               alignItems={'center'}
               justifyContent={'center'}
-              marginTop={'5rem'}
+              marginTop={'7.5rem'}
             >
               <Editable
                 placeholder="Your name here"
                 variant="solid"
                 color="#FFDD99"
                 bg="#644386"
-                borderRadius="full"
-                px="4"
+                borderRadius="1rem"
                 width="60%"
                 maxWidth={'400px'}
+                height="2.25rem"
+                fontSize="sm"
+                paddingLeft="1.25rem"
+                lineHeight="225%"
+                fontFamily="Roboto, sans-serif"
               >
                 <EditablePreview />
                 <EditableInput
@@ -96,9 +101,9 @@ const UserPollPage = ({ id }: any) => {
                 />
               </Editable>
               <Button
-                borderRadius={'30px'}
+                borderRadius={'1rem'}
                 size="sm"
-                marginLeft={'1rem'}
+                marginLeft={'1.5rem'}
                 bg="#644386"
                 color="#FFDD99"
                 _hover={{
@@ -107,6 +112,10 @@ const UserPollPage = ({ id }: any) => {
                 }}
                 onClick={methods.handleSubmit(onSubmit, onError)}
                 disabled={!methods.formState.isValid}
+                padding="0"
+                width="2.25rem"
+                height="2.25rem"
+                fontSize="lg"
               >
                 <BsArrowRight />
               </Button>
@@ -120,7 +129,7 @@ const UserPollPage = ({ id }: any) => {
               justifyContent={'center'}
               marginTop="0.25rem"
             >
-              <Box width="8"></Box>
+              <Box width="2.5rem"></Box>
               {methods.formState.errors.names && (
                 <Text
                   color="#FFDD99"
@@ -131,7 +140,7 @@ const UserPollPage = ({ id }: any) => {
                   {methods.formState.errors.names.message}
                 </Text>
               )}
-              <Box width="2.25rem" marginLeft="1rem"></Box>
+              <Box width="2.25rem" marginLeft="1.5rem"></Box>
             </Flex>
           </Box>
         </Center>
