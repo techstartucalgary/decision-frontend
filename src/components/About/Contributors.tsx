@@ -98,15 +98,6 @@ export default function Contributors() {
         >
           Mikail Munir
         </ListItem>
-        <ListItem
-          color="#FFDD99"
-          fontSize="0.875rem"
-          lineHeight="1.125rem"
-          width="88%"
-          marginLeft="1.25rem"
-        >
-          Minhazur Rahman
-        </ListItem>
       </UnorderedList>
       <Text
         color="#FFDD99"
@@ -180,7 +171,7 @@ export default function Contributors() {
         </ListItem>
       </UnorderedList>
       <Image
-        src="/stock-groupphoto.jpg"
+        src="/groupphoto-alt1.png"
         alt="Team Photo"
         width="88%"
         alignSelf="center"
@@ -201,9 +192,8 @@ export default function Contributors() {
         alignSelf="center"
         align="center"
       >
-        From left to right: Vivian Huynh, Minhazur Rahman, Nemanja Grujic, Nolan
-        Chan, Naveed Aria, Lubaba Sheikh, Noman Sanjari. (Not Pictured: Mikail
-        Munir)
+        From left to right: Nolan Chan, Lubaba Sheikh, Nemanja Grujic, Vivian
+        Huynh, Naveed Aria (Not Pictured: Mikail Munir, Noman Sanjari)
       </Text>
     </Flex>
   );

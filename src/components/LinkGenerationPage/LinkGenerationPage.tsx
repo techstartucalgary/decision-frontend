@@ -14,7 +14,7 @@ export default function LinkGenerationPage() {
       <Flex direction="column" align="center" mr={{ base: '0', md: '10rem' }}>
         <Heading
           color="#FFDD99"
-          fontSize="5xl"
+          fontSize="3rem"
           fontWeight="bold"
           width="80vw"
           textAlign="center"
@@ -33,7 +33,7 @@ export default function LinkGenerationPage() {
             padding="0px 1.25rem"
             fontSize="sm"
             borderRadius="16px 0px 0px 16px"
-            lineHeight="225%"
+            lineHeight="250%"
             isTruncated
           >
             {generatedLink}

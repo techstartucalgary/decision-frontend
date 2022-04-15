@@ -303,14 +303,16 @@ const PollPage = ({ id }: any) => {
             <ModalBody
               color="#FFDD99"
               fontWeight="regular"
-              fontSize="4xl"
+              fontSize="1.5rem"
               fontFamily="Roboto, sans-serif"
               textAlign="center"
               display="flex"
               alignItems="center"
               justifyContent="center"
             >
-              <Text ml="auto">{response}</Text>
+              <Text ml="auto" paddingTop="0.25rem" paddingBottom="0.25rem">
+                {response}
+              </Text>
               <Button
                 background="#4B3265"
                 borderColor="#4B3265"

@@ -57,10 +57,13 @@ export default function PreferencesPage() {
               height="2rem"
               borderRadius="0.875rem"
               bg={interest.selected ? `#FFDD99` : `#4B3265`}
-              _hover={{ bg: interest.selected ? `#FFDD99` : `#4B3265` }}
+              _hover={{
+                bg: interest.selected ? `#FFDD99` : `#4B3265`,
+              }}
               onClick={() => {
                 dispatch(toggleInterest(interest.id));
               }}
+              outline="0"
             >
               <Text
                 fontSize="sm"
@@ -88,10 +91,13 @@ export default function PreferencesPage() {
             marginTop="1rem"
             borderRadius="1rem"
             bg={interest.selected ? `#FFDD99` : `#644386`}
-            _hover={{ bg: interest.selected ? `#FFDD99` : `#644386` }}
+            _hover={{
+              bg: interest.selected ? `#FFDD99` : `#644386`,
+            }}
             onClick={() => {
               dispatch(toggleInterest(interest.id));
             }}
+            _focus={{ boxShadow: 'none' }}
           >
             <Text
               fontSize="sm"
