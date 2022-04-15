@@ -41,7 +41,7 @@ const PollPage = ({ id }: any) => {
   const [votedLocations, setVotedLocations] = useState<string[]>([]);
   const handleVote = (oid: string) => {
     if (votedLocations.includes(oid)) {
-      let index = votedLocations.indexOf(oid);
+      const index = votedLocations.indexOf(oid);
       votedLocations.splice(index, 1);
       setVotedLocations(votedLocations);
     } else {
@@ -115,6 +115,7 @@ const PollPage = ({ id }: any) => {
           {polls.map((poll: any, index: any) => (
             <Center
               my="1.5rem"
+              key={index}
               bg="#4B3265"
               bgGradient={`${
                 polls.indexOf(poll) == 0
@@ -126,7 +127,6 @@ const PollPage = ({ id }: any) => {
               boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
             >
               <AccordionItem
-                key={index}
                 bg="#4B3265"
                 borderRadius="24px"
                 border="none"
