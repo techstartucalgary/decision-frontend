@@ -41,9 +41,9 @@ const PollPage = ({ id }: any) => {
   const [votedLocations, setVotedLocations] = useState<string[]>([]);
   const handleVote = (oid: string) => {
     if (votedLocations.includes(oid)) {
-      const index = votedLocations.indexOf(oid);
-      votedLocations.splice(index, 1);
-      setVotedLocations(votedLocations);
+      setVotedLocations(
+        votedLocations.filter((locations) => locations !== oid),
+      );
     } else {
       setVotedLocations(votedLocations.concat(oid));
     }
@@ -76,7 +76,7 @@ const PollPage = ({ id }: any) => {
         setResponse(res);
         onOpen();
         mutate(`https://decision-backend-heroku.herokuapp.com/${id}/getPolls`);
-        // setVotedLocations([]);
+        setVotedLocations([]);
       });
   };
 
@@ -132,10 +132,7 @@ const PollPage = ({ id }: any) => {
                 border="none"
                 w="full"
               >
-                <AccordionButton
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
+                <HStack w="full" p="2">
                   <VStack
                     p="1rem"
                     my="0rem"
@@ -153,6 +150,7 @@ const PollPage = ({ id }: any) => {
                     <Icon
                       xmlns="http://www.w3.org/2000/svg"
                       className={`h-6 w-6`}
+                      cursor="pointer"
                       _hover={{
                         fill: 'primary.100',
                       }}
@@ -167,7 +165,6 @@ const PollPage = ({ id }: any) => {
                       height="8"
                       onClick={() => {
                         handleVote(poll.locationID);
-                        console.log(members);
                       }}
                     >
                       <path
@@ -178,26 +175,35 @@ const PollPage = ({ id }: any) => {
                       />
                     </Icon>
                   </VStack>
-                  <VStack px="1rem" width="100%">
-                    <Heading fontSize="1.125rem" color="primary.100" mb="1rem">
-                      {poll.locationName}
-                    </Heading>
-                    <Progress
-                      value={
-                        poll.votes > 0
-                          ? (poll.votes / members.names.length) * 100
-                          : 0
-                      }
-                      colorScheme="primary"
-                      size="md"
-                      width="100%"
-                      borderRadius="26px"
-                      bg="#332244"
-                    />
-                  </VStack>
+                  <AccordionButton
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <VStack px="0.5rem" width="100%">
+                      <Heading
+                        fontSize="1.125rem"
+                        color="primary.100"
+                        mb="1rem"
+                      >
+                        {poll.locationName}
+                      </Heading>
+                      <Progress
+                        value={
+                          poll.votes > 0
+                            ? (poll.votes / members.names.length) * 100
+                            : 0
+                        }
+                        colorScheme="primary"
+                        size="md"
+                        width="100%"
+                        borderRadius="26px"
+                        bg="#332244"
+                      />
+                    </VStack>
 
-                  <AccordionIcon color="primary.100" fontSize="3rem" />
-                </AccordionButton>
+                    <AccordionIcon color="primary.100" fontSize="3rem" ml="2" />
+                  </AccordionButton>
+                </HStack>
                 <AccordionPanel>
                   <Heading fontSize="0.75rem" color="primary.100" mb="0.2rem">
                     {poll.locationDetails.address}
@@ -313,6 +319,7 @@ const PollPage = ({ id }: any) => {
             updateVotes();
           }}
           bg="#644386"
+          ml={{ base: '0', md: '20' }}
           border="1.5px solid #332244"
           borderRadius="18px"
           color="primary.100"
@@ -352,19 +359,9 @@ const PollPage = ({ id }: any) => {
               alignItems="center"
               justifyContent="center"
             >
-              <Text ml="auto" paddingTop="0.25rem" paddingBottom="0.25rem">
+              <Text mx="auto" paddingTop="0.25rem" paddingBottom="0.25rem">
                 {response}
               </Text>
-              <Button
-                background="#4B3265"
-                borderColor="#4B3265"
-                _hover={{ bg: '#644386', color: 'white' }}
-                fontSize="4xl"
-                ml="auto"
-                onClick={onClose}
-              >
-                &times;
-              </Button>
             </ModalBody>
           </ModalContent>
         </Modal>

@@ -10,6 +10,7 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
+  Image,
 } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import Selections from './Selections';
@@ -77,16 +78,18 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         color="#FFDD99"
       >
         <Link href="/">
-          <Text
-            fontSize="24"
-            fontFamily="Roboto, sans-serif"
-            cursor="pointer"
-            whiteSpace="nowrap"
-          >
-            Where To?
-          </Text>
+          <Image
+            src="/whereto-logo-transparent.png"
+            w={{ base: '5rem', md: 'full' }}
+            mx={{ base: 'auto' }}
+          />
         </Link>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+        <CloseButton
+          display={{ base: 'flex', md: 'none' }}
+          ml="auto"
+          mr="-2rem"
+          onClick={onClose}
+        />
       </Flex>
       <Nav />
       <Selections />
@@ -131,38 +134,6 @@ const Nav = () => {
           </Text>
         </Flex>
       </Link>
-      {/* <Link href="/manual">
-        <Flex
-          align="center"
-          p="4"
-          role="group"
-          cursor="pointer"
-          color="#FFDD99"
-          _hover={{
-            bg: '#644386',
-            color: 'white',
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="18"
-            width="18"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-            />
-          </svg>
-          <Text fontSize="1rem" ml="2">
-            User Manual
-          </Text>
-        </Flex>
-      </Link> */}
     </>
   );
 };
@@ -199,7 +170,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         icon={<FiMenu />}
       />
       <Link href="/">
-        <Text
+        {/* <Text
           display={{ base: 'flex', md: 'none' }}
           fontSize="1.125rem"
           fontFamily="Roboto, sans-serif"
@@ -210,7 +181,13 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           cursor="pointer"
         >
           Where To?
-        </Text>
+        </Text> */}
+        <Image
+          src="/whereto-logo-transparent.png"
+          display={{ base: 'flex', md: 'none' }}
+          mx="auto"
+          w="5rem"
+        />
       </Link>
     </Flex>
   );

@@ -71,7 +71,6 @@ const UserPollPage = ({ id }: any) => {
               color="#FFDD99"
               letterSpacing={'2px'}
               textAlign="center"
-              fontFamily="Roboto, sans-serif"
             >
               Hello
             </Heading>

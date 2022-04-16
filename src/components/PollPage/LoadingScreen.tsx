@@ -5,7 +5,7 @@ const LoadingScreen = () => {
   return (
     <>
       <Center
-        bg="#4B3265"
+        bg="#332244"
         boxShadow="0px 2px 8px rgba(0, 0, 0, 0.25)"
         p="3"
         pb="4"
@@ -13,6 +13,7 @@ const LoadingScreen = () => {
         <Box
           minH="100vh"
           bg="#332244"
+          w="full"
           py="2rem"
           px="1rem"
           display="flex"
@@ -23,8 +24,8 @@ const LoadingScreen = () => {
           <Spinner
             thickness="4px"
             speed="0.65s"
-            emptyColor='#FFDD99'
-            color='white'
+            emptyColor="#FFDD99"
+            color="white"
             size="xl"
           />
         </Box>
