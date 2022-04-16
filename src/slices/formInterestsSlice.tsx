@@ -51,9 +51,23 @@ export const formInterestsSlice = createSlice({
         });
       }
     },
+    setInterests: (state, action: PayloadAction<string[]>) => {
+      for (let i = 0; i < state.value.length; i++) {
+        let setValue = false;
+        for (let j = 0; j < action.payload.length; j++) {
+          if (state.value[i].name === action.payload[j]) {
+            state.value[i].selected = true;
+            setValue = true;
+          }
+        }
+        if (!setValue) {
+          state.value[i].selected = false;
+        }
+      }
+    },
   },
 });
 
-export const { toggleInterest } = formInterestsSlice.actions;
+export const { toggleInterest, setInterests } = formInterestsSlice.actions;
 export const selectInterests = (state: RootState) => state.formInterests.value;
 export default formInterestsSlice.reducer;
