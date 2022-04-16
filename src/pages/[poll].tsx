@@ -4,11 +4,31 @@ import Navbar from '../components/Navbar/Navbar';
 import { useCookies } from 'react-cookie';
 import UserPollPage from '@/components/PollPage/UserPollPage';
 import Head from 'next/head';
+import useSWR, { mutate } from 'swr';
+import { setFormBudget } from '../slices/formBudgetSlice';
+import { setFormName } from '../slices/formNameSlice';
+import { toggleInterest } from '../slices/formInterestsSlice';
+import { useAppSelector, useAppDispatch } from '../hooks';
+
+const navFetcher = (...args: [any]) => fetch(...args).then((res) => res.json());
 
 export default function GetPolls() {
   const [cookies, setCookie] = useCookies();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const { poll } = router.query;
+  const { data, error } = useSWR(
+    `https://decision-backend-heroku.herokuapp.com/${poll}`,
+    navFetcher,
+  );
+
+  if (!data) {
+  } else {
+    dispatch(setFormBudget(data.budget[0]));
+    dispatch(toggleInterest(data.activities));
+    dispatch(setFormName(data.names[0]));
+    console.log(data);
+  }
   return (
     <>
       <Head>

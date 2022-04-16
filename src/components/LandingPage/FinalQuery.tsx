@@ -270,6 +270,7 @@ export default function PreferencesPage() {
                     color={budget === 0 ? '#FFDD99' : '#644386'}
                     fontSize="lg"
                     fontWeight="medium"
+                    ml={{ base: '0', md: '2rem' }}
                     mt={{ base: '1.5rem', md: '0.7rem' }}
                     onClick={() => {
                       methods.setValue('budget', '0');
