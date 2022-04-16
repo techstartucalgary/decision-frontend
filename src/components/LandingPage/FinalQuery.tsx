@@ -132,7 +132,7 @@ export default function PreferencesPage() {
     });
 
     // DO SOMETHING WITH session_id
-    console.log(session_id);
+    console.log(data);
     router.push({
       pathname: `linkgeneration`,
       query: { link: session_id },

@@ -82,6 +82,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             src="/whereto-logo-transparent.png"
             w={{ base: '5rem', md: 'full' }}
             mx={{ base: 'auto' }}
+            cursor="pointer"
           />
         </Link>
         <CloseButton

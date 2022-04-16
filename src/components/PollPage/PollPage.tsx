@@ -57,8 +57,8 @@ const PollPage = ({ id }: any) => {
     membersFetcher,
   );
 
-  if (pollsError) return <ErrorScreen />;
-  if (!polls) return <LoadingScreen />;
+  if (pollsError || membersError) return <ErrorScreen />;
+  if (!polls || !members) return <LoadingScreen />;
 
   const updateVotes = async () => {
     const sessionData = {

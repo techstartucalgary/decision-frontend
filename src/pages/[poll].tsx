@@ -7,8 +7,8 @@ import Head from 'next/head';
 import useSWR, { mutate } from 'swr';
 import { setFormBudget } from '../slices/formBudgetSlice';
 import { setFormName } from '../slices/formNameSlice';
-import { toggleInterest } from '../slices/formInterestsSlice';
-import { useAppSelector, useAppDispatch } from '../hooks';
+import { setInterests } from '../slices/formInterestsSlice';
+import { useAppDispatch } from '../hooks';
 
 const navFetcher = (...args: [any]) => fetch(...args).then((res) => res.json());
 
@@ -25,7 +25,7 @@ export default function GetPolls() {
   if (!data) {
   } else {
     dispatch(setFormBudget(data.budget[0]));
-    dispatch(toggleInterest(data.activities));
+    dispatch(setInterests(data.activities));
     dispatch(setFormName(data.names[0]));
     console.log(data);
   }
