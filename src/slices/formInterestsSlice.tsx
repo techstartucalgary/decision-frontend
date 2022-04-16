@@ -53,14 +53,13 @@ export const formInterestsSlice = createSlice({
     },
     setInterests: (state, action: PayloadAction<string[]>) => {
       for (let i = 0; i < state.value.length; i++) {
-        let setValue: boolean = false;
+        let setValue = false;
         for (let j = 0; j < action.payload.length; j++) {
           if (state.value[i].name === action.payload[j]) {
             state.value[i].selected = true;
             setValue = true;
           }
         }
-
         if (!setValue) {
           state.value[i].selected = false;
         }
