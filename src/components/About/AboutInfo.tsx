@@ -25,14 +25,7 @@ export default function AboutInfo() {
       </Center>
 
       {/* Page contents */}
-      <Flex
-        flexDirection="column"
-        width="100%"
-        px="4"
-        maxW="500px"
-        justifyContent="center"
-        mx="auto"
-      >
+      <Flex flexDirection="column" width="100%" px="4" maxW="500px" mx="auto">
         <ElevatorPitch />
         <TechnologiesUsed />
         <Contributors />
