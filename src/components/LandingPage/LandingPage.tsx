@@ -136,8 +136,8 @@ const LandingPage = () => {
                   position="fixed"
                   right="1.75rem"
                   bottom="1.75rem"
-                  width="3.5rem"
-                  height="3.5rem"
+                  width="3.25rem"
+                  height="3.25rem"
                   borderRadius="full"
                   boxShadow="4px 4px 8px rgba(0, 0, 0, 0.25)"
                 >

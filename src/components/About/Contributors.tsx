@@ -192,8 +192,8 @@ export default function Contributors() {
         alignSelf="center"
         align="center"
       >
-        From left to right: Nolan Chan, Lubaba Sheikh, Nemanja Grujic, Vivian
-        Huynh, Naveed Aria (Not Pictured: Mikail Munir, Noman Sanjari)
+        From left to right: Nemanja Grujic, Lubaba Sheikh, Naveed Aria, Nolan
+        Chan, Vivian Huynh (Not Pictured: Mikail Munir, Noman Sanjari)
       </Text>
     </Flex>
   );
