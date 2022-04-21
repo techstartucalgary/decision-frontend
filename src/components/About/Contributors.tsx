@@ -53,7 +53,7 @@ export default function Contributors() {
         marginTop="0.75rem"
       >
         This website was developed by a team of students at the University of
-        Calgary&apos;s TechStart software development club.
+        Calgary&apos;s Tech Start software development club.
       </Text>
       <Text
         color="#FFDD99"
@@ -171,7 +171,7 @@ export default function Contributors() {
         </ListItem>
       </UnorderedList>
       <Image
-        src="/groupphoto-alt1.png"
+        src="/groupphoto-alt2.png"
         alt="Team Photo"
         width="88%"
         alignSelf="center"

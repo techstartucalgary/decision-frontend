@@ -56,13 +56,24 @@ export default function ElevatorPitch() {
         width="88%"
         marginLeft="1.25rem"
         marginTop="0.5rem"
-        marginBottom="1.25rem"
       >
         That is what this website aims to solve! One person in the group selects
         how much you all want to spend, and what you&apos;re interesting in
         doing (for example, dining). Afterwards, a link is generated where you
         and your friends can vote on a selection of venues generated from
         Google&apos;s location API.
+      </Text>
+      <Text
+        color="#FFDD99"
+        fontSize="0.875rem"
+        fontWeight="bold"
+        lineHeight="1.125rem"
+        width="88%"
+        marginLeft="1.25rem"
+        marginTop="0.5rem"
+        marginBottom="1.25rem"
+      >
+        Winner of the Best UI award at the 2022 Tech Start Showcase.
       </Text>
     </Flex>
   );
