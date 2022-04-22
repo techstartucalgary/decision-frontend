@@ -160,15 +160,6 @@ export default function Contributors() {
         >
           Lubaba Sheikh (Backend Developer)
         </ListItem>
-        <ListItem
-          color="#FFDD99"
-          fontSize="0.875rem"
-          lineHeight="1.125rem"
-          width="88%"
-          marginLeft="1.25rem"
-        >
-          Noman Sanjari (Backend Developer)
-        </ListItem>
       </UnorderedList>
       <Image
         src="/groupphoto-alt2.png"
@@ -193,7 +184,7 @@ export default function Contributors() {
         align="center"
       >
         From left to right: Nemanja Grujic, Lubaba Sheikh, Naveed Aria, Nolan
-        Chan, Vivian Huynh (Not Pictured: Mikail Munir, Noman Sanjari)
+        Chan, Vivian Huynh (Not Pictured: Mikail Munir)
       </Text>
     </Flex>
   );
