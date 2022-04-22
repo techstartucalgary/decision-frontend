@@ -19,6 +19,8 @@ import { setFormName } from '../../slices/formNameSlice';
 import { setFormStep } from '../../slices/formStepSlice';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 
+import Link from 'next/link';
+
 const LandingPage = () => {
   const methods = useForm({
     mode: 'all',
@@ -124,6 +126,24 @@ const LandingPage = () => {
                 )}
                 <Box width="2.25rem" marginLeft="1.5rem"></Box>
               </Flex>
+              <Link href="/about">
+                <Button
+                  fontSize="2rem"
+                  fontWeight="regular"
+                  color="#FFDD99"
+                  bg="#644386"
+                  opacity="0.9"
+                  position="fixed"
+                  right="1.75rem"
+                  bottom="1.75rem"
+                  width="3.25rem"
+                  height="3.25rem"
+                  borderRadius="full"
+                  boxShadow="4px 4px 8px rgba(0, 0, 0, 0.25)"
+                >
+                  ?
+                </Button>
+              </Link>
             </Box>
           )}
           {step >= 1 && <FinalQuery />}

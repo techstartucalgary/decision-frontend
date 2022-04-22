@@ -152,7 +152,9 @@ const PollPage = ({ id }: any) => {
                       className={`h-6 w-6`}
                       cursor="pointer"
                       _hover={{
-                        fill: 'primary.100',
+                        fill: votedLocations.includes(poll.locationID)
+                          ? 'primary.100'
+                          : '#332244',
                       }}
                       fill={`${
                         votedLocations.includes(poll.locationID)

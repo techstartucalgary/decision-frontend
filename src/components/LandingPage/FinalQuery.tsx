@@ -34,6 +34,7 @@ export default function PreferencesPage() {
   const methods = useFormContext();
 
   const dispatch = useAppDispatch();
+  const form_name = useAppSelector((state) => state.formName.value);
   const budget = useAppSelector((state) => state.formBudget.value);
   const interests = useAppSelector((state) => state.formInterests.value);
   const step = useAppSelector((state) => state.formStep.value);
@@ -128,6 +129,8 @@ export default function PreferencesPage() {
 
     const session_id = await getLink({
       ...data,
+      names: form_name,
+      budget: budget,
       activities: selected_interests,
     });
 
