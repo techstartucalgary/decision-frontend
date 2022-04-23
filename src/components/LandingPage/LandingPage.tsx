@@ -140,6 +140,7 @@ const LandingPage = () => {
                   height="3.25rem"
                   borderRadius="full"
                   boxShadow="4px 4px 8px rgba(0, 0, 0, 0.25)"
+                  _hover={{ bg: '#644386' }}
                 >
                   ?
                 </Button>
