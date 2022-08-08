@@ -32,13 +32,10 @@ Or alternatively, you can view the app at: https://www.where-to-app.com/
 Link to the backend repository: https://github.com/Tech-Start-UCalgary/decision-backend
 
 ## Contributers
-Vivian Huynh  
-Nemanja Grujic  
-Mikail Munir  
-Nolan Chan  
-Lubaba Sheikh  
-Chase Mowat  
-Naveed Aria  
-Minhazur Rahman  
+Vivian Huynh
+Nemanja Grujic
+Nolan Chan
+Lubaba Sheikh
+Naveed Aria
 
 
